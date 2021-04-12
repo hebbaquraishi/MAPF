@@ -9,7 +9,7 @@ The objective of this script is to take a path to a .map file as input and conve
 
 import yaml
 
-my_map = {"passable_terrain":[], "out_of_bounds": [], "tree": [], "swamp": [], "water": []}
+my_map = {"obstacles": [], "water": []}
 my_map_metadata = dict()
 my_map_metadata_values = dict()
 path = input("Please enter the path to the .map file\n")
@@ -24,14 +24,8 @@ for line in input_map:
         my_map_metadata_values[line.split(" ")[0]] = int(line.split(" ")[1])
     else:
         for i in range(0, len(line)):
-            if line[i] == "." or line[i] == "G":
-                my_map["passable_terrain"].append([map_row, i])
-            elif line[i] == "@" or line[i] == "O":
-                my_map["out_of_bounds"].append([map_row, i])
-            elif line[i] == "T":
-                my_map["tree"].append([map_row, i])
-            elif line[i] == "S":
-                my_map["swamp"].append([map_row, i])
+            if line[i] == "@" or line[i] == "O" or line[i] == "T":
+                my_map["obstacles"].append([map_row, i])
             elif line[i] == "W":
                 my_map["water"].append([map_row, i])
         map_row +=1
