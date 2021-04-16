@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/MAPF.dir/main.cpp.o"
+  "CMakeFiles/MAPF.dir/create_graph.cpp.o"
   "MAPF"
   "MAPF.pdb"
 )
