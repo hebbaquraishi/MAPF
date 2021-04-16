@@ -2,7 +2,7 @@
 Author: Hebba Quraishi
 Email: quraishi@tf.uni-freiburg.de
 
-The objective of this script is to take a path to a .map file as input and convert it to a YAML file
+The objective of this script is to take a path to a .map file as input and convert it to a JSON file
 1) the .map file format can be found here: https://www.movingai.com/benchmarks/formats.html
 2) sample maps can be found here: https://movingai.com/benchmarks/mapf/index.html
 """
