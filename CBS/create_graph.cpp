@@ -14,7 +14,7 @@ void print_graph(std::vector<std::pair<int, int>> const &graph) {
     cout<<endl;
 }
 
-void add_vertices(std::vector<std::pair<int, int>> &graph, int &x, int &y){
+void add_node(std::vector<std::pair<int, int>> &graph, int &x, int &y){
     graph.emplace_back(std::make_pair(x,y));
 }
 
@@ -24,12 +24,12 @@ void create_graph(json input_json_file, vector<pair<int, int>> &vertices, vector
     for(int i=0; i != input_json_file["vertices"].size(); i++){
         int x = input_json_file["vertices"][i][0];
         int y = input_json_file["vertices"][i][1];
-        add_vertices(vertices, x, y);
+        add_node(vertices, x, y);
     }
     for(int i=0; i != input_json_file["obstacles"].size(); i++){
         int x = input_json_file["obstacles"][i][0];
         int y = input_json_file["obstacles"][i][1];
-        add_vertices(obstacles, x, y);
+        add_node(obstacles, x, y);
     }
 
 }
