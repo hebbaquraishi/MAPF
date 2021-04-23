@@ -2,17 +2,22 @@
 Author: Hebba Quraishi
 Email: quraishi@tf.uni-freiburg.de
 
-The objective of this script is to take a path to a .map file as input and convert it to a JSON file
-1) the .map file format can be found here: https://www.movingai.com/benchmarks/formats.html
-2) sample maps can be found here: https://movingai.com/benchmarks/mapf/index.html
+This code is divided into 2 sections:
+Section 1:
+    The objective of this section is to take a path to a .map file as input and convert it to a JSON file
+    1) the .map file format can be found here: https://www.movingai.com/benchmarks/formats.html
+    2) sample maps can be found here: https://movingai.com/benchmarks/mapf/index.html
+
+Section 2:
+    The objective of this section is to randomly generate agents and randomly assign start and end goals for the agents
 """
 
 import json
 import random
 
-"""
-This section of the code is used to parse a map
-"""
+#######################################
+##           SECTION 1               ##
+#######################################
 
 my_map = {"height": 0, "width": 0, "vertices": [], "obstacles": [], "water": []}
 path = input("Please enter the path to the .map file\n")
@@ -38,9 +43,9 @@ with open('my_map.json', 'w') as outfile:
     json.dump(my_map, outfile)
 
 
-"""
-This section of the code is used to randomly generate agents and randomly assign start and end goals for the agents
-"""
+#######################################
+##           SECTION 2               ##
+#######################################
 
 number_of_agents = random.randint(1, 3)
 number_of_goals = random.randint(1, 3)
