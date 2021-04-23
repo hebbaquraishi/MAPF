@@ -82,7 +82,13 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/create_graph.cpp">
+		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/graph.cpp">
+			<Option target="MAPF"/>
+		</Unit>
+		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/graph.h">
+			<Option target="MAPF"/>
+		</Unit>
+		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/main.cpp">
 			<Option target="MAPF"/>
 		</Unit>
 		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/CMakeLists.txt">

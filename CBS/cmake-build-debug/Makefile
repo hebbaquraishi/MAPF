@@ -142,32 +142,59 @@ MAPF/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/build
 .PHONY : MAPF/fast
 
-create_graph.o: create_graph.cpp.o
+graph.o: graph.cpp.o
 
-.PHONY : create_graph.o
+.PHONY : graph.o
 
 # target to build an object file
-create_graph.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/create_graph.cpp.o
-.PHONY : create_graph.cpp.o
+graph.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/graph.cpp.o
+.PHONY : graph.cpp.o
 
-create_graph.i: create_graph.cpp.i
+graph.i: graph.cpp.i
 
-.PHONY : create_graph.i
+.PHONY : graph.i
 
 # target to preprocess a source file
-create_graph.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/create_graph.cpp.i
-.PHONY : create_graph.cpp.i
+graph.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/graph.cpp.i
+.PHONY : graph.cpp.i
 
-create_graph.s: create_graph.cpp.s
+graph.s: graph.cpp.s
 
-.PHONY : create_graph.s
+.PHONY : graph.s
 
 # target to generate assembly for a file
-create_graph.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/create_graph.cpp.s
-.PHONY : create_graph.cpp.s
+graph.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/graph.cpp.s
+.PHONY : graph.cpp.s
+
+main.o: main.cpp.o
+
+.PHONY : main.o
+
+# target to build an object file
+main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/main.cpp.o
+.PHONY : main.cpp.o
+
+main.i: main.cpp.i
+
+.PHONY : main.i
+
+# target to preprocess a source file
+main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/main.cpp.i
+.PHONY : main.cpp.i
+
+main.s: main.cpp.s
+
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 # Help Target
 help:
@@ -178,9 +205,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... MAPF"
-	@echo "... create_graph.o"
-	@echo "... create_graph.i"
-	@echo "... create_graph.s"
+	@echo "... graph.o"
+	@echo "... graph.i"
+	@echo "... graph.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 
