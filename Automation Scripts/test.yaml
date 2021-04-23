@@ -1,8 +1,0 @@
-map:
-  height: 256
-  width: 256
-obstacles:
-- [0, 105]
-- [0, 106]
-- [0, 107]
-water: []

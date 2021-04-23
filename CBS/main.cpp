@@ -52,18 +52,5 @@ int main(){
         }
         cout<<endl;
     }
-
-
-
-
-
-
-
-
-    /*create_graph(input_json_file, vertices, obstacles);
-    cout<<"The vertices are"<<endl;
-    print_graph((std::vector<std::pair<int, int>>) vertices);
-    cout<<"The obstacles are"<<endl;
-    print_graph((std::vector<std::pair<int, int>>) obstacles);*/
     return 0;
 }
