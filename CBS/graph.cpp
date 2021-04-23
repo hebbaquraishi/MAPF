@@ -1,5 +1,5 @@
 //
-// Created by Hebba Quraishi on 21.04.21.
+// This is a class file for a graph
 //
 #include "graph.h"
 #include <vector>
