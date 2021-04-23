@@ -1,6 +1,8 @@
 /*
- * This header file is used to declare a graph
- */
+ * Author: Hebba Quraishi
+ * Email: quraishi@tf.uni-freiburg.de
+ * The objective of this file is to implement a Graph data structure
+*/
 
 #ifndef MAPF_GRAPH_H
 #define MAPF_GRAPH_H
