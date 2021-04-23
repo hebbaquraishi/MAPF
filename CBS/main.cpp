@@ -30,22 +30,29 @@ int main(){
         int y = input_json_file["obstacles"][i][1];
         graph.add_obstacle(graph.my_obstacles, x, y);
     }
-
+    cout<<"My vertices:"<<endl;
     for(const auto& i: graph.my_vertices){
         cout << "("<< i.name.first << "," << i.name.second << ") ";
     }
     cout <<endl;
+    cout <<endl;
+    cout<<"My obstacles:"<<endl;
     for(const auto& j: graph.my_obstacles){
         cout << "("<< j.first << "," << j.second << ") ";
     }
     cout <<endl;
+    cout <<endl;
 
-    Vertex a = Vertex(0,2);
-    graph.add_neighbours(a);
-
-    for(auto k: a.neighbours){
-        cout << "("<< k.first << "," << k.second << ") ";
+    for (int i =0; i <graph.my_vertices.size(); i++){
+        Vertex a = graph.my_vertices[i];
+        graph.add_neighbours(a);
+        cout<<"Vertex: ("<<a.name.first<<","<<a.name.second<<")"<<" Neighbours: ";
+        for(auto k: a.neighbours){
+            cout << "("<< k.first << "," << k.second << ") ";
+        }
+        cout<<endl;
     }
+
 
 
 

@@ -7,7 +7,7 @@
 #include <algorithm>
 using namespace std;
 
-//Overloading the + operator so that we can add to coordinates together
+//Overloading the + operator so that we can add two coordinates together
 pair<int, int> operator+(pair<int, int> const &x, pair<int, int> const &y){
     return make_pair(x.first + y.first, x.second+y.second);
 }
@@ -79,7 +79,7 @@ void Graph::add_obstacle(std::vector<std::pair<int, int>> &my_obstacles, int &x,
     } else return false;
 }
 
-void Graph::add_neighbours(Vertex vertex){
+void Graph::add_neighbours(Vertex &vertex){
     Direction d;
     set<pair<int,int>> possible_neighbours = d.possible_neighbours(vertex);
     for(auto iter : possible_neighbours){
@@ -89,6 +89,6 @@ void Graph::add_neighbours(Vertex vertex){
 
 bool Graph::is_obstacle (pair<int, int> const &element){
     if(std::find(my_obstacles.begin(), my_obstacles.end(), element) == my_obstacles.end()){
-        return true;
-    } else return false;
+        return false;
+    } else return true;
 }
