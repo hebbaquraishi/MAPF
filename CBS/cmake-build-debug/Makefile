@@ -142,6 +142,33 @@ MAPF/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/build
 .PHONY : MAPF/fast
 
+agent.o: agent.cpp.o
+
+.PHONY : agent.o
+
+# target to build an object file
+agent.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/agent.cpp.o
+.PHONY : agent.cpp.o
+
+agent.i: agent.cpp.i
+
+.PHONY : agent.i
+
+# target to preprocess a source file
+agent.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/agent.cpp.i
+.PHONY : agent.cpp.i
+
+agent.s: agent.cpp.s
+
+.PHONY : agent.s
+
+# target to generate assembly for a file
+agent.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/agent.cpp.s
+.PHONY : agent.cpp.s
+
 graph.o: graph.cpp.o
 
 .PHONY : graph.o
@@ -205,6 +232,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... MAPF"
+	@echo "... agent.o"
+	@echo "... agent.i"
+	@echo "... agent.s"
 	@echo "... graph.o"
 	@echo "... graph.i"
 	@echo "... graph.s"

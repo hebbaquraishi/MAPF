@@ -1,35 +1,40 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <string>
 #include <nlohmann/json.hpp>
 #include "graph.h"
+#include "agent.h"
 using namespace std;
 using json= nlohmann::json;
 
 
 
 int main(){
-    std::vector<std::pair<int, int>> vertices, obstacles;
-    json input_json_file;
+    vector<pair<int, int>> vertices, obstacles;
+    json input_map_json;
 
-    std::ifstream in("/Users/hebbaquraishi/Desktop/MAPF/Automation Scripts/my_map.json");
-    in >> input_json_file;
+    ifstream in_map("/Users/hebbaquraishi/Desktop/MAPF/Automation Scripts/my_map.json");
+    in_map >> input_map_json;
 
 
-    Graph graph(input_json_file["height"], input_json_file["width"]);
+    Graph graph(input_map_json["height"], input_map_json["width"]);
     cout <<"Graph height = "<<graph.height<<", Graph width = "<<graph.width<<endl;
 
-    for(int i = 0; i != input_json_file["vertices"].size(); i++){
-        int x = input_json_file["vertices"][i][0];
-        int y = input_json_file["vertices"][i][1];
+    for(int i = 0; i != input_map_json["vertices"].size(); i++){
+        int x = input_map_json["vertices"][i][0];
+        int y = input_map_json["vertices"][i][1];
         graph.add_vertex(graph.my_vertices, x, y);
     }
 
-    for(int i = 0; i != input_json_file["obstacles"].size(); i++){
-        int x = input_json_file["obstacles"][i][0];
-        int y = input_json_file["obstacles"][i][1];
+    for(int i = 0; i != input_map_json["obstacles"].size(); i++){
+        int x = input_map_json["obstacles"][i][0];
+        int y = input_map_json["obstacles"][i][1];
         graph.add_obstacle(graph.my_obstacles, x, y);
     }
+    in_map.close();
+
+
     cout<<"My vertices:"<<endl;
     for(const auto& i: graph.my_vertices){
         cout << "("<< i.name.first << "," << i.name.second << ") ";
@@ -52,5 +57,24 @@ int main(){
         }
         cout<<endl;
     }
+
+    json input_agents_json;
+    ifstream in_agents("/Users/hebbaquraishi/Desktop/MAPF/Automation Scripts/my_agents.json");
+    in_agents >> input_agents_json;
+
+    vector<Agent> agents;
+    for (int i = 0; i< input_agents_json["names"].size(); i++){
+        Agent a;
+        a.name = input_agents_json["names"][i];
+        a.initial = input_agents_json["initial"][i];
+        for(auto & j : input_agents_json["goal"][i]){
+            a.goals.emplace_back(j);
+        }
+
+        agents.emplace_back(a);
+    }
+
+    agents[0].get_info();
+    
     return 0;
 }

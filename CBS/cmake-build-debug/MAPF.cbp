@@ -82,6 +82,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/agent.cpp">
+			<Option target="MAPF"/>
+		</Unit>
+		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/agent.h">
+			<Option target="MAPF"/>
+		</Unit>
 		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/graph.cpp">
 			<Option target="MAPF"/>
 		</Unit>

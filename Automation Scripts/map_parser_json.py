@@ -47,21 +47,21 @@ with open('my_map.json', 'w') as outfile:
 ##           SECTION 2               ##
 #######################################
 
-number_of_agents = random.randint(1, 3)
-number_of_goals = random.randint(1, 3)
+number_of_agents = random.randint(1, 5)
+number_of_goals = random.randint(1, 5)
 agent_source_locations = random.sample(my_map["vertices"], number_of_agents)
 agent_names = list()
-agents = dict()
+agents = {"names":[], "initial":[], "goal":[]}
 for i in range(0, number_of_agents):
     agent_names.append("agent"+str(i))
 
-for name in agent_names:
-    agents[name] = dict()
-    agents[name]["initial"] = agent_source_locations.pop()
-    agents[name]["goal"] = random.sample(my_map["vertices"], number_of_goals)
+agents["names"] = agent_names
+agents["initial"] = agent_source_locations
 
-print(agent_names)
-print(agents)
+
+for name in agent_names:
+    agents["goal"].append(random.sample(my_map["vertices"], number_of_goals))
+
 
 with open('my_agents.json', 'w') as outfile:
     json.dump(agents, outfile)
