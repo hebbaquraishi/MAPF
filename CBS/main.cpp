@@ -14,7 +14,7 @@ int main(){
     vector<pair<int, int>> vertices, obstacles;
     json input_map_json;
 
-    ifstream in_map("/Users/hebbaquraishi/Desktop/MAPF/Automation Scripts/my_map.json");
+    ifstream in_map("/Users/hebbaquraishi/Desktop/MAPF/Automation Scripts/results/my_map.json");
     in_map >> input_map_json;
 
 
@@ -59,7 +59,7 @@ int main(){
     }
 
     json input_agents_json;
-    ifstream in_agents("/Users/hebbaquraishi/Desktop/MAPF/Automation Scripts/my_agents.json");
+    ifstream in_agents("/Users/hebbaquraishi/Desktop/MAPF/Automation Scripts/results/my_agents.json");
     in_agents >> input_agents_json;
 
     vector<Agent> agents;
@@ -74,7 +74,10 @@ int main(){
         agents.emplace_back(a);
     }
 
-    agents[0].get_info();
+    for (auto & agent : agents){
+        agent.get_info();
+    }
+
     
     return 0;
 }

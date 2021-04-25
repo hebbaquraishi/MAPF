@@ -1,6 +1,9 @@
-//
-// Created by Hebba Quraishi on 24.04.21.
-//
+/*
+ * Author: Hebba Quraishi
+ * Email: quraishi@tf.uni-freiburg.de
+ * The objective of this file is to implement an Agent. Each agent has a name, initial location and goal locations
+*/
+
 
 #ifndef MAPF_AGENT_H
 #define MAPF_AGENT_H

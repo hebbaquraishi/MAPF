@@ -14,6 +14,9 @@ Section 2:
 
 import json
 import random
+import os
+
+os.chdir("/Users/hebbaquraishi/Desktop/MAPF/Automation Scripts")
 
 #######################################
 ##           SECTION 1               ##
