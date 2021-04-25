@@ -16,3 +16,8 @@ void Agent::get_info() {
     }
     std::cout<<std::endl;
 }
+
+
+void Agent::add_to_path() {
+
+}

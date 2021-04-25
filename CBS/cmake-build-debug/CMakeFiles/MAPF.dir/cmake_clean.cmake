@@ -1,6 +1,9 @@
 file(REMOVE_RECURSE
   "CMakeFiles/MAPF.dir/agent.cpp.o"
+  "CMakeFiles/MAPF.dir/constraint.cpp.o"
+  "CMakeFiles/MAPF.dir/constraint_tree.cpp.o"
   "CMakeFiles/MAPF.dir/graph.cpp.o"
+  "CMakeFiles/MAPF.dir/helper.cpp.o"
   "CMakeFiles/MAPF.dir/main.cpp.o"
   "MAPF"
   "MAPF.pdb"

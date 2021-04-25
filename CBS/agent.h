@@ -9,6 +9,7 @@
 #define MAPF_AGENT_H
 #include <string>
 #include <vector>
+#include "helper.h"
 
 
 class Agent {
@@ -16,8 +17,12 @@ class Agent {
         std::string name;
         std::pair<int, int> initial;
         std::vector<std::pair<int, int>> goals;
+        std::vector<Vertex> path;
+        std::set<Vertex &v, int t> agent_constraints;
         Agent();
         void get_info();
+        void add_to_path();
+        void add_constraint();
 };
 
 

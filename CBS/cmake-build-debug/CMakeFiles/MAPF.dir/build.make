@@ -115,11 +115,53 @@ CMakeFiles/MAPF.dir/agent.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MAPF.dir/agent.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/hebbaquraishi/Desktop/MAPF/CBS/agent.cpp -o CMakeFiles/MAPF.dir/agent.cpp.s
 
+CMakeFiles/MAPF.dir/constraint.cpp.o: CMakeFiles/MAPF.dir/flags.make
+CMakeFiles/MAPF.dir/constraint.cpp.o: ../constraint.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/hebbaquraishi/Desktop/MAPF/CBS/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/MAPF.dir/constraint.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MAPF.dir/constraint.cpp.o -c /Users/hebbaquraishi/Desktop/MAPF/CBS/constraint.cpp
+
+CMakeFiles/MAPF.dir/constraint.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MAPF.dir/constraint.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/hebbaquraishi/Desktop/MAPF/CBS/constraint.cpp > CMakeFiles/MAPF.dir/constraint.cpp.i
+
+CMakeFiles/MAPF.dir/constraint.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MAPF.dir/constraint.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/hebbaquraishi/Desktop/MAPF/CBS/constraint.cpp -o CMakeFiles/MAPF.dir/constraint.cpp.s
+
+CMakeFiles/MAPF.dir/constraint_tree.cpp.o: CMakeFiles/MAPF.dir/flags.make
+CMakeFiles/MAPF.dir/constraint_tree.cpp.o: ../constraint_tree.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/hebbaquraishi/Desktop/MAPF/CBS/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/MAPF.dir/constraint_tree.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MAPF.dir/constraint_tree.cpp.o -c /Users/hebbaquraishi/Desktop/MAPF/CBS/constraint_tree.cpp
+
+CMakeFiles/MAPF.dir/constraint_tree.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MAPF.dir/constraint_tree.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/hebbaquraishi/Desktop/MAPF/CBS/constraint_tree.cpp > CMakeFiles/MAPF.dir/constraint_tree.cpp.i
+
+CMakeFiles/MAPF.dir/constraint_tree.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MAPF.dir/constraint_tree.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/hebbaquraishi/Desktop/MAPF/CBS/constraint_tree.cpp -o CMakeFiles/MAPF.dir/constraint_tree.cpp.s
+
+CMakeFiles/MAPF.dir/helper.cpp.o: CMakeFiles/MAPF.dir/flags.make
+CMakeFiles/MAPF.dir/helper.cpp.o: ../helper.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/hebbaquraishi/Desktop/MAPF/CBS/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/MAPF.dir/helper.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MAPF.dir/helper.cpp.o -c /Users/hebbaquraishi/Desktop/MAPF/CBS/helper.cpp
+
+CMakeFiles/MAPF.dir/helper.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MAPF.dir/helper.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/hebbaquraishi/Desktop/MAPF/CBS/helper.cpp > CMakeFiles/MAPF.dir/helper.cpp.i
+
+CMakeFiles/MAPF.dir/helper.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MAPF.dir/helper.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/hebbaquraishi/Desktop/MAPF/CBS/helper.cpp -o CMakeFiles/MAPF.dir/helper.cpp.s
+
 # Object files for target MAPF
 MAPF_OBJECTS = \
 "CMakeFiles/MAPF.dir/main.cpp.o" \
 "CMakeFiles/MAPF.dir/graph.cpp.o" \
-"CMakeFiles/MAPF.dir/agent.cpp.o"
+"CMakeFiles/MAPF.dir/agent.cpp.o" \
+"CMakeFiles/MAPF.dir/constraint.cpp.o" \
+"CMakeFiles/MAPF.dir/constraint_tree.cpp.o" \
+"CMakeFiles/MAPF.dir/helper.cpp.o"
 
 # External object files for target MAPF
 MAPF_EXTERNAL_OBJECTS =
@@ -127,9 +169,12 @@ MAPF_EXTERNAL_OBJECTS =
 MAPF: CMakeFiles/MAPF.dir/main.cpp.o
 MAPF: CMakeFiles/MAPF.dir/graph.cpp.o
 MAPF: CMakeFiles/MAPF.dir/agent.cpp.o
+MAPF: CMakeFiles/MAPF.dir/constraint.cpp.o
+MAPF: CMakeFiles/MAPF.dir/constraint_tree.cpp.o
+MAPF: CMakeFiles/MAPF.dir/helper.cpp.o
 MAPF: CMakeFiles/MAPF.dir/build.make
 MAPF: CMakeFiles/MAPF.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/hebbaquraishi/Desktop/MAPF/CBS/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable MAPF"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/hebbaquraishi/Desktop/MAPF/CBS/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable MAPF"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/MAPF.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
