@@ -39,7 +39,7 @@ for line in input_map:
                 my_map["water"].append([map_row, map_column])
         map_row += 1
 
-with open('my_map.json', 'w') as outfile:
+with open('results/my_map.json', 'w') as outfile:
     json.dump(my_map, outfile)
 
 
@@ -63,5 +63,5 @@ for name in agent_names:
     agents["goal"].append(random.sample(my_map["vertices"], number_of_goals))
 
 
-with open('my_agents.json', 'w') as outfile:
+with open('results/my_agents.json', 'w') as outfile:
     json.dump(agents, outfile)
