@@ -4,9 +4,9 @@
  * The objective of this file is to implement some helper tools which will be used by other classes
 */
 
-#include "helper.h"
 #include <set>
 #include <algorithm>
+#include "helper.h"
 
 using namespace std;
 
@@ -18,7 +18,6 @@ pair<int, int> operator+(pair<int, int> const &x, pair<int, int> const &y){
 
 
 //Implementing the struct Vertex
-Vertex::Vertex() = default;
 Vertex::Vertex(int x, int y){
     //This is a constructor for struct Vertex which accepts x and y coordinates (as int) and stores them as a Vertex
     Vertex::name = make_pair(x,y);
@@ -79,5 +78,4 @@ void Vertex::set_neighbour(pair<int, int> const &vertex){
     neighbours.insert(Direction::move_north_west(vertex.name));
     return neighbours;
 }
-
 

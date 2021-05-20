@@ -1,13 +1,12 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include <string>
 #include <nlohmann/json.hpp>
 #include "graph.h"
 #include "agent.h"
+#include "helper.h"
 using namespace std;
 using json= nlohmann::json;
-
 
 
 int main(){
@@ -61,8 +60,8 @@ int main(){
     json input_agents_json;
     ifstream in_agents("/Users/hebbaquraishi/Desktop/MAPF/Automation Scripts/results/my_agents.json");
     in_agents >> input_agents_json;
-
     vector<Agent> agents;
+
     for (int i = 0; i< input_agents_json["names"].size(); i++){
         Agent a;
         a.name = input_agents_json["names"][i];
@@ -70,14 +69,11 @@ int main(){
         for(auto & j : input_agents_json["goal"][i]){
             a.goals.emplace_back(j);
         }
-
-        agents.emplace_back(a);
+        agents.push_back(a);
     }
 
-    for (auto & agent : agents){
-        agent.get_info();
+    for(auto &x : agents){
+        x.get_info();
     }
-
-    
     return 0;
 }

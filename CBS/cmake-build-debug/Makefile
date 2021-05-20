@@ -169,60 +169,6 @@ agent.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/agent.cpp.s
 .PHONY : agent.cpp.s
 
-constraint.o: constraint.cpp.o
-
-.PHONY : constraint.o
-
-# target to build an object file
-constraint.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/constraint.cpp.o
-.PHONY : constraint.cpp.o
-
-constraint.i: constraint.cpp.i
-
-.PHONY : constraint.i
-
-# target to preprocess a source file
-constraint.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/constraint.cpp.i
-.PHONY : constraint.cpp.i
-
-constraint.s: constraint.cpp.s
-
-.PHONY : constraint.s
-
-# target to generate assembly for a file
-constraint.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/constraint.cpp.s
-.PHONY : constraint.cpp.s
-
-constraint_tree.o: constraint_tree.cpp.o
-
-.PHONY : constraint_tree.o
-
-# target to build an object file
-constraint_tree.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/constraint_tree.cpp.o
-.PHONY : constraint_tree.cpp.o
-
-constraint_tree.i: constraint_tree.cpp.i
-
-.PHONY : constraint_tree.i
-
-# target to preprocess a source file
-constraint_tree.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/constraint_tree.cpp.i
-.PHONY : constraint_tree.cpp.i
-
-constraint_tree.s: constraint_tree.cpp.s
-
-.PHONY : constraint_tree.s
-
-# target to generate assembly for a file
-constraint_tree.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/constraint_tree.cpp.s
-.PHONY : constraint_tree.cpp.s
-
 graph.o: graph.cpp.o
 
 .PHONY : graph.o
@@ -316,12 +262,6 @@ help:
 	@echo "... agent.o"
 	@echo "... agent.i"
 	@echo "... agent.s"
-	@echo "... constraint.o"
-	@echo "... constraint.i"
-	@echo "... constraint.s"
-	@echo "... constraint_tree.o"
-	@echo "... constraint_tree.i"
-	@echo "... constraint_tree.s"
 	@echo "... graph.o"
 	@echo "... graph.i"
 	@echo "... graph.s"

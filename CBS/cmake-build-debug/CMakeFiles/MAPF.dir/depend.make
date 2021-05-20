@@ -3,12 +3,18 @@
 
 CMakeFiles/MAPF.dir/agent.cpp.o: ../agent.cpp
 CMakeFiles/MAPF.dir/agent.cpp.o: ../agent.h
+CMakeFiles/MAPF.dir/agent.cpp.o: ../helper.h
 
 CMakeFiles/MAPF.dir/graph.cpp.o: ../graph.cpp
 CMakeFiles/MAPF.dir/graph.cpp.o: ../graph.h
+CMakeFiles/MAPF.dir/graph.cpp.o: ../helper.h
+
+CMakeFiles/MAPF.dir/helper.cpp.o: ../helper.cpp
+CMakeFiles/MAPF.dir/helper.cpp.o: ../helper.h
 
 CMakeFiles/MAPF.dir/main.cpp.o: ../agent.h
 CMakeFiles/MAPF.dir/main.cpp.o: ../graph.h
+CMakeFiles/MAPF.dir/main.cpp.o: ../helper.h
 CMakeFiles/MAPF.dir/main.cpp.o: ../main.cpp
 CMakeFiles/MAPF.dir/main.cpp.o: /opt/homebrew/include/nlohmann/adl_serializer.hpp
 CMakeFiles/MAPF.dir/main.cpp.o: /opt/homebrew/include/nlohmann/byte_container_with_subtype.hpp

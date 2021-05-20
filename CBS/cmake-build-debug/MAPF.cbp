@@ -88,18 +88,6 @@
 		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/agent.h">
 			<Option target="MAPF"/>
 		</Unit>
-		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/constraint.cpp">
-			<Option target="MAPF"/>
-		</Unit>
-		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/constraint.h">
-			<Option target="MAPF"/>
-		</Unit>
-		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/constraint_tree.cpp">
-			<Option target="MAPF"/>
-		</Unit>
-		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/constraint_tree.h">
-			<Option target="MAPF"/>
-		</Unit>
 		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/graph.cpp">
 			<Option target="MAPF"/>
 		</Unit>

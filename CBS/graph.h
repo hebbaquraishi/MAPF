@@ -10,9 +10,6 @@
 #include <set>
 #include "helper.h"
 
-
-
-
 class Graph{
     public:
         int height,width;

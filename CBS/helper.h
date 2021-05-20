@@ -7,13 +7,13 @@
 #ifndef MAPF_HELPER_H
 #define MAPF_HELPER_H
 
-#include "agent.h"
-#include "graph.h"
+#include <vector>
+#include <set>
 
 struct Vertex{
     std::pair<int, int> name;
     std::set<std::pair<int, int>> neighbours;
-    Vertex();
+    Vertex()=default;
     Vertex(int x, int y);
     void set_neighbour(std::pair<int, int> const &vertex);
     [[nodiscard]] std::set<std::pair<int, int>> get_neighbours() const;
@@ -40,8 +40,5 @@ struct Direction{
     [[nodiscard]] std::pair<int, int> move_north_west(std::pair<int, int> loc) const;
     [[nodiscard]] std::set<std::pair<int,int>> possible_neighbours(Vertex const &vertex) const;
 };
-
-
-
 
 #endif //MAPF_HELPER_H
