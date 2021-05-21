@@ -18,11 +18,12 @@ class Agent {
         std::pair<int, int> initial;
         std::vector<std::pair<int, int>> goals;
         std::vector<Vertex> path;
-        std::vector<std::pair<Vertex, int>> agent_constraints;
+        int path_cost = path.size();
+        std::vector<std::pair<Vertex, int>> constraints;
         Agent() = default;
-        explicit Agent(std::string name);
         void get_info();
         void add_to_path(Vertex &v);
-        void add_agent_constraint(Vertex &v, int t);
+        void add_constraint(Vertex &v, int t);
+
 };
 #endif //MAPF_AGENT_H

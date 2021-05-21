@@ -7,6 +7,7 @@
 #include <set>
 #include <algorithm>
 #include "helper.h"
+#include <cmath>
 
 using namespace std;
 
@@ -78,4 +79,22 @@ void Vertex::set_neighbour(pair<int, int> const &vertex){
     neighbours.insert(Direction::move_north_west(vertex.name));
     return neighbours;
 }
+
+
+// Implementing struct Heuristic
+float Heuristic::run_heuristic(const std::string &name, Vertex &a, Vertex &b) {
+    float x = a.name.first - b.name.first;
+    float y = b.name.second - b.name.second;
+    float distance;
+    if(name == "euclidean"){
+        distance = sqrt((pow(x,2) - pow(y,2)));
+        return distance;
+    }
+    else if(name == "manhattan") {
+        distance = abs(x)+ abs(y);
+        return distance;
+    }
+    return 0;
+}
+
 

@@ -9,6 +9,7 @@
 
 #include <vector>
 #include <set>
+#include <string>
 
 struct Vertex{
     std::pair<int, int> name;
@@ -39,6 +40,12 @@ struct Direction{
     [[nodiscard]] std::pair<int, int> move_west(std::pair<int, int> loc) const;
     [[nodiscard]] std::pair<int, int> move_north_west(std::pair<int, int> loc) const;
     [[nodiscard]] std::set<std::pair<int,int>> possible_neighbours(Vertex const &vertex) const;
+};
+
+
+struct Heuristic{
+    Heuristic() = default;
+    static float run_heuristic(const std::string& name, Vertex &a, Vertex &b);
 };
 
 #endif //MAPF_HELPER_H

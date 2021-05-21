@@ -94,6 +94,12 @@
 		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/graph.h">
 			<Option target="MAPF"/>
 		</Unit>
+		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/greedy_search.cpp">
+			<Option target="MAPF"/>
+		</Unit>
+		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/greedy_search.h">
+			<Option target="MAPF"/>
+		</Unit>
 		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/helper.cpp">
 			<Option target="MAPF"/>
 		</Unit>

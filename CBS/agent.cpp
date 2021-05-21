@@ -9,14 +9,23 @@
 #include <utility>
 using namespace std;
 
-Agent::Agent(std::string name) {
-    this->name = std::move(name);
-}
 
 void Agent::get_info() {
-    std::cout<<"Agent name: "<<name<<",\tInitial location: ("<<initial.first<<","<<initial.second<<"),\tGoal locations: ";
+    std::cout<<"Agent name: "<<name<<","<<endl;
+    std::cout<<"Initial location: ("<<initial.first<<","<<initial.second<<")"<<endl;
+    std::cout<<"Goal locations: ";
     for (auto & goal : goals){
         std::cout<<"("<<goal.first<<","<<goal.second<<") ";
+    }
+    std::cout<<std::endl;
+    std::cout<<"Path: ";
+    for(auto & p : path){
+        std::cout<<"("<<p.name.first<<","<<p.name.second<<") ";
+    }
+    std::cout<<std::endl;
+    std::cout<<"Constraints:"<<endl;
+    for(auto & c : constraints){
+        std::cout<<"\tVertex: ("<<c.first.name.first<<","<<c.first.name.second<<")"<<"\tTime step: "<<c.second<<endl;
     }
     std::cout<<std::endl;
 }
@@ -26,6 +35,6 @@ void Agent::add_to_path(Vertex &v) {
     path.emplace_back(v);
 }
 
-void Agent::add_agent_constraint(Vertex &v, int t){
-    agent_constraints.emplace_back(make_pair(v,t));
+void Agent::add_constraint(Vertex &v, int t){
+    constraints.emplace_back(make_pair(v, t));
 }

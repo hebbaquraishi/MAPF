@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/MAPF.dir/agent.cpp.o"
   "CMakeFiles/MAPF.dir/graph.cpp.o"
+  "CMakeFiles/MAPF.dir/greedy_search.cpp.o"
   "CMakeFiles/MAPF.dir/helper.cpp.o"
   "CMakeFiles/MAPF.dir/main.cpp.o"
   "MAPF"

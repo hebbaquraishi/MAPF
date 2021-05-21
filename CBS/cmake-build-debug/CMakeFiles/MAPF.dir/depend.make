@@ -9,6 +9,11 @@ CMakeFiles/MAPF.dir/graph.cpp.o: ../graph.cpp
 CMakeFiles/MAPF.dir/graph.cpp.o: ../graph.h
 CMakeFiles/MAPF.dir/graph.cpp.o: ../helper.h
 
+CMakeFiles/MAPF.dir/greedy_search.cpp.o: ../agent.h
+CMakeFiles/MAPF.dir/greedy_search.cpp.o: ../greedy_search.cpp
+CMakeFiles/MAPF.dir/greedy_search.cpp.o: ../greedy_search.h
+CMakeFiles/MAPF.dir/greedy_search.cpp.o: ../helper.h
+
 CMakeFiles/MAPF.dir/helper.cpp.o: ../helper.cpp
 CMakeFiles/MAPF.dir/helper.cpp.o: ../helper.h
 

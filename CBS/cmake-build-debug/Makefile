@@ -196,6 +196,33 @@ graph.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/graph.cpp.s
 .PHONY : graph.cpp.s
 
+greedy_search.o: greedy_search.cpp.o
+
+.PHONY : greedy_search.o
+
+# target to build an object file
+greedy_search.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/greedy_search.cpp.o
+.PHONY : greedy_search.cpp.o
+
+greedy_search.i: greedy_search.cpp.i
+
+.PHONY : greedy_search.i
+
+# target to preprocess a source file
+greedy_search.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/greedy_search.cpp.i
+.PHONY : greedy_search.cpp.i
+
+greedy_search.s: greedy_search.cpp.s
+
+.PHONY : greedy_search.s
+
+# target to generate assembly for a file
+greedy_search.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/greedy_search.cpp.s
+.PHONY : greedy_search.cpp.s
+
 helper.o: helper.cpp.o
 
 .PHONY : helper.o
@@ -265,6 +292,9 @@ help:
 	@echo "... graph.o"
 	@echo "... graph.i"
 	@echo "... graph.s"
+	@echo "... greedy_search.o"
+	@echo "... greedy_search.i"
+	@echo "... greedy_search.s"
 	@echo "... helper.o"
 	@echo "... helper.i"
 	@echo "... helper.s"

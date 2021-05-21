@@ -32,7 +32,7 @@ void Graph::add_obstacle(std::vector<std::pair<int, int>> &my_obstacles, int &x,
 }
 
 [[nodiscard]] bool Graph::is_edge(pair<int, int> const &vertex) const{
-    //This function is used to detect if a Vertex is an edge in the map
+    //This function is used to detect if a Vertex is at the edge of the map
     if(vertex.first < 0 or vertex.first > width-1 or vertex.second < 0 or vertex.second > height-1){
         return true;
     } else return false;
