@@ -87,7 +87,7 @@ float Heuristic::run_heuristic(const std::string &name, Vertex &a, Vertex &b) {
     float y = b.name.second - b.name.second;
     float distance;
     if(name == "euclidean"){
-        distance = sqrt((pow(x,2) - pow(y,2)));
+        distance = sqrt((pow(x,2) + pow(y,2)));
         return distance;
     }
     else if(name == "manhattan") {
