@@ -4,52 +4,134 @@
  * The objective of this file is to implement a Graph data structure
 */
 
-
-#include "graph.h"
-#include <vector>
-#include <set>
+#include "Graph.h"
+#include "Agent.h"
+#include <utility>
+#include <nlohmann/json.hpp>
+#include <fstream>
 #include <algorithm>
+#include <iostream>
 using namespace std;
+using json = nlohmann::json;
 
 
-//Implementing the struct Graph
-Graph::Graph(int height, int width){
-    //This is the constructor for class Graph. It is used to store the height and width of the map
-        this->height = height;
-        this->width = width;
+Graph::Graph(const std::string& map_location, const std::string& agent_location){
+    json input_map_json;
+    ifstream input_map(map_location);
+    input_map >> input_map_json;
+    this->height = input_map_json["height"];
+    this->width = input_map_json["width"];
+    initialise_nodes(input_map_json);
+
+    json input_agents_json;
+    ifstream input_agents(agent_location);
+    input_agents >> input_agents_json;
+    initialise_agents(input_agents_json);
+    initialise_graph_edges();
 }
 
-void Graph::add_vertex(vector<Vertex> &v, int &x, int &y){
-    //This function is used to add a Vertex to a graph. It also detects the neighbours of the Vertex added
-    Vertex vertex = Vertex(x,y);
-    v.emplace_back(vertex);
-    add_neighbours(vertex);
+void Graph::initialise_nodes(json input_map_json) {
+    int id = 0;
+    for(int i = 0; i != input_map_json["vertices"].size(); i++){
+        Node x = Node(input_map_json["vertices"][i][0], input_map_json["vertices"][i][1]);
+        x.id = id;
+        this->nodes.emplace_back(x);
+        id++;
+    }
+
 }
 
-void Graph::add_obstacle(std::vector<std::pair<int, int>> &my_obstacles, int &x, int &y){
-    //This function is used to store a vector containing the coordinates of all obstacles in the map
-    my_obstacles.emplace_back(make_pair(x,y));
-}
-
-[[nodiscard]] bool Graph::is_edge(pair<int, int> const &vertex) const{
-    //This function is used to detect if a Vertex is at the edge of the map
-    if(vertex.first < 0 or vertex.first > width-1 or vertex.second < 0 or vertex.second > height-1){
-        return true;
-    } else return false;
-}
-
-void Graph::add_neighbours(Vertex &vertex){
-    //This function is used to set all valid neighbours of a Vertex
-    Direction d;
-    set<pair<int,int>> possible_neighbours = d.possible_neighbours(vertex);
-    for(auto iter : possible_neighbours){
-        if(!is_obstacle(iter) and !Graph::is_edge(iter)){vertex.set_neighbour(iter);}
+void Graph::initialise_agents(json input_agents_json){
+    std::vector<Node> goals;
+    for (int i = 0; i< input_agents_json["names"].size(); i++){
+        for (auto & j : input_agents_json["goal"][i]){
+            goals.emplace_back(Node(j[0], j[1]));
+        }
+        Node init = Node(input_agents_json["initial"][i][0], input_agents_json["initial"][i][1]);
+        Agent a = Agent(input_agents_json["names"][i], init, goals);
+        agents.emplace_back(a);
     }
 }
 
-bool Graph::is_obstacle (pair<int, int> const &element){
-    //This function is used to detect if a coordinate is an obstacle
-    if(std::find(my_obstacles.begin(), my_obstacles.end(), element) != my_obstacles.end()){
+
+Node operator+(const Node& n, const Node& m){
+    std::pair<int, int> r_n = n.get_coordinates();
+    std::pair<int, int> r_m = m.get_coordinates();
+    return Node(r_n.first+r_m.first, r_n.second+r_m.second);
+}
+
+bool operator==(const Node& n, const Node& m){
+    std::pair<int, int> r_n = n.get_coordinates();
+    std::pair<int, int> r_m = m.get_coordinates();
+    if(r_n.first==r_m.first && r_n.second==r_m.second){
         return true;
-    } else return false;
+    }
+    else {return false;}
+}
+
+std::vector<Node> Graph::get_neighbors(const Node& n) const{
+    vector<Node> possible_neighbors;
+    Node north_neighbour = n + Node(0, 1);
+    Node south_neighbour = n + Node(0, -1);
+    Node east_neighbour = n + Node(-1, 0);
+    Node west_neighbour = n + Node(1, 0);
+    if(north_neighbour.get_coordinates().first >=0 && north_neighbour.get_coordinates().first < width && north_neighbour.get_coordinates().second >=0 && north_neighbour.get_coordinates().second < height){
+        possible_neighbors.emplace_back(north_neighbour);
+    }
+
+    if(south_neighbour.get_coordinates().first >=0 && south_neighbour.get_coordinates().first < width && south_neighbour.get_coordinates().second >=0 && south_neighbour.get_coordinates().second < height){
+        possible_neighbors.emplace_back(south_neighbour);
+    }
+
+    if(east_neighbour.get_coordinates().first >=0 && east_neighbour.get_coordinates().first < width && east_neighbour.get_coordinates().second >=0 && east_neighbour.get_coordinates().second < height){
+        possible_neighbors.emplace_back(east_neighbour);
+    }
+
+    if(west_neighbour.get_coordinates().first >=0 && west_neighbour.get_coordinates().first < width && west_neighbour.get_coordinates().second >=0 && west_neighbour.get_coordinates().second < height){
+        possible_neighbors.emplace_back(west_neighbour);
+    }
+    return possible_neighbors;
+}
+
+void Graph::initialise_graph_edges(){
+    for(auto &n : nodes){
+        vector<Node> neighbors = get_neighbors(n);
+        vector<int> node_ids;
+        int index;
+        for(auto &nhbr : neighbors){
+            auto pos = find(nodes.begin(), nodes.end(), nhbr);
+            if(pos!= nodes.end()){
+                index = pos - nodes.begin();
+                node_ids.emplace_back(nodes[index].id);
+            }
+            else{ continue;}
+        }
+        graph[n.id] = node_ids;
+    }
+}
+
+std::vector<Agent> Graph::get_agents(){
+    return agents;
+}
+
+
+Node Graph::get_node_from_id(int id){
+    for(auto &n : nodes){
+        if(n.id == id){
+            return n;
+        }
+    }
+    return Node();
+}
+
+void Graph::print_graph() {
+    for(const auto& node : graph){
+        Node src = get_node_from_id(node.first);
+        cout<<"Parent node: "<<src.name<<" Child nodes: ";
+        for(auto& dest_node_id : node.second){
+            Node dest = get_node_from_id(dest_node_id);
+            cout<<dest.name<<" ";
+        }
+        cout<<endl;
+    }
 }

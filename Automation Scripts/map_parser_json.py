@@ -35,11 +35,11 @@ for line in input_map:
     else:
         for map_column in range(0, len(line)):
             if line[map_column] == "@" or line[map_column] == "O" or line[map_column] == "T":
-                my_map["obstacles"].append([map_row, map_column])
+                my_map["obstacles"].append([map_column, map_row])
             elif line[map_column] == "." or line[map_column] == "G":
-                my_map["vertices"].append([map_row, map_column])
+                my_map["vertices"].append([map_column, map_row])
             elif line[map_column] == "W":
-                my_map["water"].append([map_row, map_column])
+                my_map["water"].append([map_column, map_row])
         map_row += 1
 
 with open('results/my_map.json', 'w') as outfile:

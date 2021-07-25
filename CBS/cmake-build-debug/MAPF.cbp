@@ -47,7 +47,7 @@
 					<Add option="-DJSON_USE_IMPLICIT_CONVERSIONS=1"/>
 					<Add directory="/opt/homebrew/include"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
-					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.5/include"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
 					<Add directory="/System/Library/Frameworks"/>
 					<Add directory="/Library/Frameworks"/>
@@ -69,7 +69,7 @@
 					<Add option="-DJSON_USE_IMPLICIT_CONVERSIONS=1"/>
 					<Add directory="/opt/homebrew/include"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
-					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.5/include"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
 					<Add directory="/System/Library/Frameworks"/>
 					<Add directory="/Library/Frameworks"/>
@@ -82,28 +82,28 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/agent.cpp">
+		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/Agent.cpp">
 			<Option target="MAPF"/>
 		</Unit>
-		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/agent.h">
+		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/Agent.h">
 			<Option target="MAPF"/>
 		</Unit>
-		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/graph.cpp">
+		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/BreadthFirstSearch.cpp">
 			<Option target="MAPF"/>
 		</Unit>
-		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/graph.h">
+		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/BreadthFirstSearch.h">
 			<Option target="MAPF"/>
 		</Unit>
-		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/greedy_search.cpp">
+		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/Graph.cpp">
 			<Option target="MAPF"/>
 		</Unit>
-		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/greedy_search.h">
+		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/Graph.h">
 			<Option target="MAPF"/>
 		</Unit>
-		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/helper.cpp">
+		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/Node.cpp">
 			<Option target="MAPF"/>
 		</Unit>
-		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/helper.h">
+		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/Node.h">
 			<Option target="MAPF"/>
 		</Unit>
 		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/main.cpp">

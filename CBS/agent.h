@@ -1,29 +1,32 @@
 /*
  * Author: Hebba Quraishi
  * Email: quraishi@tf.uni-freiburg.de
- * The objective of this file is to implement an Agent. Each agent has a name, initial location and goal locations
+ * The objective of this file is to implement an Agent
 */
-
 
 #ifndef MAPF_AGENT_H
 #define MAPF_AGENT_H
 #include <string>
+#include <set>
 #include <vector>
-#include "helper.h"
+#include <nlohmann/json.hpp>
+#include "Node.h"
+using json = nlohmann::json;
 
 
 class Agent {
-    public:
-        std::string name;
-        std::pair<int, int> initial;
-        std::vector<std::pair<int, int>> goals;
-        std::vector<Vertex> path;
-        int path_cost = path.size();
-        std::vector<std::pair<Vertex, int>> constraints;
-        Agent() = default;
-        void get_info();
-        void add_to_path(Vertex &v);
-        void add_constraint(Vertex &v, int t);
-
+    Node initial;
+    std::vector<Node> goals;
+    std::vector<Node> path;
+    std::vector<std::pair<Node, int>> constraints;
+public:
+    std::string name;
+    Agent() = default;
+    Agent(std::string name, Node init, std::vector<Node> goals);
+    Node get_init_loc();
+    std::vector<Node> get_goals();
+    int get_path_cost();
 };
+
+
 #endif //MAPF_AGENT_H

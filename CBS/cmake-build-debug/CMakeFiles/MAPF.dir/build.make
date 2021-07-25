@@ -89,74 +89,74 @@ CMakeFiles/MAPF.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MAPF.dir/main.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/hebbaquraishi/Desktop/MAPF/CBS/main.cpp -o CMakeFiles/MAPF.dir/main.cpp.s
 
-CMakeFiles/MAPF.dir/graph.cpp.o: CMakeFiles/MAPF.dir/flags.make
-CMakeFiles/MAPF.dir/graph.cpp.o: ../graph.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/hebbaquraishi/Desktop/MAPF/CBS/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/MAPF.dir/graph.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MAPF.dir/graph.cpp.o -c /Users/hebbaquraishi/Desktop/MAPF/CBS/graph.cpp
+CMakeFiles/MAPF.dir/Graph.cpp.o: CMakeFiles/MAPF.dir/flags.make
+CMakeFiles/MAPF.dir/Graph.cpp.o: ../Graph.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/hebbaquraishi/Desktop/MAPF/CBS/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/MAPF.dir/Graph.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MAPF.dir/Graph.cpp.o -c /Users/hebbaquraishi/Desktop/MAPF/CBS/Graph.cpp
 
-CMakeFiles/MAPF.dir/graph.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MAPF.dir/graph.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/hebbaquraishi/Desktop/MAPF/CBS/graph.cpp > CMakeFiles/MAPF.dir/graph.cpp.i
+CMakeFiles/MAPF.dir/Graph.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MAPF.dir/Graph.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/hebbaquraishi/Desktop/MAPF/CBS/Graph.cpp > CMakeFiles/MAPF.dir/Graph.cpp.i
 
-CMakeFiles/MAPF.dir/graph.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MAPF.dir/graph.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/hebbaquraishi/Desktop/MAPF/CBS/graph.cpp -o CMakeFiles/MAPF.dir/graph.cpp.s
+CMakeFiles/MAPF.dir/Graph.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MAPF.dir/Graph.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/hebbaquraishi/Desktop/MAPF/CBS/Graph.cpp -o CMakeFiles/MAPF.dir/Graph.cpp.s
 
-CMakeFiles/MAPF.dir/helper.cpp.o: CMakeFiles/MAPF.dir/flags.make
-CMakeFiles/MAPF.dir/helper.cpp.o: ../helper.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/hebbaquraishi/Desktop/MAPF/CBS/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/MAPF.dir/helper.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MAPF.dir/helper.cpp.o -c /Users/hebbaquraishi/Desktop/MAPF/CBS/helper.cpp
+CMakeFiles/MAPF.dir/Agent.cpp.o: CMakeFiles/MAPF.dir/flags.make
+CMakeFiles/MAPF.dir/Agent.cpp.o: ../Agent.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/hebbaquraishi/Desktop/MAPF/CBS/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/MAPF.dir/Agent.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MAPF.dir/Agent.cpp.o -c /Users/hebbaquraishi/Desktop/MAPF/CBS/Agent.cpp
 
-CMakeFiles/MAPF.dir/helper.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MAPF.dir/helper.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/hebbaquraishi/Desktop/MAPF/CBS/helper.cpp > CMakeFiles/MAPF.dir/helper.cpp.i
+CMakeFiles/MAPF.dir/Agent.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MAPF.dir/Agent.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/hebbaquraishi/Desktop/MAPF/CBS/Agent.cpp > CMakeFiles/MAPF.dir/Agent.cpp.i
 
-CMakeFiles/MAPF.dir/helper.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MAPF.dir/helper.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/hebbaquraishi/Desktop/MAPF/CBS/helper.cpp -o CMakeFiles/MAPF.dir/helper.cpp.s
+CMakeFiles/MAPF.dir/Agent.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MAPF.dir/Agent.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/hebbaquraishi/Desktop/MAPF/CBS/Agent.cpp -o CMakeFiles/MAPF.dir/Agent.cpp.s
 
-CMakeFiles/MAPF.dir/agent.cpp.o: CMakeFiles/MAPF.dir/flags.make
-CMakeFiles/MAPF.dir/agent.cpp.o: ../agent.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/hebbaquraishi/Desktop/MAPF/CBS/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/MAPF.dir/agent.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MAPF.dir/agent.cpp.o -c /Users/hebbaquraishi/Desktop/MAPF/CBS/agent.cpp
+CMakeFiles/MAPF.dir/Node.cpp.o: CMakeFiles/MAPF.dir/flags.make
+CMakeFiles/MAPF.dir/Node.cpp.o: ../Node.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/hebbaquraishi/Desktop/MAPF/CBS/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/MAPF.dir/Node.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MAPF.dir/Node.cpp.o -c /Users/hebbaquraishi/Desktop/MAPF/CBS/Node.cpp
 
-CMakeFiles/MAPF.dir/agent.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MAPF.dir/agent.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/hebbaquraishi/Desktop/MAPF/CBS/agent.cpp > CMakeFiles/MAPF.dir/agent.cpp.i
+CMakeFiles/MAPF.dir/Node.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MAPF.dir/Node.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/hebbaquraishi/Desktop/MAPF/CBS/Node.cpp > CMakeFiles/MAPF.dir/Node.cpp.i
 
-CMakeFiles/MAPF.dir/agent.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MAPF.dir/agent.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/hebbaquraishi/Desktop/MAPF/CBS/agent.cpp -o CMakeFiles/MAPF.dir/agent.cpp.s
+CMakeFiles/MAPF.dir/Node.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MAPF.dir/Node.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/hebbaquraishi/Desktop/MAPF/CBS/Node.cpp -o CMakeFiles/MAPF.dir/Node.cpp.s
 
-CMakeFiles/MAPF.dir/greedy_search.cpp.o: CMakeFiles/MAPF.dir/flags.make
-CMakeFiles/MAPF.dir/greedy_search.cpp.o: ../greedy_search.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/hebbaquraishi/Desktop/MAPF/CBS/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/MAPF.dir/greedy_search.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MAPF.dir/greedy_search.cpp.o -c /Users/hebbaquraishi/Desktop/MAPF/CBS/greedy_search.cpp
+CMakeFiles/MAPF.dir/BreadthFirstSearch.cpp.o: CMakeFiles/MAPF.dir/flags.make
+CMakeFiles/MAPF.dir/BreadthFirstSearch.cpp.o: ../BreadthFirstSearch.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/hebbaquraishi/Desktop/MAPF/CBS/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/MAPF.dir/BreadthFirstSearch.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MAPF.dir/BreadthFirstSearch.cpp.o -c /Users/hebbaquraishi/Desktop/MAPF/CBS/BreadthFirstSearch.cpp
 
-CMakeFiles/MAPF.dir/greedy_search.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MAPF.dir/greedy_search.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/hebbaquraishi/Desktop/MAPF/CBS/greedy_search.cpp > CMakeFiles/MAPF.dir/greedy_search.cpp.i
+CMakeFiles/MAPF.dir/BreadthFirstSearch.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MAPF.dir/BreadthFirstSearch.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/hebbaquraishi/Desktop/MAPF/CBS/BreadthFirstSearch.cpp > CMakeFiles/MAPF.dir/BreadthFirstSearch.cpp.i
 
-CMakeFiles/MAPF.dir/greedy_search.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MAPF.dir/greedy_search.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/hebbaquraishi/Desktop/MAPF/CBS/greedy_search.cpp -o CMakeFiles/MAPF.dir/greedy_search.cpp.s
+CMakeFiles/MAPF.dir/BreadthFirstSearch.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MAPF.dir/BreadthFirstSearch.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/hebbaquraishi/Desktop/MAPF/CBS/BreadthFirstSearch.cpp -o CMakeFiles/MAPF.dir/BreadthFirstSearch.cpp.s
 
 # Object files for target MAPF
 MAPF_OBJECTS = \
 "CMakeFiles/MAPF.dir/main.cpp.o" \
-"CMakeFiles/MAPF.dir/graph.cpp.o" \
-"CMakeFiles/MAPF.dir/helper.cpp.o" \
-"CMakeFiles/MAPF.dir/agent.cpp.o" \
-"CMakeFiles/MAPF.dir/greedy_search.cpp.o"
+"CMakeFiles/MAPF.dir/Graph.cpp.o" \
+"CMakeFiles/MAPF.dir/Agent.cpp.o" \
+"CMakeFiles/MAPF.dir/Node.cpp.o" \
+"CMakeFiles/MAPF.dir/BreadthFirstSearch.cpp.o"
 
 # External object files for target MAPF
 MAPF_EXTERNAL_OBJECTS =
 
 MAPF: CMakeFiles/MAPF.dir/main.cpp.o
-MAPF: CMakeFiles/MAPF.dir/graph.cpp.o
-MAPF: CMakeFiles/MAPF.dir/helper.cpp.o
-MAPF: CMakeFiles/MAPF.dir/agent.cpp.o
-MAPF: CMakeFiles/MAPF.dir/greedy_search.cpp.o
+MAPF: CMakeFiles/MAPF.dir/Graph.cpp.o
+MAPF: CMakeFiles/MAPF.dir/Agent.cpp.o
+MAPF: CMakeFiles/MAPF.dir/Node.cpp.o
+MAPF: CMakeFiles/MAPF.dir/BreadthFirstSearch.cpp.o
 MAPF: CMakeFiles/MAPF.dir/build.make
 MAPF: CMakeFiles/MAPF.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/hebbaquraishi/Desktop/MAPF/CBS/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable MAPF"

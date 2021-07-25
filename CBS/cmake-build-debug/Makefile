@@ -142,113 +142,113 @@ MAPF/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/build
 .PHONY : MAPF/fast
 
-agent.o: agent.cpp.o
+Agent.o: Agent.cpp.o
 
-.PHONY : agent.o
-
-# target to build an object file
-agent.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/agent.cpp.o
-.PHONY : agent.cpp.o
-
-agent.i: agent.cpp.i
-
-.PHONY : agent.i
-
-# target to preprocess a source file
-agent.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/agent.cpp.i
-.PHONY : agent.cpp.i
-
-agent.s: agent.cpp.s
-
-.PHONY : agent.s
-
-# target to generate assembly for a file
-agent.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/agent.cpp.s
-.PHONY : agent.cpp.s
-
-graph.o: graph.cpp.o
-
-.PHONY : graph.o
+.PHONY : Agent.o
 
 # target to build an object file
-graph.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/graph.cpp.o
-.PHONY : graph.cpp.o
+Agent.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/Agent.cpp.o
+.PHONY : Agent.cpp.o
 
-graph.i: graph.cpp.i
+Agent.i: Agent.cpp.i
 
-.PHONY : graph.i
+.PHONY : Agent.i
 
 # target to preprocess a source file
-graph.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/graph.cpp.i
-.PHONY : graph.cpp.i
+Agent.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/Agent.cpp.i
+.PHONY : Agent.cpp.i
 
-graph.s: graph.cpp.s
+Agent.s: Agent.cpp.s
 
-.PHONY : graph.s
+.PHONY : Agent.s
 
 # target to generate assembly for a file
-graph.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/graph.cpp.s
-.PHONY : graph.cpp.s
+Agent.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/Agent.cpp.s
+.PHONY : Agent.cpp.s
 
-greedy_search.o: greedy_search.cpp.o
+BreadthFirstSearch.o: BreadthFirstSearch.cpp.o
 
-.PHONY : greedy_search.o
+.PHONY : BreadthFirstSearch.o
 
 # target to build an object file
-greedy_search.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/greedy_search.cpp.o
-.PHONY : greedy_search.cpp.o
+BreadthFirstSearch.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/BreadthFirstSearch.cpp.o
+.PHONY : BreadthFirstSearch.cpp.o
 
-greedy_search.i: greedy_search.cpp.i
+BreadthFirstSearch.i: BreadthFirstSearch.cpp.i
 
-.PHONY : greedy_search.i
+.PHONY : BreadthFirstSearch.i
 
 # target to preprocess a source file
-greedy_search.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/greedy_search.cpp.i
-.PHONY : greedy_search.cpp.i
+BreadthFirstSearch.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/BreadthFirstSearch.cpp.i
+.PHONY : BreadthFirstSearch.cpp.i
 
-greedy_search.s: greedy_search.cpp.s
+BreadthFirstSearch.s: BreadthFirstSearch.cpp.s
 
-.PHONY : greedy_search.s
+.PHONY : BreadthFirstSearch.s
 
 # target to generate assembly for a file
-greedy_search.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/greedy_search.cpp.s
-.PHONY : greedy_search.cpp.s
+BreadthFirstSearch.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/BreadthFirstSearch.cpp.s
+.PHONY : BreadthFirstSearch.cpp.s
 
-helper.o: helper.cpp.o
+Graph.o: Graph.cpp.o
 
-.PHONY : helper.o
+.PHONY : Graph.o
 
 # target to build an object file
-helper.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/helper.cpp.o
-.PHONY : helper.cpp.o
+Graph.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/Graph.cpp.o
+.PHONY : Graph.cpp.o
 
-helper.i: helper.cpp.i
+Graph.i: Graph.cpp.i
 
-.PHONY : helper.i
+.PHONY : Graph.i
 
 # target to preprocess a source file
-helper.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/helper.cpp.i
-.PHONY : helper.cpp.i
+Graph.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/Graph.cpp.i
+.PHONY : Graph.cpp.i
 
-helper.s: helper.cpp.s
+Graph.s: Graph.cpp.s
 
-.PHONY : helper.s
+.PHONY : Graph.s
 
 # target to generate assembly for a file
-helper.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/helper.cpp.s
-.PHONY : helper.cpp.s
+Graph.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/Graph.cpp.s
+.PHONY : Graph.cpp.s
+
+Node.o: Node.cpp.o
+
+.PHONY : Node.o
+
+# target to build an object file
+Node.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/Node.cpp.o
+.PHONY : Node.cpp.o
+
+Node.i: Node.cpp.i
+
+.PHONY : Node.i
+
+# target to preprocess a source file
+Node.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/Node.cpp.i
+.PHONY : Node.cpp.i
+
+Node.s: Node.cpp.s
+
+.PHONY : Node.s
+
+# target to generate assembly for a file
+Node.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/Node.cpp.s
+.PHONY : Node.cpp.s
 
 main.o: main.cpp.o
 
@@ -286,18 +286,18 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... MAPF"
-	@echo "... agent.o"
-	@echo "... agent.i"
-	@echo "... agent.s"
-	@echo "... graph.o"
-	@echo "... graph.i"
-	@echo "... graph.s"
-	@echo "... greedy_search.o"
-	@echo "... greedy_search.i"
-	@echo "... greedy_search.s"
-	@echo "... helper.o"
-	@echo "... helper.i"
-	@echo "... helper.s"
+	@echo "... Agent.o"
+	@echo "... Agent.i"
+	@echo "... Agent.s"
+	@echo "... BreadthFirstSearch.o"
+	@echo "... BreadthFirstSearch.i"
+	@echo "... BreadthFirstSearch.s"
+	@echo "... Graph.o"
+	@echo "... Graph.i"
+	@echo "... Graph.s"
+	@echo "... Node.o"
+	@echo "... Node.i"
+	@echo "... Node.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

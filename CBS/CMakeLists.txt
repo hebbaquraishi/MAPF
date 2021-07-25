@@ -3,5 +3,5 @@ project(MAPF)
 set(CMAKE_CXX_STANDARD 20)
 find_package(nlohmann_json 3.2.0 REQUIRED)
 
-add_executable(MAPF main.cpp graph.cpp graph.h helper.cpp helper.h agent.cpp agent.h greedy_search.cpp greedy_search.h)
+add_executable(MAPF main.cpp Graph.cpp Graph.h Agent.cpp Agent.h Node.cpp Node.h BreadthFirstSearch.cpp BreadthFirstSearch.h)
 target_link_libraries(MAPF PRIVATE nlohmann_json::nlohmann_json)

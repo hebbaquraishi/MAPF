@@ -1,40 +1,30 @@
 /*
  * Author: Hebba Quraishi
  * Email: quraishi@tf.uni-freiburg.de
- * The objective of this file is to implement an Agent. Each agent has a name, initial location and goal locations
+ * The objective of this file is to implement an Agent
 */
 
-#include "agent.h"
-#include <iostream>
+#include "Agent.h"
+#include <nlohmann/json.hpp>
 #include <utility>
+
+using json = nlohmann::json;
 using namespace std;
 
-
-void Agent::get_info() {
-    std::cout<<"Agent name: "<<name<<","<<endl;
-    std::cout<<"Initial location: ("<<initial.first<<","<<initial.second<<")"<<endl;
-    std::cout<<"Goal locations: ";
-    for (auto & goal : goals){
-        std::cout<<"("<<goal.first<<","<<goal.second<<") ";
-    }
-    std::cout<<std::endl;
-    std::cout<<"Path: ";
-    for(auto & p : path){
-        std::cout<<"("<<p.name.first<<","<<p.name.second<<") ";
-    }
-    std::cout<<std::endl;
-    std::cout<<"Constraints:"<<endl;
-    for(auto & c : constraints){
-        std::cout<<"\tVertex: ("<<c.first.name.first<<","<<c.first.name.second<<")"<<"\tTime step: "<<c.second<<endl;
-    }
-    std::cout<<std::endl;
+Agent::Agent(std::string name, Node init, std::vector<Node> goals){
+    this->name = std::move(name);
+    initial = std::move(init);
+    this->goals=std::move(goals);
 }
 
-
-void Agent::add_to_path(Vertex &v) {
-    path.emplace_back(v);
+Node Agent::get_init_loc(){
+    return initial;
 }
 
-void Agent::add_constraint(Vertex &v, int t){
-    constraints.emplace_back(make_pair(v, t));
+std::vector<Node> Agent::get_goals(){
+    return goals;
+}
+
+int Agent::get_path_cost(){
+    return path.size();
 }
