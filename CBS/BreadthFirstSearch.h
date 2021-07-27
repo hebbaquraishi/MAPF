@@ -20,7 +20,7 @@ public:
     NodeLocation() = default;
     NodeLocation(Node parent, Node current, int dist_from_root){
         this->parent = std::move(parent);
-        this->parent = std::move(parent);
+        this->current = std::move(current);
         this->dist_from_root = dist_from_root;
     }
 };
@@ -35,8 +35,6 @@ public:
     void run_bfs(NodeLocation root, std::queue<NodeLocation> q, std::map<int, bool> discovered);
     std::map<std::pair<int, int>,int> get_distance_matrix();
     void print_distance_matrix();
-
-
 };
 
 
