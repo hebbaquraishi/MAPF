@@ -13,12 +13,12 @@ using namespace std;
 
 Agent::Agent(std::string name, Node init, std::vector<Node> goals){
     this->name = std::move(name);
-    initial = std::move(init);
+    init_location = std::move(init);
     this->goals=std::move(goals);
 }
 
 Node Agent::get_init_loc(){
-    return initial;
+    return init_location;
 }
 
 std::vector<Node> Agent::get_goals(){

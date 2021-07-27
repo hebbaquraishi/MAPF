@@ -12,13 +12,13 @@
 #include <utility>
 
 
-struct NodeLocation{
+struct NodeBFS{
     Node parent;
     Node current;
     int dist_from_root;
 public:
-    NodeLocation() = default;
-    NodeLocation(Node parent, Node current, int dist_from_root){
+    NodeBFS() = default;
+    NodeBFS(Node parent, Node current, int dist_from_root){
         this->parent = std::move(parent);
         this->current = std::move(current);
         this->dist_from_root = dist_from_root;
@@ -26,13 +26,13 @@ public:
 };
 
 class BreadthFirstSearch {
-    Graph g;
+    Graph graph;
     std::map<std::pair<int, int>,int> distance_matrix;
     std::vector<int> all_goals;
 
 public:
     BreadthFirstSearch(Graph graph);
-    void run_bfs(NodeLocation root, std::queue<NodeLocation> q, std::map<int, bool> discovered);
+    void run_bfs(NodeBFS root, std::queue<NodeBFS> q, std::map<int, bool> discovered);
     std::map<std::pair<int, int>,int> get_distance_matrix();
     void print_distance_matrix();
 };

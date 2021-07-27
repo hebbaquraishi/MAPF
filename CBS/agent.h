@@ -15,7 +15,7 @@ using json = nlohmann::json;
 
 
 class Agent {
-    Node initial;
+    Node init_location;
     std::vector<Node> goals;
     std::vector<Node> path;
     std::vector<std::pair<Node, int>> constraints;

@@ -101,7 +101,7 @@ void Graph::initialise_graph_edges(){
         for(auto &nhbr : neighbors){
             node_ids.emplace_back(nhbr.id);
         }
-        graph[n.id] = node_ids;
+        edges[n.id] = node_ids;
     }
 }
 
@@ -129,7 +129,7 @@ int Graph::assign_id_to_node(const Node& x) const {
 }
 
 void Graph::print_graph() {
-    for(const auto& node : graph){
+    for(const auto& node : edges){
         Node src = get_node_from_id(node.first);
         cout<<"Parent node: "<<src.name<<" Child nodes: ";
         for(auto& dest_node_id : node.second){
