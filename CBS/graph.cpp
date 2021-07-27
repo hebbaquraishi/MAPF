@@ -73,45 +73,33 @@ bool operator==(const Node& n, const Node& m){
 }
 
 std::vector<Node> Graph::get_neighbors(const Node& n) const{
-    vector<Node> possible_neighbors;
+    vector<Node> neighbors, temp;
     Node north_neighbour = n + Node(0, 1);
     Node south_neighbour = n + Node(0, -1);
     Node east_neighbour = n + Node(-1, 0);
     Node west_neighbour = n + Node(1, 0);
-    if(north_neighbour.get_coordinates().first >=0 && north_neighbour.get_coordinates().first < width && north_neighbour.get_coordinates().second >=0 && north_neighbour.get_coordinates().second < height){
-        north_neighbour.id = assign_id_to_node(north_neighbour);
-        possible_neighbors.emplace_back(north_neighbour);
-    }
 
-    if(south_neighbour.get_coordinates().first >=0 && south_neighbour.get_coordinates().first < width && south_neighbour.get_coordinates().second >=0 && south_neighbour.get_coordinates().second < height){
-        south_neighbour.id = assign_id_to_node(south_neighbour);
-        possible_neighbors.emplace_back(south_neighbour);
-    }
+    temp.emplace_back(north_neighbour);
+    temp.emplace_back(south_neighbour);
+    temp.emplace_back(east_neighbour);
+    temp.emplace_back(west_neighbour);
 
-    if(east_neighbour.get_coordinates().first >=0 && east_neighbour.get_coordinates().first < width && east_neighbour.get_coordinates().second >=0 && east_neighbour.get_coordinates().second < height){
-        east_neighbour.id = assign_id_to_node(east_neighbour);
-        possible_neighbors.emplace_back(east_neighbour);
+    for(auto& nhbr : temp){
+        if((std::find(nodes.begin(), nodes.end(), nhbr) != nodes.end()) && nhbr.get_coordinates().first >=0 && nhbr.get_coordinates().first < width && nhbr.get_coordinates().second >=0 && nhbr.get_coordinates().second < height){
+            nhbr.id = assign_id_to_node(nhbr);
+            neighbors.emplace_back(nhbr);
+        }
+        else{continue;}
     }
-
-    if(west_neighbour.get_coordinates().first >=0 && west_neighbour.get_coordinates().first < width && west_neighbour.get_coordinates().second >=0 && west_neighbour.get_coordinates().second < height){
-        west_neighbour.id = assign_id_to_node(west_neighbour);
-        possible_neighbors.emplace_back(west_neighbour);
-    }
-    return possible_neighbors;
+    return neighbors;
 }
 
 void Graph::initialise_graph_edges(){
     for(auto &n : nodes){
         vector<Node> neighbors = get_neighbors(n);
         vector<int> node_ids;
-        int index;
         for(auto &nhbr : neighbors){
-            auto pos = find(nodes.begin(), nodes.end(), nhbr);
-            if(pos!= nodes.end()){
-                index = pos - nodes.begin();
-                node_ids.emplace_back(nodes[index].id);
-            }
-            else{ continue;}
+            node_ids.emplace_back(nhbr.id);
         }
         graph[n.id] = node_ids;
     }
@@ -131,14 +119,13 @@ Node Graph::get_node_from_id(int id){
     return Node();
 }
 
-int Graph::assign_id_to_node(Node x) const {
-    int id;
+int Graph::assign_id_to_node(const Node& x) const {
     for(auto &n : nodes){
         if(x.name == n.name){
             return n.id;
         }
     }
-
+    return -1;
 }
 
 void Graph::print_graph() {
