@@ -32,6 +32,7 @@ public:
     [[nodiscard]] std::vector<Node> get_neighbors(const Node& n) const; //get neighbours of a node
     std::vector<Agent> get_agents();
     Node get_node_from_id(int id);  //retrieve a node from an id
+    int assign_id_to_node(Node x) const;
     void print_graph(); //print the graph
 };
 

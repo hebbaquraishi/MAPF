@@ -7,16 +7,36 @@
 #ifndef MAPF_BREADTHFIRSTSEARCH_H
 #define MAPF_BREADTHFIRSTSEARCH_H
 #include "Graph.h"
-#include <unordered_map>
+#include <map>
+#include <queue>
+#include <utility>
 
+
+struct NodeLocation{
+    Node parent;
+    Node current;
+    int dist_from_root;
+public:
+    NodeLocation() = default;
+    NodeLocation(Node parent, Node current, int dist_from_root){
+        this->parent = std::move(parent);
+        this->parent = std::move(parent);
+        this->dist_from_root = dist_from_root;
+    }
+};
 
 class BreadthFirstSearch {
     Graph g;
-    std::unordered_map<int, std::vector<std::pair<int, int>>> distances;
-    std::set<int> all_goals;
+    std::map<std::pair<int, int>,int> distance_matrix;
+    std::vector<int> all_goals;
 
 public:
     BreadthFirstSearch(Graph graph);
+    void run_bfs(NodeLocation root, std::queue<NodeLocation> q, std::map<int, bool> discovered);
+    std::map<std::pair<int, int>,int> get_distance_matrix();
+    void print_distance_matrix();
+
+
 };
 
 

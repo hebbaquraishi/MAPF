@@ -45,9 +45,12 @@ void Graph::initialise_agents(json input_agents_json){
     std::vector<Node> goals;
     for (int i = 0; i< input_agents_json["names"].size(); i++){
         for (auto & j : input_agents_json["goal"][i]){
-            goals.emplace_back(Node(j[0], j[1]));
+            Node x = Node(j[0], j[1]);
+            x.id = assign_id_to_node(x);
+            goals.emplace_back(x);
         }
         Node init = Node(input_agents_json["initial"][i][0], input_agents_json["initial"][i][1]);
+        init.id = assign_id_to_node(init);
         Agent a = Agent(input_agents_json["names"][i], init, goals);
         agents.emplace_back(a);
     }
@@ -76,18 +79,22 @@ std::vector<Node> Graph::get_neighbors(const Node& n) const{
     Node east_neighbour = n + Node(-1, 0);
     Node west_neighbour = n + Node(1, 0);
     if(north_neighbour.get_coordinates().first >=0 && north_neighbour.get_coordinates().first < width && north_neighbour.get_coordinates().second >=0 && north_neighbour.get_coordinates().second < height){
+        north_neighbour.id = assign_id_to_node(north_neighbour);
         possible_neighbors.emplace_back(north_neighbour);
     }
 
     if(south_neighbour.get_coordinates().first >=0 && south_neighbour.get_coordinates().first < width && south_neighbour.get_coordinates().second >=0 && south_neighbour.get_coordinates().second < height){
+        south_neighbour.id = assign_id_to_node(south_neighbour);
         possible_neighbors.emplace_back(south_neighbour);
     }
 
     if(east_neighbour.get_coordinates().first >=0 && east_neighbour.get_coordinates().first < width && east_neighbour.get_coordinates().second >=0 && east_neighbour.get_coordinates().second < height){
+        east_neighbour.id = assign_id_to_node(east_neighbour);
         possible_neighbors.emplace_back(east_neighbour);
     }
 
     if(west_neighbour.get_coordinates().first >=0 && west_neighbour.get_coordinates().first < width && west_neighbour.get_coordinates().second >=0 && west_neighbour.get_coordinates().second < height){
+        west_neighbour.id = assign_id_to_node(west_neighbour);
         possible_neighbors.emplace_back(west_neighbour);
     }
     return possible_neighbors;
@@ -122,6 +129,16 @@ Node Graph::get_node_from_id(int id){
         }
     }
     return Node();
+}
+
+int Graph::assign_id_to_node(Node x) const {
+    int id;
+    for(auto &n : nodes){
+        if(x.name == n.name){
+            return n.id;
+        }
+    }
+
 }
 
 void Graph::print_graph() {
