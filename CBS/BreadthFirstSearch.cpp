@@ -27,8 +27,6 @@ BreadthFirstSearch::BreadthFirstSearch(Graph graph) {
                 root.current = goal;
                 root.dist_from_root = 0;
 
-                cout<<"Goal selected: "<<goal.name<<endl;
-
                 q.push(root);
                 discovered[goal.id] = true;
                 run_bfs(root, q, discovered);
@@ -42,7 +40,6 @@ void BreadthFirstSearch::run_bfs(NodeLocation parent, std::queue<NodeLocation> q
         return;
     }
     NodeLocation n = q.front();
-    cout<<"Node Popped: "<<n.current.name<<" Distance from root: "<<n.dist_from_root<<endl;
     q.pop();
     for(auto& node : g.get_neighbors(n.current)){
         if(!discovered[node.id]){
@@ -54,8 +51,8 @@ void BreadthFirstSearch::run_bfs(NodeLocation parent, std::queue<NodeLocation> q
             child.dist_from_root = n.dist_from_root+1;
 
             q.push(child);
-            distance_matrix[{parent.current.id, child.current.id}] = child.dist_from_root;
-            //distance_matrix[{node.id, goal.id}] = child.dist_from_root;
+            distance_matrix[{parent.current.id, child.current.id}] =child.dist_from_root;
+            distance_matrix[{child.current.id, parent.current.id}] =child.dist_from_root;
         }
     }
     run_bfs(parent, q, discovered);
