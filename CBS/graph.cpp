@@ -33,9 +33,9 @@ Graph::Graph(const std::string& map_location, const std::string& agent_location)
 void Graph::initialise_nodes(json input_map_json) {
     int id = 0;
     for(int i = 0; i != input_map_json["vertices"].size(); i++){
-        Vertex x = Vertex(input_map_json["vertices"][i][0], input_map_json["vertices"][i][1]);
-        x.id = id;
-        this->vertices.emplace_back(x);
+        Vertex v = Vertex(input_map_json["vertices"][i][0], input_map_json["vertices"][i][1]);
+        v.id = id;
+        this->vertices.emplace_back(v);
         id++;
     }
 
@@ -45,9 +45,9 @@ void Graph::initialise_agents(json input_agents_json){
     std::vector<Vertex> goals;
     for (int i = 0; i< input_agents_json["names"].size(); i++){
         for (auto & j : input_agents_json["goal"][i]){
-            Vertex x = Vertex(j[0], j[1]);
-            x.id = assign_id_to_node(x);
-            goals.emplace_back(x);
+            Vertex v = Vertex(j[0], j[1]);
+            v.id = assign_id_to_node(v);
+            goals.emplace_back(v);
         }
         Vertex init = Vertex(input_agents_json["initial"][i][0], input_agents_json["initial"][i][1]);
         init.id = assign_id_to_node(init);
@@ -72,12 +72,12 @@ bool operator==(const Vertex& v, const Vertex& u){
     else {return false;}
 }
 
-std::vector<Vertex> Graph::get_neighbors(const Vertex& n) const{
+std::vector<Vertex> Graph::get_neighbors(const Vertex& v) const{
     vector<Vertex> neighbors, temp;
-    Vertex north_neighbour = n + Vertex(0, 1);
-    Vertex south_neighbour = n + Vertex(0, -1);
-    Vertex east_neighbour = n + Vertex(-1, 0);
-    Vertex west_neighbour = n + Vertex(1, 0);
+    Vertex north_neighbour = v + Vertex(0, 1);
+    Vertex south_neighbour = v + Vertex(0, -1);
+    Vertex east_neighbour = v + Vertex(-1, 0);
+    Vertex west_neighbour = v + Vertex(1, 0);
 
     temp.emplace_back(north_neighbour);
     temp.emplace_back(south_neighbour);
