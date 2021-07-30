@@ -10,21 +10,21 @@
 #include <set>
 #include <vector>
 #include <nlohmann/json.hpp>
-#include "Node.h"
+#include "Vertex.h"
 using json = nlohmann::json;
 
 
 class Agent {
-    Node init_location;
-    std::vector<Node> goals;
-    std::vector<Node> path;
-    std::vector<std::pair<Node, int>> constraints;
+    Vertex init_location;
+    std::vector<Vertex> goals;
+    std::vector<Vertex> path;
+    std::vector<std::pair<Vertex, int>> constraints;
 public:
     std::string name;
     Agent() = default;
-    Agent(std::string name, Node init, std::vector<Node> goals);
-    Node get_init_loc();
-    std::vector<Node> get_goals();
+    Agent(std::string name, Vertex init, std::vector<Vertex> goals);
+    Vertex get_init_loc();
+    std::vector<Vertex> get_goals();
     int get_path_cost();
 };
 

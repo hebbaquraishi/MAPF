@@ -1,3 +1,7 @@
+
+# Consider dependencies only in project.
+set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
+
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
   "CXX"
@@ -7,7 +11,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/hebbaquraishi/Desktop/MAPF/CBS/Agent.cpp" "/Users/hebbaquraishi/Desktop/MAPF/CBS/cmake-build-debug/CMakeFiles/MAPF.dir/Agent.cpp.o"
   "/Users/hebbaquraishi/Desktop/MAPF/CBS/BreadthFirstSearch.cpp" "/Users/hebbaquraishi/Desktop/MAPF/CBS/cmake-build-debug/CMakeFiles/MAPF.dir/BreadthFirstSearch.cpp.o"
   "/Users/hebbaquraishi/Desktop/MAPF/CBS/Graph.cpp" "/Users/hebbaquraishi/Desktop/MAPF/CBS/cmake-build-debug/CMakeFiles/MAPF.dir/Graph.cpp.o"
-  "/Users/hebbaquraishi/Desktop/MAPF/CBS/Node.cpp" "/Users/hebbaquraishi/Desktop/MAPF/CBS/cmake-build-debug/CMakeFiles/MAPF.dir/Node.cpp.o"
+  "/Users/hebbaquraishi/Desktop/MAPF/CBS/Vertex.cpp" "/Users/hebbaquraishi/Desktop/MAPF/CBS/cmake-build-debug/CMakeFiles/MAPF.dir/Vertex.cpp.o"
   "/Users/hebbaquraishi/Desktop/MAPF/CBS/main.cpp" "/Users/hebbaquraishi/Desktop/MAPF/CBS/cmake-build-debug/CMakeFiles/MAPF.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
@@ -20,6 +24,10 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/opt/homebrew/include"
+  )
+
+# The set of dependency files which are needed:
+set(CMAKE_DEPENDS_DEPENDENCY_FILES
   )
 
 # Targets to which this target links.

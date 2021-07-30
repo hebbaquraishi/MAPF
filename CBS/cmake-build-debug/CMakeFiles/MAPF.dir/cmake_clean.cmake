@@ -2,7 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/MAPF.dir/Agent.cpp.o"
   "CMakeFiles/MAPF.dir/BreadthFirstSearch.cpp.o"
   "CMakeFiles/MAPF.dir/Graph.cpp.o"
-  "CMakeFiles/MAPF.dir/Node.cpp.o"
+  "CMakeFiles/MAPF.dir/Vertex.cpp.o"
   "CMakeFiles/MAPF.dir/main.cpp.o"
   "MAPF"
   "MAPF.pdb"

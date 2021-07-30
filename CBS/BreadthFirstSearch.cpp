@@ -14,18 +14,17 @@ BreadthFirstSearch::BreadthFirstSearch(Graph graph) {
     this->graph = graph;
     std::vector<Agent> all_agents = graph.get_agents();
     for (auto &a : all_agents) {
-        std::vector<Node> a_goals = a.get_goals();
+        std::vector<Vertex> a_goals = a.get_goals();
         for (auto &goal : a_goals) {
             if (find(all_goals.begin(), all_goals.end(), goal.id) == all_goals.end()) {
                 all_goals.emplace_back(goal.id);
 
                 std::map<int, bool> discovered;
-                std::queue<NodeBFS> q;
+                std::queue<std::pair<Vertex, int>> q;
 
-                NodeBFS root;
-                root.parent = Node();
-                root.current = goal;
-                root.dist_from_root = 0;
+                std::pair<Vertex, int> root;
+                root.first = goal;
+                root.second = 0;
 
                 q.push(root);
                 discovered[goal.id] = true;
@@ -35,27 +34,27 @@ BreadthFirstSearch::BreadthFirstSearch(Graph graph) {
     }
 }
 
-void BreadthFirstSearch::run_bfs(NodeBFS parent, std::queue<NodeBFS> q, std::map<int, bool> discovered){
+void BreadthFirstSearch::run_bfs(std::pair<Vertex, int> root, std::queue<std::pair<Vertex, int>> q, std::map<int, bool> discovered){
     if(q.empty()){
         return;
     }
-    NodeBFS n = q.front();
+    std::pair<Vertex, int> n = q.front();
     q.pop();
-    for(auto& node : graph.get_neighbors(n.current)){
+    for(auto& node : graph.get_neighbors(n.first)){
         if(!discovered[node.id]){
             discovered[node.id] = true;
 
-            NodeBFS child;
-            child.current = node;
-            child.parent = n.current;
-            child.dist_from_root = n.dist_from_root+1;
+            std::pair<Vertex, int> child;
+            child.first = node;
+            //child.parent = n.current;
+            child.second = n.second+1;
 
             q.push(child);
-            distance_matrix[{parent.current.id, child.current.id}] = child.dist_from_root;
-            distance_matrix[{child.current.id, parent.current.id}] = child.dist_from_root;
+            distance_matrix[{root.first.id, child.first.id}] = child.second;
+            distance_matrix[{child.first.id, root.first.id}] = child.second;
         }
     }
-    run_bfs(parent, q, discovered);
+    run_bfs(root,q, discovered);
 }
 
 std::map<std::pair<int, int>,int> BreadthFirstSearch::get_distance_matrix() {

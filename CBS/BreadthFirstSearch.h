@@ -12,19 +12,6 @@
 #include <utility>
 
 
-struct NodeBFS{
-    Node parent;
-    Node current;
-    int dist_from_root;
-public:
-    NodeBFS() = default;
-    NodeBFS(Node parent, Node current, int dist_from_root){
-        this->parent = std::move(parent);
-        this->current = std::move(current);
-        this->dist_from_root = dist_from_root;
-    }
-};
-
 class BreadthFirstSearch {
     Graph graph;
     std::map<std::pair<int, int>,int> distance_matrix;
@@ -32,7 +19,7 @@ class BreadthFirstSearch {
 
 public:
     BreadthFirstSearch(Graph graph);
-    void run_bfs(NodeBFS root, std::queue<NodeBFS> q, std::map<int, bool> discovered);
+    void run_bfs(std::pair<Vertex, int> root, std::queue<std::pair<Vertex, int>> q, std::map<int, bool> discovered);
     std::map<std::pair<int, int>,int> get_distance_matrix();
     void print_distance_matrix();
 };

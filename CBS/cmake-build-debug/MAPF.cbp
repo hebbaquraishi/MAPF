@@ -100,10 +100,10 @@
 		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/Graph.h">
 			<Option target="MAPF"/>
 		</Unit>
-		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/Node.cpp">
+		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/Vertex.cpp">
 			<Option target="MAPF"/>
 		</Unit>
-		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/Node.h">
+		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/Vertex.h">
 			<Option target="MAPF"/>
 		</Unit>
 		<Unit filename="/Users/hebbaquraishi/Desktop/MAPF/CBS/main.cpp">
