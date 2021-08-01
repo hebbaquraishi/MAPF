@@ -16,8 +16,9 @@ int main() {
     std::map<std::pair<int, int>,int> h_values = b.get_distance_matrix();
     AStar a = AStar(g, h_values);
     g = a.get_updated_graph();
+    cout<<"From low level A* search: "<<endl;
     for(auto& agent : g.get_agents()){
-        cout<<"Agent: "<<agent.name<<"\tInit: "<<agent.get_init_loc().name<<"\tGoal: "<<agent.get_goals()[0].name<<"\tPath: ";
+        cout<<"Agent: "<<agent.name<<"\tInit: "<<agent.get_init_loc().name<<"\t\tGoal: "<<agent.get_goals()[0].name<<"\t\tPath cost: "<<agent.get_path_cost()<<"\t\tPath: ";
         for(auto& v : agent.get_path()){
             cout<<v.name<<" ";
         }

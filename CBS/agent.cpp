@@ -34,5 +34,5 @@ std::vector<Vertex> Agent::get_path(){
 }
 
 int Agent::get_path_cost(){
-    return path.size();
+    return path.size() - 1;
 }
