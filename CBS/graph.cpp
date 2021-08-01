@@ -53,6 +53,7 @@ void Graph::initialise_agents(json input_agents_json){
         init.id = assign_id_to_node(init);
         Agent a = Agent(input_agents_json["names"][i], init, goals);
         agents.emplace_back(a);
+        goals = {};
     }
 }
 

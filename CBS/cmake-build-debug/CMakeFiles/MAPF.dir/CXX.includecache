@@ -6,16 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/Users/hebbaquraishi/Desktop/MAPF/CBS/AStar.cpp
-AStar.h
-/Users/hebbaquraishi/Desktop/MAPF/CBS/AStar.h
-utility
--
-iostream
--
-limits
--
-
 /Users/hebbaquraishi/Desktop/MAPF/CBS/AStar.h
 Agent.h
 /Users/hebbaquraishi/Desktop/MAPF/CBS/Agent.h

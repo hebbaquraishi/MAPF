@@ -19,10 +19,9 @@ int main() {
     for(auto& agent : g.get_agents()){
         cout<<"Agent: "<<agent.name<<"\tInit: "<<agent.get_init_loc().name<<"\tGoal: "<<agent.get_goals()[0].name<<"\tPath: ";
         for(auto& v : agent.get_path()){
-            cout<<v.name<<", ";
+            cout<<v.name<<" ";
         }
         cout<<endl;
     }
-
     return 0;
 }
