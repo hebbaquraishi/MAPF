@@ -6,6 +6,8 @@
 
 #ifndef MAPF_CONSTRAINTTREE_H
 #define MAPF_CONSTRAINTTREE_H
+#include <utility>
+
 #include "Graph.h"
 #include "AStar.h"
 
@@ -14,9 +16,17 @@
 struct Node{
     std::map<std::string, std::vector<std::pair<Vertex, int>>> constraints;  //key:= agent name, value:= vector of agent's constraints
     std::map<std::string, std::vector<Vertex>> solution;                     //key:= agent name, value:= agent path from source to goal
-    int cost = 0;                                                            //total cost of the current solution
-    Node *left;
-    Node *right;
+    int cost;                                                            //total cost of the current solution
+    Node* left;
+    Node* right;
+
+    Node(){
+        std::map<std::string, std::vector<std::pair<Vertex, int>>> c;
+        this->constraints = c;
+        this->cost = 0;
+        left = nullptr;
+        right = nullptr;
+    }
 };
 
 class ConstraintTree {
@@ -24,8 +34,7 @@ class ConstraintTree {
     Node *root;
 public:
     ConstraintTree(Graph graph);
-    //void initialise_root_constraints();
-    void low_level();
+    std::map<std::string, std::vector<Vertex>> low_level();
 
 };
 
