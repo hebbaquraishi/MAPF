@@ -1,6 +1,8 @@
-//
-// Created by Hebba Quraishi on 30.07.21.
-//
+/*
+ * Author: Hebba Quraishi
+ * Email: quraishi@tf.uni-freiburg.de
+ * The objective of this file is to implement A* Search
+*/
 
 #include "AStar.h"
 #include <utility>
@@ -9,9 +11,12 @@
 
 using namespace std;
 
-AStar::AStar(Graph g, std::map<std::pair<int, int>,int> h){
-    this->graph = std::move(g);
-    this->h_values = std::move(h);
+AStar::AStar(Graph g, map<string, vector<pair<Vertex, int>>> constraints){
+    this->graph = move(g);
+    this->constraints = move(constraints);
+    BreadthFirstSearch b = BreadthFirstSearch(graph);
+    this->h_values = b.get_distance_matrix();
+
     for(auto& agent : graph.get_agents()){
         Vertex start = agent.get_init_loc();
         Vertex goal = agent.get_goals()[0]; //only picking the first goal for now
@@ -21,14 +26,30 @@ AStar::AStar(Graph g, std::map<std::pair<int, int>,int> h){
             Vertex v = graph.get_vertex_from_id(id);
             path.emplace_back(v);
         }
-        graph.update_agent_path(agent.name, path);
+        vector<Vertex> consistent_path = make_path_consistent(path, this->constraints[agent.name]);
+        graph.update_agent_constraints(agent.name, this->constraints[agent.name]);
+        graph.update_agent_path(agent.name, consistent_path);
     }
+}
+
+
+
+vector<Vertex> AStar::make_path_consistent(vector<Vertex> path, const vector<pair<Vertex, int>>& constraints){
+    vector<Vertex> consistent_path = std::move(path);
+    for(auto& c : constraints){
+        if(c.first.name == consistent_path[c.second].name){
+            consistent_path.insert(consistent_path.begin()+c.second, consistent_path[c.second-1]);
+        }
+    }
+    return consistent_path;
+
 }
 
 vector<int> AStar::get_keys(const map<int, int>& came_from){
     vector<int> keys;
+    keys.reserve(came_from.size());
     for(auto &key : came_from){
-        keys.emplace_back(key.first);
+            keys.emplace_back(key.first);
     }
     return keys;
 }
@@ -48,7 +69,7 @@ vector<int> AStar::reconstruct_path(map<int, int> came_from, pair<int, int> curr
 
 
 bool AStar::in_frontier(int id, priority_queue<pair<int, int>, vector<pair<int, int>>, sort_by_f_value> frontier){
-    priority_queue<pair<int, int>, vector<pair<int, int>>, sort_by_f_value> f = frontier;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, sort_by_f_value> f = std::move(frontier);
     while (!f.empty()){
         if(f.top().first == id){
             return true;

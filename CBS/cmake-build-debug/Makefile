@@ -201,6 +201,30 @@ BreadthFirstSearch.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/BreadthFirstSearch.cpp.s
 .PHONY : BreadthFirstSearch.cpp.s
 
+ConstraintTree.o: ConstraintTree.cpp.o
+.PHONY : ConstraintTree.o
+
+# target to build an object file
+ConstraintTree.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/ConstraintTree.cpp.o
+.PHONY : ConstraintTree.cpp.o
+
+ConstraintTree.i: ConstraintTree.cpp.i
+.PHONY : ConstraintTree.i
+
+# target to preprocess a source file
+ConstraintTree.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/ConstraintTree.cpp.i
+.PHONY : ConstraintTree.cpp.i
+
+ConstraintTree.s: ConstraintTree.cpp.s
+.PHONY : ConstraintTree.s
+
+# target to generate assembly for a file
+ConstraintTree.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/ConstraintTree.cpp.s
+.PHONY : ConstraintTree.cpp.s
+
 Graph.o: Graph.cpp.o
 .PHONY : Graph.o
 
@@ -291,6 +315,9 @@ help:
 	@echo "... BreadthFirstSearch.o"
 	@echo "... BreadthFirstSearch.i"
 	@echo "... BreadthFirstSearch.s"
+	@echo "... ConstraintTree.o"
+	@echo "... ConstraintTree.i"
+	@echo "... ConstraintTree.s"
 	@echo "... Graph.o"
 	@echo "... Graph.i"
 	@echo "... Graph.s"

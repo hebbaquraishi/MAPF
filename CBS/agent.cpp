@@ -26,7 +26,7 @@ std::vector<Vertex> Agent::get_goals(){
 }
 
 void Agent::set_path(std::vector<Vertex> path){
-    this->path = path;
+    this->path = std::move(path);
 }
 
 std::vector<Vertex> Agent::get_path(){
@@ -35,4 +35,12 @@ std::vector<Vertex> Agent::get_path(){
 
 int Agent::get_path_cost(){
     return path.size() - 1;
+}
+
+void Agent::add_constraints(std::vector<std::pair<Vertex, int>> c){
+    this->constraints = std::move(c);
+}
+
+std::vector<std::pair<Vertex, int>> Agent::get_constraints(){
+    return constraints;
 }
