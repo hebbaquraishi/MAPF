@@ -65,8 +65,8 @@ void BreadthFirstSearch::print_distance_matrix() {
     cout<<endl;
     cout<<"(Src, Dest)\t\tDistance"<<endl;
     for(auto& key : distance_matrix){
-        string src = graph.get_node_from_id(key.first.first).name;
-        string dest = graph.get_node_from_id(key.first.second).name;
+        string src = graph.get_vertex_from_id(key.first.first).name;
+        string dest = graph.get_vertex_from_id(key.first.second).name;
         cout<<src<<", "<<dest<<"\t\t"<<key.second<<endl;
     }
 }

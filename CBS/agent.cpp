@@ -25,6 +25,14 @@ std::vector<Vertex> Agent::get_goals(){
     return goals;
 }
 
+void Agent::set_path(std::vector<Vertex> path){
+    this->path = path;
+}
+
+std::vector<Vertex> Agent::get_path(){
+    return path;
+}
+
 int Agent::get_path_cost(){
     return path.size();
 }

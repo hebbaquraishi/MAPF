@@ -21,7 +21,7 @@ Graph::Graph(const std::string& map_location, const std::string& agent_location)
     input_map >> input_map_json;
     this->height = input_map_json["height"];
     this->width = input_map_json["width"];
-    initialise_nodes(input_map_json);
+    initialise_vertices(input_map_json);
 
     json input_agents_json;
     ifstream input_agents(agent_location);
@@ -30,7 +30,7 @@ Graph::Graph(const std::string& map_location, const std::string& agent_location)
     initialise_graph_edges();
 }
 
-void Graph::initialise_nodes(json input_map_json) {
+void Graph::initialise_vertices(json input_map_json) {
     int id = 0;
     for(int i = 0; i != input_map_json["vertices"].size(); i++){
         Vertex v = Vertex(input_map_json["vertices"][i][0], input_map_json["vertices"][i][1]);
@@ -60,7 +60,7 @@ void Graph::initialise_agents(json input_agents_json){
 Vertex operator+(const Vertex& v, const Vertex& u){
     std::pair<int, int> r_v = v.get_coordinates();
     std::pair<int, int> r_u = u.get_coordinates();
-    return Vertex(r_v.first+r_u.first, r_v.second+r_u.second);
+    return {r_v.first+r_u.first, r_v.second+r_u.second};
 }
 
 bool operator==(const Vertex& v, const Vertex& u){
@@ -105,18 +105,22 @@ void Graph::initialise_graph_edges(){
     }
 }
 
+std::vector<Vertex> Graph::get_vertices(){
+    return vertices;
+}
+
 std::vector<Agent> Graph::get_agents(){
     return agents;
 }
 
 
-Vertex Graph::get_node_from_id(int id){
+Vertex Graph::get_vertex_from_id(int id){
     for(auto &v : vertices){
         if(v.id == id){
             return v;
         }
     }
-    return Vertex();
+    return {};
 }
 
 int Graph::assign_id_to_node(const Vertex& x) const {
@@ -128,12 +132,21 @@ int Graph::assign_id_to_node(const Vertex& x) const {
     return -1;
 }
 
+
+void Graph::update_agent_path(const string& name, const vector<Vertex>& path){
+    for(auto& agent : agents){
+        if (agent.name == name){
+            agent.set_path(path);
+        }
+    }
+}
+
 void Graph::print_graph() {
     for(const auto& edge : edges){
-        Vertex src = get_node_from_id(edge.first);
+        Vertex src = get_vertex_from_id(edge.first);
         cout<<"Parent: "<<src.name<<" Children: ";
         for(auto& dest_node_id : edge.second){
-            Vertex dest = get_node_from_id(dest_node_id);
+            Vertex dest = get_vertex_from_id(dest_node_id);
             cout<<dest.name<<" ";
         }
         cout<<endl;

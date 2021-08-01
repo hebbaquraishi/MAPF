@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/MAPF.dir/AStar.cpp.o"
   "CMakeFiles/MAPF.dir/Agent.cpp.o"
   "CMakeFiles/MAPF.dir/BreadthFirstSearch.cpp.o"
   "CMakeFiles/MAPF.dir/Graph.cpp.o"

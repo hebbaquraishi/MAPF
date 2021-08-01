@@ -6,6 +6,26 @@
 
 #IncludeRegexTransform: 
 
+/Users/hebbaquraishi/Desktop/MAPF/CBS/AStar.cpp
+AStar.h
+/Users/hebbaquraishi/Desktop/MAPF/CBS/AStar.h
+utility
+-
+iostream
+-
+limits
+-
+
+/Users/hebbaquraishi/Desktop/MAPF/CBS/AStar.h
+Agent.h
+/Users/hebbaquraishi/Desktop/MAPF/CBS/Agent.h
+Vertex.h
+/Users/hebbaquraishi/Desktop/MAPF/CBS/Vertex.h
+Graph.h
+/Users/hebbaquraishi/Desktop/MAPF/CBS/Graph.h
+queue
+-
+
 /Users/hebbaquraishi/Desktop/MAPF/CBS/Agent.h
 string
 -
@@ -15,14 +35,8 @@ vector
 -
 nlohmann/json.hpp
 -
-Node.h
-/Users/hebbaquraishi/Desktop/MAPF/CBS/Node.h
-
-/Users/hebbaquraishi/Desktop/MAPF/CBS/BreadthFirstSearch.cpp
-BreadthFirstSearch.h
-/Users/hebbaquraishi/Desktop/MAPF/CBS/BreadthFirstSearch.h
-iostream
--
+Vertex.h
+/Users/hebbaquraishi/Desktop/MAPF/CBS/Vertex.h
 
 /Users/hebbaquraishi/Desktop/MAPF/CBS/BreadthFirstSearch.h
 Graph.h
@@ -45,18 +59,28 @@ nlohmann/json.hpp
 -
 unordered_map
 -
-Node.h
-/Users/hebbaquraishi/Desktop/MAPF/CBS/Node.h
+Vertex.h
+/Users/hebbaquraishi/Desktop/MAPF/CBS/Vertex.h
 Agent.h
 /Users/hebbaquraishi/Desktop/MAPF/CBS/Agent.h
 
-/Users/hebbaquraishi/Desktop/MAPF/CBS/Node.h
+/Users/hebbaquraishi/Desktop/MAPF/CBS/Vertex.h
 string
 -
 set
 -
 vector
 -
+
+/Users/hebbaquraishi/Desktop/MAPF/CBS/main.cpp
+iostream
+-
+Graph.h
+/Users/hebbaquraishi/Desktop/MAPF/CBS/Graph.h
+BreadthFirstSearch.h
+/Users/hebbaquraishi/Desktop/MAPF/CBS/BreadthFirstSearch.h
+AStar.h
+/Users/hebbaquraishi/Desktop/MAPF/CBS/AStar.h
 
 /opt/homebrew/include/nlohmann/adl_serializer.hpp
 utility

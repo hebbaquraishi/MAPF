@@ -26,13 +26,15 @@ class Graph{
 public:
     Graph(const std::string& map_location, const std::string& agent_location);
     Graph() = default;
-    void initialise_nodes(json input_map_json);     //used to initialise the vertices of the edges
+    void initialise_vertices(json input_map_json);     //used to initialise the vertices of the edges
     void initialise_agents(json input_agents_json); //used to initialise the agents
     void initialise_graph_edges();    //used to initialise the edges in the graph
     [[nodiscard]] std::vector<Vertex> get_neighbors(const Vertex& n) const; //get neighbours of a node
+    std::vector<Vertex> get_vertices();
     std::vector<Agent> get_agents();
-    Vertex get_node_from_id(int id);  //retrieve a node from an id
+    Vertex get_vertex_from_id(int id);  //retrieve a node from an id
     int assign_id_to_node(const Vertex& x) const;
+    void update_agent_path(const std::string& name, const std::vector<Vertex>& path);
     void print_graph(); //print the edges
 };
 

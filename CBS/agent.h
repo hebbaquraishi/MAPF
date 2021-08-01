@@ -25,8 +25,9 @@ public:
     Agent(std::string name, Vertex init, std::vector<Vertex> goals);
     Vertex get_init_loc();
     std::vector<Vertex> get_goals();
+    void set_path(std::vector<Vertex> path);
+    std::vector<Vertex> get_path();
     int get_path_cost();
 };
-
 
 #endif //MAPF_AGENT_H
