@@ -17,4 +17,4 @@ This script takes a .map file as an input and
 This folder contains C++ code to implement Conflict Based Search
 
 ## Question to ask
-![Flow Diagram](Flow Diagram.png)
+<img width="782" alt="Screenshot 2021-08-02 at 00 13 33" src="https://user-images.githubusercontent.com/17808885/127842078-437c85ac-6821-4c35-8984-ff809322f22a.png">
