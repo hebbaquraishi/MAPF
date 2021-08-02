@@ -15,3 +15,6 @@ This script takes a .map file as an input and
 
 ## CBS 
 This folder contains C++ code to implement Conflict Based Search
+
+## Question to ask
+![Flow Diagram](Flow Diagram.png)
