@@ -6,3 +6,9 @@ cmake-build-debug
 .DS_Store
 json
 .DS_Store
+*.o
+*.o
+*.o
+*.includecache
+*.o
+*.log

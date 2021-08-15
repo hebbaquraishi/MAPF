@@ -20,8 +20,8 @@ class AStar {
 
 
 public:
-    AStar(Graph g, std::map<std::string, std::vector<std::pair<Vertex, int>>> constraints);
-    std::vector<int> run(const Vertex& start, const Vertex& goal);
+    AStar(Graph g, std::map<std::string, std::vector<std::pair<Vertex, int>>> constraints, std::map<std::pair<int, int>,int> h_values);
+    std::vector<int> run(const Vertex& start, const Vertex& goal, const std::vector<std::pair<Vertex, int>>& constraints);
     std::vector<int> get_keys(const std::map<int, int>& came_from);
     std::vector<int> reconstruct_path(std::map<int, int> came_from, std::pair<int, int> current);
     std::map<int, int> initialise_map_with_infinity();
@@ -31,8 +31,8 @@ public:
             return x.second > y.second;
         }
     };
-    std::vector<Vertex> make_path_consistent(std::vector<Vertex> path, const std::vector<std::pair<Vertex, int>>& constraints);
     bool in_frontier(int id, std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, sort_by_f_value> frontier);
+    std::pair<int, int> get_next_vertex(std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, sort_by_f_value> &frontier, int time_step, const std::vector<std::pair<Vertex, int>>& constraints);
     Graph get_updated_graph();
 };
 

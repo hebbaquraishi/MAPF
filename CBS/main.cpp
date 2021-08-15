@@ -16,6 +16,7 @@ int main() {
 
     //Run CBS
     ConstraintTree tree = ConstraintTree(g);
+    tree.run_cbs();
 
     return 0;
 }

@@ -10,6 +10,15 @@
 
 #include "Graph.h"
 #include "AStar.h"
+#include "BreadthFirstSearch.h"
+
+struct Conflict{
+    std::string agent1;
+    std::string agent2;
+    Vertex v;
+    int t;
+    Conflict() = default;
+};
 
 
 
@@ -17,6 +26,7 @@ struct Node{
     std::map<std::string, std::vector<std::pair<Vertex, int>>> constraints;  //key:= agent name, value:= vector of agent's constraints
     std::map<std::string, std::vector<Vertex>> solution;                     //key:= agent name, value:= agent path from source to goal
     int cost;                                                            //total cost of the current solution
+    Conflict conflict;
     Node* left;
     Node* right;
 
@@ -29,12 +39,19 @@ struct Node{
     }
 };
 
+
 class ConstraintTree {
     Graph graph;
     Node *root;
+    std::map<std::pair<int, int>,int> h_values; //stores the h-values
+
 public:
     ConstraintTree(Graph graph);
-    std::map<std::string, std::vector<Vertex>> low_level();
+    std::pair<std::map<std::string, std::vector<Vertex>>, int> low_level();
+    bool validate(Node *n); //TRUE:= goal node       FALSE:= non-goal node
+    void resolve_conflict(Node *n);
+    void run_cbs();
+    void update_graph();
 
 };
 
