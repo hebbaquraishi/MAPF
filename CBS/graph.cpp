@@ -46,11 +46,11 @@ void Graph::initialise_agents(json input_agents_json){
     for (int i = 0; i< input_agents_json["names"].size(); i++){
         for (auto & j : input_agents_json["goal"][i]){
             Vertex v = Vertex(j[0], j[1]);
-            v.id = assign_id_to_node(v);
+            v.id = assign_id_to_vertex(v);
             goals.emplace_back(v);
         }
         Vertex init = Vertex(input_agents_json["initial"][i][0], input_agents_json["initial"][i][1]);
-        init.id = assign_id_to_node(init);
+        init.id = assign_id_to_vertex(init);
         Agent a = Agent(input_agents_json["names"][i], init, goals);
         agents.emplace_back(a);
         goals = {};
@@ -87,7 +87,7 @@ std::vector<Vertex> Graph::get_neighbors(const Vertex& v) const{
 
     for(auto& nhbr : temp){
         if((std::find(vertices.begin(), vertices.end(), nhbr) != vertices.end()) && nhbr.get_coordinates().first >= 0 && nhbr.get_coordinates().first < width && nhbr.get_coordinates().second >= 0 && nhbr.get_coordinates().second < height){
-            nhbr.id = assign_id_to_node(nhbr);
+            nhbr.id = assign_id_to_vertex(nhbr);
             neighbors.emplace_back(nhbr);
         }
         else{continue;}
@@ -124,7 +124,8 @@ Vertex Graph::get_vertex_from_id(int id){
     return {};
 }
 
-int Graph::assign_id_to_node(const Vertex& x) const {
+
+int Graph::assign_id_to_vertex(Vertex x) const {
     for(auto &v : vertices){
         if(x.name == v.name){
             return v.id;
@@ -138,6 +139,38 @@ void Graph::update_agent_path(const string& name, const vector<Vertex>& path){
     for(auto& agent : agents){
         if (agent.name == name){
             agent.set_path(path);
+            break;
+        }
+    }
+}
+
+
+Agent Graph::get_agent_from_name(std::string name){
+    for(auto &a : agents){
+        if(a.name == name){}
+        return a;
+    }
+    return Agent{};
+}
+
+vertices_vector Graph::get_agent_path(string agent_name){
+    for (auto& a: get_agents()){
+        if(a.name == agent_name){
+            return a.get_path();
+        }
+    }
+    return vertices_vector{};
+}
+
+
+void Graph::update_agent_constraints(const string& name, const std::vector<std::pair<Vertex, int>>& constraints){
+    for(auto& agent : agents){
+        if (agent.name == name){
+            for(auto &c : constraints){
+                agent.add_constraints(c);
+            }
+            break;
+
         }
     }
 }

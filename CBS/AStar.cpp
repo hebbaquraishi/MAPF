@@ -9,20 +9,25 @@
 
 using namespace std;
 
-AStar::AStar(Graph g, std::map<std::pair<int, int>,int> h){
-    this->graph = std::move(g);
-    this->h_values = std::move(h);
-    for(auto& agent : graph.get_agents()){
-        Vertex start = agent.get_init_loc();
-        Vertex goal = agent.get_goals()[0]; //only picking the first goal for now
-        vector<int> p = run(start, goal);
-        vector<Vertex> path;
-        for(auto& id: p){
-            Vertex v = graph.get_vertex_from_id(id);
-            path.emplace_back(v);
+
+AStar::AStar(const string& agent_name, const vector<constraint_type>& c, Graph graph, std::map<std::pair<int, int>,int> h_values){
+    Vertex start, goal;
+    this->graph = std::move(graph);
+    for(auto& agent : this->graph.get_agents()){
+        if(agent.name == agent_name){
+            this->constraints = c;
+            start = agent.get_init_loc();
+            goal = agent.get_goals()[0]; //only picking the first goal for now
         }
-        graph.update_agent_path(agent.name, path);
     }
+    this->h_values = move(h_values);
+    vector<int> p = run(start, goal);
+    vertices_vector path;
+    for(auto& id: p){
+        Vertex v = this->graph.get_vertex_from_id(id);
+        path.emplace_back(v);
+    }
+    this->graph.update_agent_path(agent_name, path);
 }
 
 vector<int> AStar::get_keys(const map<int, int>& came_from){
@@ -47,8 +52,9 @@ vector<int> AStar::reconstruct_path(map<int, int> came_from, pair<int, int> curr
 }
 
 
-bool AStar::in_frontier(int id, priority_queue<pair<int, int>, vector<pair<int, int>>, sort_by_f_value> frontier){
-    priority_queue<pair<int, int>, vector<pair<int, int>>, sort_by_f_value> f = frontier;
+
+bool AStar::in_frontier(int id, priority_queue_sorted frontier){
+    priority_queue_sorted f = std::move(frontier);
     while (!f.empty()){
         if(f.top().first == id){
             return true;
@@ -66,18 +72,40 @@ map<int, int> AStar::initialise_map_with_infinity(){
     return m;
 }
 
+bool operator==(const pair<Vertex, int>& a, const pair<Vertex, int>& b){
+    if(a.first.id == b.first.id && a.second == b.second){
+        return true;
+    }
+    else return false;
+}
+
+pair<int, int> AStar::get_next_vertex(priority_queue_sorted frontier, int time_step){
+    pair<int, int> current = frontier.top();
+    Vertex v = graph.get_vertex_from_id(current.first);
+    constraint_type  c = make_pair(v, time_step);
+    if(find(constraints.begin(), constraints.end(), c) != constraints.end()){
+        frontier.pop();
+        get_next_vertex(frontier, time_step);
+    }
+    else{
+        return current;
+    }
+}
+
 
 vector<int> AStar::run(const Vertex& start, const Vertex& goal){
-    priority_queue<pair<int, int>, vector<pair<int, int>>, sort_by_f_value> frontier;  //priority queue ordered by f-values. key := node id, value := f-value
+    priority_queue_sorted frontier;  //priority queue ordered by f-values. key := node id, value := f-value
     map<int, int> came_from; //key := id of current node, value:= id of current node's parent
     map<int, int> g_value = initialise_map_with_infinity();// key:= node id, value := g-value
     map<int, int> f_value = initialise_map_with_infinity();// key:= node id, value := f-value
     g_value[start.id] = 0;
     f_value[start.id] = h_values[pair(start.id, goal.id)];
     frontier.push(make_pair(start.id, f_value[start.id]));
+    int time_step = -1;
 
     while (!frontier.empty()){
-        pair<int, int> current = frontier.top();
+        time_step += 1;
+        pair<int, int> current = get_next_vertex(frontier, time_step);
         if(current.first == goal.id){
             return reconstruct_path(came_from, current);
         }

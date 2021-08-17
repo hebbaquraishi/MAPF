@@ -6,6 +6,16 @@
 
 #IncludeRegexTransform: 
 
+/Users/hebbaquraishi/Desktop/MAPF/CBS/AStar.cpp
+AStar.h
+/Users/hebbaquraishi/Desktop/MAPF/CBS/AStar.h
+utility
+-
+iostream
+-
+limits
+-
+
 /Users/hebbaquraishi/Desktop/MAPF/CBS/AStar.h
 Agent.h
 /Users/hebbaquraishi/Desktop/MAPF/CBS/Agent.h
@@ -28,6 +38,12 @@ nlohmann/json.hpp
 Vertex.h
 /Users/hebbaquraishi/Desktop/MAPF/CBS/Vertex.h
 
+/Users/hebbaquraishi/Desktop/MAPF/CBS/BreadthFirstSearch.cpp
+BreadthFirstSearch.h
+/Users/hebbaquraishi/Desktop/MAPF/CBS/BreadthFirstSearch.h
+iostream
+-
+
 /Users/hebbaquraishi/Desktop/MAPF/CBS/BreadthFirstSearch.h
 Graph.h
 /Users/hebbaquraishi/Desktop/MAPF/CBS/Graph.h
@@ -36,6 +52,22 @@ map
 queue
 -
 utility
+-
+
+/Users/hebbaquraishi/Desktop/MAPF/CBS/Graph.cpp
+Graph.h
+/Users/hebbaquraishi/Desktop/MAPF/CBS/Graph.h
+Agent.h
+/Users/hebbaquraishi/Desktop/MAPF/CBS/Agent.h
+utility
+-
+nlohmann/json.hpp
+-
+fstream
+-
+algorithm
+-
+iostream
 -
 
 /Users/hebbaquraishi/Desktop/MAPF/CBS/Graph.h
