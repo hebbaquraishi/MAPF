@@ -30,6 +30,13 @@ void Agent::set_path(std::vector<Vertex> path){
     this->path = path;
 }
 
+void Agent::add_to_path(std::vector<Vertex> path){
+    for(auto &p : path){
+        this->path.emplace_back(p);
+    }
+}
+
+
 std::vector<Vertex> Agent::get_path(){
     return path;
 }

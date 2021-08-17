@@ -18,6 +18,7 @@ AStar::AStar(const string& agent_name, const vector<constraint_type>& c, Graph g
             this->constraints = c;
             start = agent.get_init_loc();
             goal = agent.get_goals()[0]; //only picking the first goal for now
+            break;
         }
     }
     this->h_values = move(h_values);
@@ -27,8 +28,23 @@ AStar::AStar(const string& agent_name, const vector<constraint_type>& c, Graph g
         Vertex v = this->graph.get_vertex_from_id(id);
         path.emplace_back(v);
     }
-    this->graph.update_agent_path(agent_name, path);
+    this->graph.reset_agent_path(agent_name, path);
 }
+
+vertices_vector AStar::TSP_AStar(const string& agent_name, int init_id, int goal_id, const vector<constraint_type>& c, Graph graph, std::map<std::pair<int, int>,int> h_values){
+    this->graph = std::move(graph);
+    Vertex start = this->graph.get_vertex_from_id(init_id);
+    Vertex goal = this->graph.get_vertex_from_id(goal_id);
+    this->h_values = move(h_values);
+    vector<int> p = run(start, goal);
+    vertices_vector path;
+    for(auto& id: p){
+        Vertex v = this->graph.get_vertex_from_id(id);
+        path.emplace_back(v);
+    }
+    return path;
+}
+
 
 vector<int> AStar::get_keys(const map<int, int>& came_from){
     vector<int> keys;

@@ -11,6 +11,7 @@
 #include "Graph.h"
 #include "AStar.h"
 #include "BreadthFirstSearch.h"
+#include "TSPGreedy.h"
 typedef std::map<std::string, std::vector<constraint_type>> constraint_map;
 typedef std::map<std::string, std::vector<Vertex>> node_solution;
 
@@ -56,7 +57,7 @@ class ConstraintTree {
     std::map<std::pair<int, int>,int> h_values; //stores the h-values
 
 public:
-    ConstraintTree(Graph graph);
+    ConstraintTree(Graph graph, std::string solver);
     vertices_vector low_level(std::string agent_name, std::vector<constraint_type> c);
     std::pair<bool, Conflict> validate(Node *n); //TRUE:= goal node       FALSE:= non-goal node
     void run_cbs();

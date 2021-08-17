@@ -135,7 +135,7 @@ int Graph::assign_id_to_vertex(const Vertex& x) const {
 }
 
 
-void Graph::update_agent_path(const string& name, const vector<Vertex>& path){
+void Graph::reset_agent_path(const string &name, const vector<Vertex> &path){
     for(auto& agent : agents){
         if (agent.name == name){
             agent.set_path(path);
@@ -143,6 +143,17 @@ void Graph::update_agent_path(const string& name, const vector<Vertex>& path){
         }
     }
 }
+
+
+void Graph::add_to_agent_path(const string &name, const vector<Vertex> &path){
+    for(auto& agent : agents){
+        if (agent.name == name){
+            agent.add_to_path(path);
+            break;
+        }
+    }
+}
+
 
 
 Agent Graph::get_agent_from_name(const std::string& name){

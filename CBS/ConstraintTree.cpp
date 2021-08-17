@@ -13,7 +13,7 @@ using namespace std;
 
 
 
-ConstraintTree::ConstraintTree(Graph graph) {
+ConstraintTree::ConstraintTree(Graph graph, string solver) {
     this->graph = std::move(graph);
     root = new Node();
     root->parent = nullptr;
@@ -21,8 +21,14 @@ ConstraintTree::ConstraintTree(Graph graph) {
     this->h_values = b.get_distance_matrix();
 
     for(const auto& agent : this->graph.get_agents()){
-        AStar a = AStar(agent.name, vector<constraint_type>{},this->graph, h_values);
-        this->graph = a.get_updated_graph();
+        if (solver=="simple"){
+            AStar a = AStar(agent.name, vector<constraint_type>{},this->graph, h_values);
+            this->graph = a.get_updated_graph();
+        }
+        if (solver =="tsp-greedy"){
+            TSPGreedy t = TSPGreedy(agent.name, vector<constraint_type>{},this->graph, h_values);
+            this->graph = t.get_updated_graph();
+        }
         for (auto x: this->graph.get_agents()){
             if(x.name == agent.name){
                 root->solution[agent.name] = x.get_path();
@@ -32,12 +38,27 @@ ConstraintTree::ConstraintTree(Graph graph) {
     }
 
     cout<<"Initial solution: "<<endl;
-    for(auto& agent : this->graph.get_agents()){
-        cout<<"Agent: "<<agent.name<<"\tInit: "<<agent.get_init_loc().name<<"\t\tGoal: "<<agent.get_goals()[0].name<<"\t\tPath cost: "<<agent.get_path_cost()<<"\t\tPath: ";
-        for(auto& v : agent.get_path()){
-            cout<<v.name<<" ";
+    if (solver=="simple"){
+        for(auto& agent : this->graph.get_agents()){
+            cout<<"Agent: "<<agent.name<<"\tInit: "<<agent.get_init_loc().name<<"\t\tGoal: "<<agent.get_goals()[0].name<<"\t\tPath cost: "<<agent.get_path_cost()<<"\t\tPath: ";
+            for(auto& v : agent.get_path()){
+                cout<<v.name<<" ";
+            }
+            cout<<endl;
         }
-        cout<<endl;
+    }
+    if(solver =="tsp-greedy"){
+        for(auto& agent : this->graph.get_agents()){
+            cout<<"Agent: "<<agent.name<<"\tInit: "<<agent.get_init_loc().name<<"\t\tGoal: ";
+            for(auto& g :agent.get_goals()){
+                cout<<g.name<<" ";
+            }
+            cout<<"\t\tPath cost: "<<agent.get_path_cost()<<"\t\tPath: ";
+            for(auto& v : agent.get_path()){
+                cout<<v.name<<" ";
+            }
+            cout<<endl;
+        }
     }
 }
 
@@ -117,7 +138,7 @@ constraint_map ConstraintTree::get_cumulative_constraints(Node* n, constraint_ma
 void ConstraintTree::update_to_final_graph(Node* goal_node) {
     vector<Agent> all_agents = this->graph.get_agents();
     for(auto& agent : all_agents){
-        this->graph.update_agent_path(agent.name, goal_node->solution[agent.name]);
+        this->graph.reset_agent_path(agent.name, goal_node->solution[agent.name]);
         this->graph.update_agent_constraints(agent.name, goal_node->constraints[agent.name]);
     }
 
