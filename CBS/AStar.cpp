@@ -80,6 +80,7 @@ bool operator==(const pair<Vertex, int>& a, const pair<Vertex, int>& b){
 }
 
 pair<int, int> AStar::get_next_vertex(priority_queue_sorted frontier, int time_step){
+    //if the next vertex is in a constraint, pop it from the frontier and choose the next best vertex
     pair<int, int> current = frontier.top();
     Vertex v = graph.get_vertex_from_id(current.first);
     constraint_type  c = make_pair(v, time_step);
