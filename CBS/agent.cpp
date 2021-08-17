@@ -11,7 +11,7 @@
 using json = nlohmann::json;
 using namespace std;
 
-Agent::Agent(std::string name, Vertex init, std::vector<Vertex> goals){
+Agent::Agent(std::string name, Vertex init, vertices_vector goals){
     this->name = std::move(name);
     init_location = std::move(init);
     this->goals=std::move(goals);
@@ -25,8 +25,9 @@ std::vector<Vertex> Agent::get_goals(){
     return goals;
 }
 
+
 void Agent::set_path(std::vector<Vertex> path){
-    this->path = std::move(path);
+    this->path = path;
 }
 
 std::vector<Vertex> Agent::get_path(){
@@ -37,10 +38,11 @@ int Agent::get_path_cost(){
     return path.size() - 1;
 }
 
-void Agent::add_constraints(std::vector<std::pair<Vertex, int>> c){
-    this->constraints = std::move(c);
+void Agent::add_constraints(constraint_type c){
+    this->constraints.emplace_back(c);
 }
 
-std::vector<std::pair<Vertex, int>> Agent::get_constraints(){
+std::vector<constraint_type> Agent::get_constraints(){
     return constraints;
 }
+

@@ -19,7 +19,7 @@ using json = nlohmann::json;
 
 class Graph{
     int height, width;
-    std::vector<Vertex> vertices;
+    vertices_vector vertices;
     std::vector<Agent> agents;
     std::unordered_map<int, std::vector<int>> edges; // Parent node: (0,0) Child vertices: (0,1) (1,0)
 
@@ -33,8 +33,11 @@ public:
     std::vector<Vertex> get_vertices();
     std::vector<Agent> get_agents();
     Vertex get_vertex_from_id(int id);  //retrieve a node from an id
+
     int assign_id_to_vertex(const Vertex& x) const;
     void update_agent_path(const std::string& name, const std::vector<Vertex>& path);
+    Agent get_agent_from_name(const std::string&);
+    vertices_vector get_agent_path(const std::string&);
     void update_agent_constraints(const std::string& name, const std::vector<std::pair<Vertex, int>>& constraints);
     void print_graph(); //print the edges
 };
