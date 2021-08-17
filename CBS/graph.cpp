@@ -124,7 +124,19 @@ Vertex Graph::get_vertex_from_id(int id){
     return {};
 }
 
+<<<<<<< Updated upstream
 int Graph::assign_id_to_node(const Vertex& x) const {
+=======
+Agent Graph::get_agent_from_name(std::string name){
+    for(auto &a : agents){
+        if(a.name == name){}
+        return a;
+    }
+    return Agent{};
+}
+
+int Graph::assign_id_to_vertex(const Vertex& x) const {
+>>>>>>> Stashed changes
     for(auto &v : vertices){
         if(x.name == v.name){
             return v.id;
@@ -138,6 +150,31 @@ void Graph::update_agent_path(const string& name, const vector<Vertex>& path){
     for(auto& agent : agents){
         if (agent.name == name){
             agent.set_path(path);
+<<<<<<< Updated upstream
+=======
+            break;
+        }
+    }
+}
+
+vertices_vector Graph::get_agent_path(string agent_name){
+    for (auto& a: get_agents()){
+        if(a.name == agent_name){
+            return a.get_path();
+        }
+    }
+    return vertices_vector{};
+}
+
+
+void Graph::update_agent_constraints(const string& name, const std::vector<std::pair<Vertex, int>>& constraints){
+    for(auto& agent : agents){
+        if (agent.name == name){
+            for(auto &c : constraints){
+                agent.add_constraints(c);
+            }
+            break;
+>>>>>>> Stashed changes
         }
     }
 }

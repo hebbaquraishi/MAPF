@@ -13,12 +13,14 @@
 #include "Vertex.h"
 using json = nlohmann::json;
 
+typedef std::pair<Vertex, int> constraint_type;
+typedef std::vector<Vertex> vertices_vector;
 
 class Agent {
     Vertex init_location;
-    std::vector<Vertex> goals;
-    std::vector<Vertex> path;
-    std::vector<std::pair<Vertex, int>> constraints;
+    vertices_vector goals;
+    vertices_vector path;
+    std::vector<constraint_type> constraints;
 public:
     std::string name;
     Agent() = default;
@@ -28,6 +30,14 @@ public:
     void set_path(std::vector<Vertex> path);
     std::vector<Vertex> get_path();
     int get_path_cost();
+<<<<<<< Updated upstream
+=======
+    Vertex get_init_loc();
+    std::vector<Vertex> get_goals();
+    void add_constraints(constraint_type c);
+    std::vector<std::pair<Vertex, int>> get_constraints();
+
+>>>>>>> Stashed changes
 };
 
 #endif //MAPF_AGENT_H
