@@ -16,4 +16,3 @@ Vertex::Vertex(int x, int y){
 std::pair<int, int> Vertex::get_coordinates() const {
     return make_pair(x_coordinate, y_coordinate);
 }
-

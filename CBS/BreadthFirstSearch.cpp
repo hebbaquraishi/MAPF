@@ -46,6 +46,7 @@ void BreadthFirstSearch::run_bfs(std::pair<Vertex, int> root, std::queue<std::pa
 
             std::pair<Vertex, int> child;
             child.first = node;
+            //child.parent = n.current;
             child.second = n.second+1;
 
             q.push(child);

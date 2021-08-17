@@ -32,8 +32,8 @@ Graph::Graph(const std::string& map_location, const std::string& agent_location)
 
 void Graph::initialise_vertices(json input_map_json) {
     int id = 0;
-    for(int i = 0; i != input_map_json["vertices"].size(); i++){
-        Vertex v = Vertex(input_map_json["vertices"][i][0], input_map_json["vertices"][i][1]);
+    for(auto & i : input_map_json["vertices"]){
+        Vertex v = Vertex(i[0], i[1]);
         v.id = id;
         this->vertices.emplace_back(v);
         id++;
@@ -99,7 +99,6 @@ void Graph::initialise_graph_edges(){
     for(auto &v : vertices){
         vector<Vertex> neighbors = get_neighbors(v);
         vector<int> node_ids;
-        node_ids.reserve(neighbors.size());
         for(auto &nhbr : neighbors){
             node_ids.emplace_back(nhbr.id);
         }
@@ -125,6 +124,7 @@ Vertex Graph::get_vertex_from_id(int id){
     return {};
 }
 
+
 int Graph::assign_id_to_vertex(const Vertex& x) const {
     for(auto &v : vertices){
         if(x.name == v.name){
@@ -144,11 +144,33 @@ void Graph::update_agent_path(const string& name, const vector<Vertex>& path){
     }
 }
 
+
+Agent Graph::get_agent_from_name(const std::string& name){
+    for(auto &a : agents){
+        if(a.name == name){}
+        return a;
+    }
+    return Agent{};
+}
+
+vertices_vector Graph::get_agent_path(const string& agent_name){
+    for (auto& a: get_agents()){
+        if(a.name == agent_name){
+            return a.get_path();
+        }
+    }
+    return vertices_vector{};
+}
+
+
 void Graph::update_agent_constraints(const string& name, const std::vector<std::pair<Vertex, int>>& constraints){
     for(auto& agent : agents){
         if (agent.name == name){
-            agent.add_constraints(constraints);
+            for(auto &c : constraints){
+                agent.add_constraints(c);
+            }
             break;
+
         }
     }
 }

@@ -11,27 +11,29 @@
 #include "Graph.h"
 #include "AStar.h"
 #include "BreadthFirstSearch.h"
+typedef std::map<std::string, std::vector<constraint_type>> constraint_map;
+typedef std::map<std::string, std::vector<Vertex>> node_solution;
 
 struct Conflict{
     std::string agent1;
     std::string agent2;
     Vertex v;
-    int t;
+    int t{};
     Conflict() = default;
 };
 
 
-
 struct Node{
-    std::map<std::string, std::vector<std::pair<Vertex, int>>> constraints;  //key:= agent name, value:= vector of agent's constraints
-    std::map<std::string, std::vector<Vertex>> solution;                     //key:= agent name, value:= agent path from source to goal
+    constraint_map constraints;  //key:= agent name, value:= vector of agent's constraints
+    node_solution solution;                     //key:= agent name, value:= agent path from source to goal
     int cost;                                                            //total cost of the current solution
-    Conflict conflict;
     Node* left;
     Node* right;
+    Node* parent{};
+    //Graph graph_state;
 
     Node(){
-        std::map<std::string, std::vector<std::pair<Vertex, int>>> c;
+        constraint_map c;
         this->constraints = c;
         this->cost = 0;
         left = nullptr;
@@ -39,19 +41,27 @@ struct Node{
     }
 };
 
+struct sort_by_cost {
+    bool operator()(const Node* x, const Node* y){
+        return x->cost > y->cost;
+    }
+};
+typedef std::priority_queue<Node*, std::vector<Node*>, sort_by_cost> priority_queue_cbs; //priority queue ordered by node costs. key := node id, value := f-value
+
+
 
 class ConstraintTree {
-    Graph graph;
     Node *root;
+    Graph graph;
     std::map<std::pair<int, int>,int> h_values; //stores the h-values
 
 public:
     ConstraintTree(Graph graph);
-    std::pair<std::map<std::string, std::vector<Vertex>>, int> low_level();
-    bool validate(Node *n); //TRUE:= goal node       FALSE:= non-goal node
-    void resolve_conflict(Node *n);
+    vertices_vector low_level(std::string agent_name, std::vector<constraint_type> c);
+    std::pair<bool, Conflict> validate(Node *n); //TRUE:= goal node       FALSE:= non-goal node
     void run_cbs();
-    void update_graph();
+    void update_to_final_graph(Node* goal_node);
+    constraint_map get_cumulative_constraints(Node* n, constraint_map cumulative_constraints);
 
 };
 
