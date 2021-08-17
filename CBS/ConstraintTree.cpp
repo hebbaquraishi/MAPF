@@ -134,7 +134,7 @@ void ConstraintTree::run_cbs() {
         if(validation_result.first){
             //we have found a goal node
             update_to_final_graph(current);
-            cout<<"Solution obtained by running CBS: "<<endl;
+            cout<<"\nSolution obtained by running CBS: "<<endl;
             for(auto& agent : this->graph.get_agents()){
                 cout<<"Agent: "<<agent.name<<"\tInit: "<<agent.get_init_loc().name<<"\t\tGoal: "<<agent.get_goals()[0].name<<"\t\tPath cost: "<<agent.get_path_cost()<<"\t\tPath: ";
                 for(auto& v : agent.get_path()){
@@ -142,6 +142,7 @@ void ConstraintTree::run_cbs() {
                 }
                 cout<<endl;
             }
+            return;
         }
         else{ //we have encountered a non-goal node
             Conflict c = validation_result.second;
@@ -164,14 +165,13 @@ void ConstraintTree::run_cbs() {
             current->right->constraints = get_cumulative_constraints(current->right, constraint_map{});
             current->right->constraints[c.agent2].emplace_back(make_pair(c.v, c.t));
             current->right->solution = current->solution;
-            current->left->solution[c.agent2] = low_level(c.agent2, current->right->constraints[c.agent2]);
+            current->right->solution[c.agent2] = low_level(c.agent2, current->right->constraints[c.agent2]);
             cout<<"Updated "<<c.agent2<<" path in right subtree: ";
             for(auto & v : current->right->solution[c.agent2]){
                 cout<<v.name<<" ";
             }
             cout<<endl;
             open_list.push(current->right);
-            break;
         }
 
     }

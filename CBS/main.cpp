@@ -1,7 +1,5 @@
 #include <iostream>
 #include "Graph.h"
-#include "BreadthFirstSearch.h"
-#include "AStar.h"
 #include "ConstraintTree.h"
 
 using namespace std;

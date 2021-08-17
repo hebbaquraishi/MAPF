@@ -28,7 +28,7 @@ public:
     std::vector<int> reconstruct_path(std::map<int, int> came_from, std::pair<int, int> current);
     std::map<int, int> initialise_map_with_infinity();
     bool in_frontier(int id, priority_queue_sorted frontier);
-    std::pair<int, int> get_next_vertex(priority_queue_sorted frontier, int time_step);
+    bool in_constraints(int vertex_id, int time_step);
     Graph get_updated_graph();
 };
 

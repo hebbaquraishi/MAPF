@@ -79,17 +79,15 @@ bool operator==(const pair<Vertex, int>& a, const pair<Vertex, int>& b){
     else return false;
 }
 
-pair<int, int> AStar::get_next_vertex(priority_queue_sorted frontier, int time_step){
+bool AStar::in_constraints(int vertex_id, int time_step){
     //if the next vertex is in a constraint, pop it from the frontier and choose the next best vertex
-    pair<int, int> current = frontier.top();
-    Vertex v = graph.get_vertex_from_id(current.first);
+    Vertex v = graph.get_vertex_from_id(vertex_id);
     constraint_type  c = make_pair(v, time_step);
     if(find(constraints.begin(), constraints.end(), c) != constraints.end()){
-        frontier.pop();
-        get_next_vertex(frontier, time_step);
+        return true;
     }
     else{
-        return current;
+        return false;
     }
 }
 
@@ -105,27 +103,32 @@ vector<int> AStar::run(const Vertex& start, const Vertex& goal){
     int time_step = -1;
 
     while (!frontier.empty()){
-        time_step += 1;
-        pair<int, int> current = get_next_vertex(frontier, time_step);
+        //pair<int, int> current = get_next_vertex(frontier, time_step);
+        pair<int, int> current = frontier.top();
         if(current.first == goal.id){
             return reconstruct_path(came_from, current);
         }
         frontier.pop();
+        time_step -=1;
         for(auto& nhbr : graph.get_neighbors(graph.get_vertex_from_id(current.first))){
             int temp = g_value[current.first] + 1;
             if(temp < g_value[nhbr.id]){
-                came_from[nhbr.id] = current.first;
-                g_value[nhbr.id] = temp;
-                f_value[nhbr.id] = g_value[nhbr.id] + h_values[pair(nhbr.id, goal.id)];
-                if(!in_frontier(nhbr.id, frontier)){
-                    frontier.push(make_pair(nhbr.id, f_value[nhbr.id]));
+                time_step +=1;
+                if(in_constraints(nhbr.id, time_step)){
+                    continue;
+                }
+                else{
+                    came_from[nhbr.id] = current.first;
+                    g_value[nhbr.id] = temp;
+                    f_value[nhbr.id] = g_value[nhbr.id] + h_values[pair(nhbr.id, goal.id)];
+                    if(!in_frontier(nhbr.id, frontier)){
+                        frontier.push(make_pair(nhbr.id, f_value[nhbr.id]));
+                    }
                 }
             }
         }
-
     }
-    vector<int> path;
-    return path;
+    return vector<int>{};
 }
 
 Graph AStar::get_updated_graph(){
