@@ -16,6 +16,7 @@ using json = nlohmann::json;
 
 
 Graph::Graph(const std::string& map_location, const std::string& agent_location){
+    //cout<<"Current Task: Initialising graph"<<endl;
     json input_map_json;
     ifstream input_map(map_location);
     input_map >> input_map_json;
@@ -28,9 +29,11 @@ Graph::Graph(const std::string& map_location, const std::string& agent_location)
     input_agents >> input_agents_json;
     initialise_agents(input_agents_json);
     initialise_graph_edges();
+    //cout<<"Current Task: completed"<<endl;
 }
 
 void Graph::initialise_vertices(json input_map_json) {
+    //cout<<"\tCurrent Subtask: Initialising graph vertices"<<endl;
     int id = 0;
     for(auto & i : input_map_json["vertices"]){
         Vertex v = Vertex(i[0], i[1]);
@@ -38,10 +41,11 @@ void Graph::initialise_vertices(json input_map_json) {
         this->vertices.emplace_back(v);
         id++;
     }
-
+    //cout<<"\tCurrent Subtask: completed"<<endl;
 }
 
 void Graph::initialise_agents(json input_agents_json){
+    //cout<<"\tCurrent Subtask: Initialising graph agents"<<endl;
     std::vector<Vertex> goals;
     for (int i = 0; i< input_agents_json["names"].size(); i++){
         for (auto & j : input_agents_json["goal"][i]){
@@ -55,6 +59,7 @@ void Graph::initialise_agents(json input_agents_json){
         agents.emplace_back(a);
         goals = {};
     }
+    //cout<<"\tCurrent Subtask: completed"<<endl;
 }
 
 
@@ -96,6 +101,7 @@ std::vector<Vertex> Graph::get_neighbors(const Vertex& v) const{
 }
 
 void Graph::initialise_graph_edges(){
+    //cout<<"\tCurrent Subtask: Initialising graph edges"<<endl;
     for(auto &v : vertices){
         vector<Vertex> neighbors = get_neighbors(v);
         vector<int> node_ids;
@@ -104,6 +110,8 @@ void Graph::initialise_graph_edges(){
         }
         edges[v.id] = node_ids;
     }
+
+    //cout<<"\tCurrent Subtask: completed"<<endl;
 }
 
 std::vector<Vertex> Graph::get_vertices(){
@@ -123,6 +131,16 @@ Vertex Graph::get_vertex_from_id(int id){
     }
     return {};
 }
+
+Vertex Graph::get_vertex_from_name(std::string name){
+    for(auto &v : vertices){
+        if(v.name == name){
+            return v;
+        }
+    }
+    return {};
+}
+
 
 
 int Graph::assign_id_to_vertex(const Vertex& x) const {

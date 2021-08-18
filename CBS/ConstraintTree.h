@@ -13,7 +13,7 @@
 #include "BreadthFirstSearch.h"
 #include "TSPGreedy.h"
 typedef std::map<std::string, std::vector<constraint_type>> constraint_map;
-typedef std::map<std::string, std::vector<Vertex>> node_solution;
+typedef std::map<std::string, std::vector<Vertex>> node_solution; //key:= agent name, value:= agent path from source to goal
 
 struct Conflict{
     std::string agent1;
@@ -26,8 +26,8 @@ struct Conflict{
 
 struct Node{
     constraint_map constraints;  //key:= agent name, value:= vector of agent's constraints
-    node_solution solution;                     //key:= agent name, value:= agent path from source to goal
-    int cost;                                                            //total cost of the current solution
+    node_solution solution;      //key:= agent name, value:= agent path from source to goal
+    int cost;                    //total cost of the current solution
     Node* left;
     Node* right;
     Node* parent{};
@@ -57,13 +57,13 @@ class ConstraintTree {
     std::map<std::pair<int, int>,int> h_values; //stores the h-values
 
 public:
-    ConstraintTree(Graph graph, std::string solver);
-    vertices_vector low_level(std::string agent_name, std::vector<constraint_type> c);
+    ConstraintTree(Graph graph, const std::string& solver);
+    vertices_vector low_level(const std::string& agent_name, const std::vector<constraint_type>& c, const std::string& solver, bool reset);
     std::pair<bool, Conflict> validate(Node *n); //TRUE:= goal node       FALSE:= non-goal node
-    void run_cbs();
+    void run_cbs(const std::string& solver);
     void update_to_final_graph(Node* goal_node);
     constraint_map get_cumulative_constraints(Node* n, constraint_map cumulative_constraints);
-
+    int get_solution_cost(Node* n);
 };
 
 

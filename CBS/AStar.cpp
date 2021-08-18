@@ -31,12 +31,13 @@ AStar::AStar(const string& agent_name, const vector<constraint_type>& c, Graph g
     this->graph.reset_agent_path(agent_name, path);
 }
 
-vertices_vector AStar::TSP_AStar(const string& agent_name, int init_id, int goal_id, const vector<constraint_type>& c, Graph graph, std::map<std::pair<int, int>,int> h_values){
-    this->graph = std::move(graph);
+vertices_vector AStar::TSP_AStar(const string& agent_name, int init_id, int goal_id, int shift, const vector<constraint_type>& c, Graph graph, std::map<std::pair<int, int>,int> h_values){
+    this->graph = graph;
     Vertex start = this->graph.get_vertex_from_id(init_id);
     Vertex goal = this->graph.get_vertex_from_id(goal_id);
-    this->h_values = move(h_values);
-    vector<int> p = run(start, goal);
+    this->h_values = h_values;
+    this->constraints = c;
+    vector<int> p = run(start, goal, shift);
     vertices_vector path;
     for(auto& id: p){
         Vertex v = this->graph.get_vertex_from_id(id);
@@ -99,6 +100,7 @@ bool AStar::in_constraints(int vertex_id, int time_step){
     //if the next vertex is in a constraint, pop it from the frontier and choose the next best vertex
     Vertex v = graph.get_vertex_from_id(vertex_id);
     constraint_type  c = make_pair(v, time_step);
+    //cout<<"\t\tConstraint checked: "<<v.name<<" at time_step "<<time_step<<endl;
     if(find(constraints.begin(), constraints.end(), c) != constraints.end()){
         return true;
     }
@@ -108,33 +110,36 @@ bool AStar::in_constraints(int vertex_id, int time_step){
 }
 
 
-vector<int> AStar::run(const Vertex& start, const Vertex& goal){
-    priority_queue_sorted frontier;  //priority queue ordered by f-values. key := node id, value := f-value
-    map<int, int> came_from; //key := id of current node, value:= id of current node's parent
-    map<int, int> g_value = initialise_map_with_infinity();// key:= node id, value := g-value
-    map<int, int> f_value = initialise_map_with_infinity();// key:= node id, value := f-value
+vector<int> AStar::run(const Vertex& start, const Vertex& goal, int shift){
+    priority_queue_sorted frontier;  //priority queue ordered by f-values. key := vertex id, value := f-value
+    map<int, int> came_from; //key := id of current vertex, value:= id of current vertex's parent
+    map<int, int> visited_at_time;  //key := vertex id, value:= time step at which this vertex was explored
+    map<int, int> g_value = initialise_map_with_infinity();// key:= vertex id, value := g-value
+    map<int, int> f_value = initialise_map_with_infinity();// key:= vertex id, value := f-value
     g_value[start.id] = 0;
     f_value[start.id] = h_values[pair(start.id, goal.id)];
     frontier.push(make_pair(start.id, f_value[start.id]));
-    int time_step = -1;
+    visited_at_time[start.id] = 0 + shift;
+    //cout<<"Initial location: "<<this->graph.get_vertex_from_id(start.id).name<<endl;
 
     while (!frontier.empty()){
-        //pair<int, int> current = get_next_vertex(frontier, time_step);
         pair<int, int> current = frontier.top();
+        frontier.pop();
+        //cout<<"Current node (popped from frontier): "<<this->graph.get_vertex_from_id(current.first).name<<endl;
         if(current.first == goal.id){
             return reconstruct_path(came_from, current);
         }
-        frontier.pop();
-        time_step -=1;
         for(auto& nhbr : graph.get_neighbors(graph.get_vertex_from_id(current.first))){
             int temp = g_value[current.first] + 1;
             if(temp < g_value[nhbr.id]){
-                time_step +=1;
-                if(in_constraints(nhbr.id, time_step)){
+                int time_step = visited_at_time[current.first];
+                visited_at_time[nhbr.id] = time_step + 1;
+                if(in_constraints(nhbr.id, visited_at_time[nhbr.id])){
                     continue;
                 }
                 else{
                     came_from[nhbr.id] = current.first;
+                    //cout<<"\t\tNeighbour added to came_from: "<<nhbr.name<<"\tTimestamp: "<<visited_at_time[nhbr.id]<<endl;
                     g_value[nhbr.id] = temp;
                     f_value[nhbr.id] = g_value[nhbr.id] + h_values[pair(nhbr.id, goal.id)];
                     if(!in_frontier(nhbr.id, frontier)){

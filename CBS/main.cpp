@@ -15,9 +15,10 @@ int main() {
     //g.print_graph();
 
     //Run CBS
-    ConstraintTree tree = ConstraintTree(g, "simple");
-    //ConstraintTree tree = ConstraintTree(g, "tsp-greedy");
-    tree.run_cbs();
+    //ConstraintTree tree = ConstraintTree(g, "simple");
+    //tree.run_cbs("simple");
+    ConstraintTree tree = ConstraintTree(g, "tsp-greedy");
+    tree.run_cbs("tsp-greedy");
 
     return 0;
 }
