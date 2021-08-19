@@ -76,7 +76,7 @@ void TSPGreedy::run(const std::string& agent_name, const Vertex& start, vertices
         }
         else {
             path.erase(path.begin());
-            shift = shift + (path.size()-1);
+            shift = shift + (path.size());
             //cout<<"shift = "<<shift<<endl;
             this->graph.add_to_agent_path(agent_name, path);
         }

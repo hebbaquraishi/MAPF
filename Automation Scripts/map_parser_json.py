@@ -50,8 +50,8 @@ with open('results/my_map.json', 'w') as outfile:
 ##           SECTION 2               ##
 #######################################
 
-number_of_agents = random.randint(1, 5)
-number_of_goals = random.randint(1, 5)
+number_of_agents = random.randint(5, 6)
+number_of_goals = random.randint(5,5)
 agent_source_locations = random.sample(my_map["vertices"], number_of_agents)
 agent_names = list()
 agents = {"names":[], "initial":[], "goal":[]}

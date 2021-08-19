@@ -119,7 +119,7 @@ vector<int> AStar::run(const Vertex& start, const Vertex& goal, int shift){
     g_value[start.id] = 0;
     f_value[start.id] = h_values[pair(start.id, goal.id)];
     frontier.push(make_pair(start.id, f_value[start.id]));
-    visited_at_time[start.id] = 0 + shift;
+    visited_at_time[start.id] = shift;
     //cout<<"Initial location: "<<this->graph.get_vertex_from_id(start.id).name<<endl;
 
     while (!frontier.empty()){

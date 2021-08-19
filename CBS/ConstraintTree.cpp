@@ -88,7 +88,7 @@ vertices_vector ConstraintTree::low_level(const string& agent_name, const vector
             return x.get_path();
         }
     }
-    return vertices_vector {};
+    //return vertices_vector {};
 }
 
 
@@ -155,9 +155,8 @@ constraint_map ConstraintTree::get_cumulative_constraints(Node* n, constraint_ma
     }
     else{
         cumulative_constraints.insert(n->parent->constraints.begin(), n->parent->constraints.end());
-        get_cumulative_constraints(n->parent, cumulative_constraints);
+        return get_cumulative_constraints(n->parent, cumulative_constraints);
     }
-    return constraint_map {};
 }
 
 
@@ -183,6 +182,7 @@ void ConstraintTree::update_to_final_graph(Node* goal_node) {
 
 
 void ConstraintTree::run_cbs(const string& solver) {
+    int conflict_counter=0;
     priority_queue_cbs open_list;
     open_list.push(root);
 
@@ -214,7 +214,8 @@ void ConstraintTree::run_cbs(const string& solver) {
         else{ //we have encountered a non-goal node
             open_list.pop();
             Conflict c = validation_result.second;
-            cout<<"\nConflict found! Conflict c = ("<<c.agent1<<", "<<c.agent2<<", "<<c.v.name<<", "<<c.t<<")"<<endl;
+            conflict_counter+=1;
+            cout<<"\nConflict found! Conflict c = ("<<c.agent1<<", "<<c.agent2<<", "<<c.v.name<<", "<<c.t<<")\t conflict#"<<conflict_counter<<endl;
             current->left = new Node();
             current->left->parent = current;
             current->left->constraints = get_cumulative_constraints(current->left, constraint_map{});
