@@ -33,9 +33,11 @@ public:
     std::vector<Vertex> get_vertices();
     std::vector<Agent> get_agents();
     Vertex get_vertex_from_id(int id);  //retrieve a node from an id
+    Vertex get_vertex_from_name(std::string name);
 
     int assign_id_to_vertex(const Vertex& x) const;
-    void update_agent_path(const std::string& name, const std::vector<Vertex>& path);
+    void reset_agent_path(const std::string& name, const std::vector<Vertex>& path);
+    void add_to_agent_path(const std::string &name, const std::vector<Vertex> &path);
     Agent get_agent_from_name(const std::string&);
     vertices_vector get_agent_path(const std::string&);
     void update_agent_constraints(const std::string& name, const std::vector<std::pair<Vertex, int>>& constraints);
