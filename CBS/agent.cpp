@@ -27,10 +27,10 @@ std::vector<Vertex> Agent::get_goals(){
 
 
 void Agent::set_path(std::vector<Vertex> path){
-    this->path = path;
+    this->path = std::move(path);
 }
 
-void Agent::add_to_path(std::vector<Vertex> path){
+void Agent::add_to_path(const std::vector<Vertex>& path){
     for(auto &p : path){
         this->path.emplace_back(p);
     }
@@ -45,7 +45,7 @@ int Agent::get_path_cost(){
     return path.size() - 1;
 }
 
-void Agent::add_constraints(constraint_type c){
+void Agent::add_constraints(const constraint_type& c){
     this->constraints.emplace_back(c);
 }
 

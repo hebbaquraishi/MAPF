@@ -29,10 +29,10 @@ public:
     Vertex get_init_loc();
     vertices_vector get_goals();
     void set_path(std::vector<Vertex> path);
-    void add_to_path(std::vector<Vertex> path);
+    void add_to_path(const std::vector<Vertex>& path);
     vertices_vector get_path();
     int get_path_cost();
-    void add_constraints(constraint_type c);
+    void add_constraints(const constraint_type& c);
     std::vector<constraint_type> get_constraints();
 };
 

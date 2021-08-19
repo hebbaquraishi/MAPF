@@ -32,10 +32,10 @@ AStar::AStar(const string& agent_name, const vector<constraint_type>& c, Graph g
 }
 
 vertices_vector AStar::TSP_AStar(const string& agent_name, int init_id, int goal_id, int shift, const vector<constraint_type>& c, Graph graph, std::map<std::pair<int, int>,int> h_values){
-    this->graph = graph;
+    this->graph = std::move(graph);
     Vertex start = this->graph.get_vertex_from_id(init_id);
     Vertex goal = this->graph.get_vertex_from_id(goal_id);
-    this->h_values = h_values;
+    this->h_values = std::move(h_values);
     this->constraints = c;
     vector<int> p = run(start, goal, shift);
     vertices_vector path;

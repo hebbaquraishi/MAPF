@@ -9,7 +9,6 @@
 #include <utility>
 #include <vector>
 #include <string>
-#include <iomanip>
 using namespace std;
 
 
@@ -88,7 +87,7 @@ vertices_vector ConstraintTree::low_level(const string& agent_name, const vector
             return x.get_path();
         }
     }
-    //return vertices_vector {};
+    return vertices_vector {};
 }
 
 
