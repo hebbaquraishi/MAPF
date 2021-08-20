@@ -14,6 +14,7 @@ using namespace std;
 
 
 ConstraintTree::ConstraintTree(Graph graph, const string& solver) {
+    //the root of the Constraint Tree is initialised here and its solution is printed to console
     this->graph = std::move(graph);
     this->solver = solver;
     root = new Node();
@@ -26,8 +27,8 @@ ConstraintTree::ConstraintTree(Graph graph, const string& solver) {
             AStar a = AStar(agent.name, vector<constraint_type>{},this->graph, h_values);
             this->graph = a.get_updated_graph();
         }
-        if (solver =="tsp-nn"){
-            TSPNearestNeighbour t = TSPNearestNeighbour(agent.name, vector<constraint_type>{},this->graph, h_values, false);
+        if (solver == "tsp-exact" || solver == "tsp-branch-and-bound" || solver =="tsp-nn"){
+            TSP t = TSP(agent.name, vector<constraint_type>{},this->graph, h_values, false, solver);
             this->graph = t.get_updated_graph();
         }
         for (auto x: this->graph.get_agents()){
@@ -48,7 +49,7 @@ ConstraintTree::ConstraintTree(Graph graph, const string& solver) {
             cout<<endl;
         }
     }
-    if(solver =="tsp-nn"){
+    if(solver == "tsp-exact" || solver == "tsp-branch-and-bound" || solver =="tsp-nn"){
         for(auto& agent : this->graph.get_agents()){
             cout<<"Agent: "<<agent.name<<"\tInit: "<<agent.get_init_loc().name<<"\t\tGoal: ";
             for(auto& g :agent.get_goals()){
@@ -68,8 +69,8 @@ vertices_vector ConstraintTree::low_level(const string& agent_name, const vector
         AStar a = AStar(agent_name, c, this->graph, h_values);
         this->graph = a.get_updated_graph();
     }
-    if (solver =="tsp-nn"){
-        TSPNearestNeighbour t = TSPNearestNeighbour(agent_name, c ,this->graph, h_values, reset);
+    if (solver == "tsp-exact" || solver == "tsp-branch-and-bound" || solver =="tsp-nn"){
+        TSP t = TSP(agent_name, c ,this->graph, h_values, reset, solver);
         this->graph = t.get_updated_graph();
     }
     for (auto x: graph.get_agents()){
