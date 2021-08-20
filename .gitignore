@@ -13,3 +13,4 @@ json
 *.o
 *.log
 Automation Scripts/test.py
+*.pdf
