@@ -25,8 +25,8 @@ ConstraintTree::ConstraintTree(Graph graph, const string& solver) {
             AStar a = AStar(agent.name, vector<constraint_type>{},this->graph, h_values);
             this->graph = a.get_updated_graph();
         }
-        if (solver =="tsp-greedy"){
-            TSPGreedy t = TSPGreedy(agent.name, vector<constraint_type>{},this->graph, h_values, false);
+        if (solver =="tsp-nn"){
+            TSPNearestNeighbour t = TSPNearestNeighbour(agent.name, vector<constraint_type>{},this->graph, h_values, false);
             this->graph = t.get_updated_graph();
         }
         for (auto x: this->graph.get_agents()){
@@ -47,7 +47,7 @@ ConstraintTree::ConstraintTree(Graph graph, const string& solver) {
             cout<<endl;
         }
     }
-    if(solver =="tsp-greedy"){
+    if(solver =="tsp-nn"){
         for(auto& agent : this->graph.get_agents()){
             cout<<"Agent: "<<agent.name<<"\tInit: "<<agent.get_init_loc().name<<"\t\tGoal: ";
             for(auto& g :agent.get_goals()){
@@ -67,8 +67,8 @@ vertices_vector ConstraintTree::low_level(const string& agent_name, const vector
         AStar a = AStar(agent_name, c, this->graph, h_values);
         this->graph = a.get_updated_graph();
     }
-    if (solver =="tsp-greedy"){
-        TSPGreedy t = TSPGreedy(agent_name, c ,this->graph, h_values, reset);
+    if (solver =="tsp-nn"){
+        TSPNearestNeighbour t = TSPNearestNeighbour(agent_name, c ,this->graph, h_values, reset);
         this->graph = t.get_updated_graph();
     }
     for (auto x: graph.get_agents()){

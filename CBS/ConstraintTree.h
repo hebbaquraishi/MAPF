@@ -11,7 +11,7 @@
 #include "Graph.h"
 #include "AStar.h"
 #include "BreadthFirstSearch.h"
-#include "TSPGreedy.h"
+#include "TSPNearestNeighbour.h"
 typedef std::map<std::string, std::vector<constraint_type>> constraint_map;
 typedef std::map<std::string, std::vector<Vertex>> node_solution; //key:= agent name, value:= agent path from source to goal
 

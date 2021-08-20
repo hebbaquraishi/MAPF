@@ -4,12 +4,12 @@
  * The objective of this file is to implement a Constraint Tree
 */
 
-#include "TSPGreedy.h"
+#include "TSPNearestNeighbour.h"
 #include <iostream>
 #include <utility>
 using namespace std;
 
-TSPGreedy::TSPGreedy(const std::string& agent_name, const std::vector<constraint_type>& c, Graph graph, std::map<std::pair<int, int>,int> h_values, bool reset){
+TSPNearestNeighbour::TSPNearestNeighbour(const std::string& agent_name, const std::vector<constraint_type>& c, Graph graph, std::map<std::pair<int, int>,int> h_values, bool reset){
     Vertex start;
     vertices_vector goals;
     this->graph = std::move(graph);
@@ -33,7 +33,7 @@ bool sort_by_h_value(pair<int,int> x, pair<int,int> y){
     return (x.second < y.second);
 }
 
-int TSPGreedy::find_next_goal(int start, const vector<int>& goals){
+int TSPNearestNeighbour::find_next_goal(int start, const vector<int>& goals){
     int minimum = 9999;
     int closest_goal;
     for(auto& goal : goals){
@@ -46,7 +46,7 @@ int TSPGreedy::find_next_goal(int start, const vector<int>& goals){
 }
 
 
-vector<int> TSPGreedy::get_goal_traversal_order(int start, vector<int> goals, vector<int> goal_traversal_order){
+vector<int> TSPNearestNeighbour::get_goal_traversal_order(int start, vector<int> goals, vector<int> goal_traversal_order){
     if(goals.empty()){
         return goal_traversal_order;
     }
@@ -57,7 +57,7 @@ vector<int> TSPGreedy::get_goal_traversal_order(int start, vector<int> goals, ve
 }
 
 
-void TSPGreedy::run(const std::string& agent_name, const Vertex& start, const vertices_vector& goals){
+void TSPNearestNeighbour::run(const std::string& agent_name, const Vertex& start, const vertices_vector& goals){
     int shift =0;
     vector<int> goal_ids;
     for(auto& goal: goals){
@@ -69,7 +69,7 @@ void TSPGreedy::run(const std::string& agent_name, const Vertex& start, const ve
 
     for(int i=0; i < goal_traversal_order.size()-1; i++){
         AStar a;
-        vertices_vector path = a.TSP_AStar(agent_name, goal_traversal_order[i], goal_traversal_order[i+1], shift, constraints, this->graph, this->h_values);
+        vertices_vector path = a.TSP(agent_name, goal_traversal_order[i], goal_traversal_order[i+1], shift, constraints, this->graph, this->h_values);
         if(i==0){
             this->graph.add_to_agent_path(agent_name, path);
             shift = shift + (path.size()-1);
@@ -84,6 +84,6 @@ void TSPGreedy::run(const std::string& agent_name, const Vertex& start, const ve
 }
 
 
-Graph TSPGreedy::get_updated_graph(){
+Graph TSPNearestNeighbour::get_updated_graph(){
     return this->graph;
 }

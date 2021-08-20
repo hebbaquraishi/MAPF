@@ -17,8 +17,8 @@ int main() {
     //Run CBS
     //ConstraintTree tree = ConstraintTree(g, "simple");
     //tree.run_cbs("simple");
-    ConstraintTree tree = ConstraintTree(g, "tsp-greedy");
-    tree.run_cbs("tsp-greedy");
+    ConstraintTree tree = ConstraintTree(g, "tsp-nn");
+    tree.run_cbs("tsp-nn");
 
     return 0;
 }
