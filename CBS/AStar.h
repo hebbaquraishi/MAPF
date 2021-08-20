@@ -1,6 +1,8 @@
-//
-// Created by Hebba Quraishi on 30.07.21.
-//
+/*
+ * Author: Hebba Quraishi
+ * Email: quraishi@tf.uni-freiburg.de
+ * The objective of this file is to implement A* Search
+*/
 
 #ifndef MAPF_ASTAR_H
 #define MAPF_ASTAR_H

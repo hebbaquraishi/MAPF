@@ -12,3 +12,4 @@ json
 *.includecache
 *.o
 *.log
+Automation Scripts/test.py

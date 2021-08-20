@@ -14,27 +14,20 @@ using namespace std;
 
 
 ConstraintTree::ConstraintTree(Graph graph, const string& solver) {
-    //cout<<"Current Task: Initialising Constraint Tree"<<endl;
     this->graph = std::move(graph);
     root = new Node();
     root->parent = nullptr;
-    //cout<<"\tCurrent Subtask: Running BFS"<<endl;
     BreadthFirstSearch b = BreadthFirstSearch(this->graph);
-    //cout<<"\tCurrent Subtask: completed"<<endl;
     this->h_values = b.get_distance_matrix();
 
     for(const auto& agent : this->graph.get_agents()){
         if (solver=="simple"){
-            //cout<<"\tCurrent Subtask: Running A* search"<<endl;
             AStar a = AStar(agent.name, vector<constraint_type>{},this->graph, h_values);
             this->graph = a.get_updated_graph();
-            //cout<<"\tCurrent Subtask: completed"<<endl;
         }
         if (solver =="tsp-greedy"){
-            //cout<<"\tCurrent Subtask: Running TSP (Greedy Approach)"<<endl;
             TSPGreedy t = TSPGreedy(agent.name, vector<constraint_type>{},this->graph, h_values, false);
             this->graph = t.get_updated_graph();
-            //cout<<"\tCurrent Subtask: completed"<<endl;
         }
         for (auto x: this->graph.get_agents()){
             if(x.name == agent.name){
@@ -67,13 +60,9 @@ ConstraintTree::ConstraintTree(Graph graph, const string& solver) {
             cout<<endl;
         }
     }
-    //cout<<"Current Task: completed"<<endl;
 }
 
 vertices_vector ConstraintTree::low_level(const string& agent_name, const vector<constraint_type>& c, const string& solver, bool reset){
-    BreadthFirstSearch b = BreadthFirstSearch(this->graph);
-    this->h_values = b.get_distance_matrix();
-
     if (solver=="simple"){
         AStar a = AStar(agent_name, c, this->graph, h_values);
         this->graph = a.get_updated_graph();
@@ -161,13 +150,11 @@ constraint_map ConstraintTree::get_cumulative_constraints(Node* n, constraint_ma
 
 int ConstraintTree::get_solution_cost(Node* n){
     int cost = 0;
-    for(auto it = n->solution.begin(); it != n->solution.end(); it++){
-        cost = cost+it->second.size()-1;
+    for(auto & it : n->solution){
+        cost = cost+it.second.size()-1;
     }
     return cost;
 }
-
-
 
 
 void ConstraintTree::update_to_final_graph(Node* goal_node) {
@@ -214,7 +201,7 @@ void ConstraintTree::run_cbs(const string& solver) {
             open_list.pop();
             Conflict c = validation_result.second;
             conflict_counter+=1;
-            cout<<"\nConflict found! Conflict c = ("<<c.agent1<<", "<<c.agent2<<", "<<c.v.name<<", "<<c.t<<")\t conflict#"<<conflict_counter<<endl;
+            cout<<"\nConflict found! Conflict c = ("<<c.agent1<<", "<<c.agent2<<", "<<c.v.name<<", "<<c.t<<")\t conflict #"<<conflict_counter<<endl;
             current->left = new Node();
             current->left->parent = current;
             current->left->constraints = get_cumulative_constraints(current->left, constraint_map{});

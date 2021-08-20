@@ -28,14 +28,14 @@ public:
     Graph() = default;
     void initialise_vertices(json input_map_json);     //used to initialise the vertices of the edges
     void initialise_agents(json input_agents_json); //used to initialise the agents
-    void initialise_graph_edges();    //used to initialise the edges in the graph
+    //void initialise_graph_edges();    //used to initialise the edges in the graph
     [[nodiscard]] std::vector<Vertex> get_neighbors(const Vertex& n) const; //get neighbours of a node
     std::vector<Vertex> get_vertices();
     std::vector<Agent> get_agents();
     Vertex get_vertex_from_id(int id);  //retrieve a node from an id
-    Vertex get_vertex_from_name(std::string name);
+    Vertex get_vertex_from_name(const std::string& name);
 
-    int assign_id_to_vertex(const Vertex& x) const;
+    [[nodiscard]] int assign_id_to_vertex(const Vertex& x) const;
     void reset_agent_path(const std::string& name, const std::vector<Vertex>& path);
     void add_to_agent_path(const std::string &name, const std::vector<Vertex> &path);
     Agent get_agent_from_name(const std::string&);

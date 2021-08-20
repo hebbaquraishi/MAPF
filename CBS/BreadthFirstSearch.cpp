@@ -34,7 +34,7 @@ BreadthFirstSearch::BreadthFirstSearch(Graph graph) {
     }
 }
 
-void BreadthFirstSearch::run_bfs(std::pair<Vertex, int> root, std::queue<std::pair<Vertex, int>> q, std::map<int, bool> discovered){
+void BreadthFirstSearch::run_bfs(const std::pair<Vertex, int>& root, std::queue<std::pair<Vertex, int>> q, std::map<int, bool> discovered){
     if(q.empty()){
         return;
     }

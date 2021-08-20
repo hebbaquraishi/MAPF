@@ -19,7 +19,7 @@ public:
     std::string name;
     Vertex()=default;
     Vertex(int x, int y);
-    std::pair<int, int> get_coordinates() const;
+    [[nodiscard]] std::pair<int, int> get_coordinates() const;
 };
 
 

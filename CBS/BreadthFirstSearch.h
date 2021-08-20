@@ -19,7 +19,7 @@ class BreadthFirstSearch {
 
 public:
     BreadthFirstSearch(Graph graph);
-    void run_bfs(std::pair<Vertex, int> root, std::queue<std::pair<Vertex, int>> q, std::map<int, bool> discovered);
+    void run_bfs(const std::pair<Vertex, int>& root, std::queue<std::pair<Vertex, int>> q, std::map<int, bool> discovered);
     std::map<std::pair<int, int>,int> get_distance_matrix();
     void print_distance_matrix();
 };

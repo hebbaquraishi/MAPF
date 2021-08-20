@@ -6,13 +6,14 @@
 
 #include "TSPGreedy.h"
 #include <iostream>
+#include <utility>
 using namespace std;
 
 TSPGreedy::TSPGreedy(const std::string& agent_name, const std::vector<constraint_type>& c, Graph graph, std::map<std::pair<int, int>,int> h_values, bool reset){
     Vertex start;
     vertices_vector goals;
-    this->graph = graph;
-    this->h_values = h_values;
+    this->graph = std::move(graph);
+    this->h_values = std::move(h_values);
     this->constraints = c;
     for(auto& agent : this->graph.get_agents()){
         if(agent.name == agent_name){
@@ -32,8 +33,8 @@ bool sort_by_h_value(pair<int,int> x, pair<int,int> y){
     return (x.second < y.second);
 }
 
-int TSPGreedy::find_next_goal(int start, vector<int> goals){
-    int minimum = INFINITY;
+int TSPGreedy::find_next_goal(int start, const vector<int>& goals){
+    int minimum = 9999;
     int closest_goal;
     for(auto& goal : goals){
         if(h_values[make_pair(start, goal)]< minimum){
@@ -56,7 +57,7 @@ vector<int> TSPGreedy::get_goal_traversal_order(int start, vector<int> goals, ve
 }
 
 
-void TSPGreedy::run(const std::string& agent_name, const Vertex& start, vertices_vector goals){
+void TSPGreedy::run(const std::string& agent_name, const Vertex& start, const vertices_vector& goals){
     int shift =0;
     vector<int> goal_ids;
     for(auto& goal: goals){
@@ -72,12 +73,10 @@ void TSPGreedy::run(const std::string& agent_name, const Vertex& start, vertices
         if(i==0){
             this->graph.add_to_agent_path(agent_name, path);
             shift = shift + (path.size()-1);
-            //cout<<"shift = "<<shift<<endl;
         }
         else {
             path.erase(path.begin());
             shift = shift + (path.size());
-            //cout<<"shift = "<<shift<<endl;
             this->graph.add_to_agent_path(agent_name, path);
         }
     }

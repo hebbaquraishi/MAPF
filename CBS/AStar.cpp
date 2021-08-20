@@ -1,6 +1,8 @@
-//
-// Created by Hebba Quraishi on 30.07.21.
-//
+/*
+ * Author: Hebba Quraishi
+ * Email: quraishi@tf.uni-freiburg.de
+ * The objective of this file is to implement A* Search
+*/
 
 #include "AStar.h"
 #include <utility>
@@ -21,7 +23,7 @@ AStar::AStar(const string& agent_name, const vector<constraint_type>& c, Graph g
             break;
         }
     }
-    this->h_values = move(h_values);
+    this->h_values = std::move(h_values);
     vector<int> p = run(start, goal);
     vertices_vector path;
     for(auto& id: p){

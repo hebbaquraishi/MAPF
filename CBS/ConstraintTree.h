@@ -31,7 +31,6 @@ struct Node{
     Node* left;
     Node* right;
     Node* parent{};
-    //Graph graph_state;
 
     Node(){
         constraint_map c;
@@ -58,7 +57,7 @@ class ConstraintTree {
 
 public:
     ConstraintTree(Graph graph, const std::string& solver);
-    vertices_vector low_level(const std::string& agent_name, const std::vector<constraint_type>& c, const std::string& solver, bool reset);
+    vertices_vector low_level(const std::string& agent_name, const std::vector<constraint_type>& c, const std::string& solver, bool reset);     //if reset = TRUE then agent path is reset. Else, vertices are added to existing path
     std::pair<bool, Conflict> validate(Node *n); //TRUE:= goal node       FALSE:= non-goal node
     void run_cbs(const std::string& solver);
     void update_to_final_graph(Node* goal_node);

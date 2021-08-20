@@ -28,7 +28,7 @@ Graph::Graph(const std::string& map_location, const std::string& agent_location)
     ifstream input_agents(agent_location);
     input_agents >> input_agents_json;
     initialise_agents(input_agents_json);
-    initialise_graph_edges();
+    //initialise_graph_edges();
     //cout<<"Current Task: completed"<<endl;
 }
 
@@ -100,7 +100,7 @@ std::vector<Vertex> Graph::get_neighbors(const Vertex& v) const{
     return neighbors;
 }
 
-void Graph::initialise_graph_edges(){
+/*void Graph::initialise_graph_edges(){
     //cout<<"\tCurrent Subtask: Initialising graph edges"<<endl;
     for(auto &v : vertices){
         vector<Vertex> neighbors = get_neighbors(v);
@@ -112,7 +112,7 @@ void Graph::initialise_graph_edges(){
     }
 
     //cout<<"\tCurrent Subtask: completed"<<endl;
-}
+}*/
 
 std::vector<Vertex> Graph::get_vertices(){
     return vertices;
@@ -132,7 +132,7 @@ Vertex Graph::get_vertex_from_id(int id){
     return {};
 }
 
-Vertex Graph::get_vertex_from_name(std::string name){
+Vertex Graph::get_vertex_from_name(const std::string& name){
     for(auto &v : vertices){
         if(v.name == name){
             return v;
