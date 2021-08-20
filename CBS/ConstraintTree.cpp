@@ -15,6 +15,7 @@ using namespace std;
 
 ConstraintTree::ConstraintTree(Graph graph, const string& solver) {
     this->graph = std::move(graph);
+    this->solver = solver;
     root = new Node();
     root->parent = nullptr;
     BreadthFirstSearch b = BreadthFirstSearch(this->graph);
@@ -62,7 +63,7 @@ ConstraintTree::ConstraintTree(Graph graph, const string& solver) {
     }
 }
 
-vertices_vector ConstraintTree::low_level(const string& agent_name, const vector<constraint_type>& c, const string& solver, bool reset){
+vertices_vector ConstraintTree::low_level(const string& agent_name, const vector<constraint_type>& c, bool reset){
     if (solver=="simple"){
         AStar a = AStar(agent_name, c, this->graph, h_values);
         this->graph = a.get_updated_graph();
@@ -167,7 +168,7 @@ void ConstraintTree::update_to_final_graph(Node* goal_node) {
 }
 
 
-void ConstraintTree::run_cbs(const string& solver) {
+void ConstraintTree::run_cbs() {
     int conflict_counter=0;
     priority_queue_cbs open_list;
     open_list.push(root);
@@ -207,7 +208,7 @@ void ConstraintTree::run_cbs(const string& solver) {
             current->left->constraints = get_cumulative_constraints(current->left, constraint_map{});
             current->left->constraints[c.agent1].emplace_back(make_pair(c.v, c.t));
             current->left->solution = current->solution;
-            current->left->solution[c.agent1] = low_level(c.agent1, current->left->constraints[c.agent1], solver, true);
+            current->left->solution[c.agent1] = low_level(c.agent1, current->left->constraints[c.agent1], true);
             current->left->cost = get_solution_cost(current->left);
             cout<<"Updated "<<c.agent1<<" path in left subtree: ";
             for(auto & v : current->left->solution[c.agent1]){
@@ -221,7 +222,7 @@ void ConstraintTree::run_cbs(const string& solver) {
             current->right->constraints = get_cumulative_constraints(current->right, constraint_map{});
             current->right->constraints[c.agent2].emplace_back(make_pair(c.v, c.t));
             current->right->solution = current->solution;
-            current->right->solution[c.agent2] = low_level(c.agent2, current->right->constraints[c.agent2], solver, true);
+            current->right->solution[c.agent2] = low_level(c.agent2, current->right->constraints[c.agent2], true);
             current->right->cost = get_solution_cost(current->right);
             cout<<"Updated "<<c.agent2<<" path in right subtree: ";
             for(auto & v : current->right->solution[c.agent2]){

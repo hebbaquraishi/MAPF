@@ -1,7 +1,7 @@
 /*
  * Author: Hebba Quraishi
  * Email: quraishi@tf.uni-freiburg.de
- * The objective of this file is to implement a Constraint Tree
+ * The objective of this file is to implement TSP using the Exact, Branch-and-Bound and Nearest Neighbour approaches
 */
 
 #include "TSPNearestNeighbour.h"
