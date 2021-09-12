@@ -41,7 +41,7 @@ void Graph::initialise_vertices(json input_map_json) {
 
 void Graph::initialise_agents(json input_agents_json){
     std::vector<Vertex> goals;
-    for (int i = 0; i< input_agents_json["names"].size(); i++){
+    for (int i = 0; i< int(input_agents_json["names"].size()); i++){
         for (auto & j : input_agents_json["goal"][i]){
             Vertex v = Vertex(j[0], j[1]);
             v.id = assign_id_to_vertex(v);

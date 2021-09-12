@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+
 #include "Graph.h"
 #include "ConstraintTree.h"
 
@@ -21,7 +22,11 @@ int main() {
     output_file["goals_per_agent"] = g.get_agents()[0].get_goals().size();
     string solver[4] = {"simple", "tsp-nn", "tsp-exact", "tsp-branch-and-bound"};
     for(int i = 0; i< 4; i++){
-        cout<<"*********************** solver = "<<solver[i]<<" ***********************"<<endl;
+        if(g.get_agent_count() > 10 && solver[i] =="tsp-exact"){
+            output_file[solver[i]]=-99;
+            continue;
+        }
+        cout<<"\n\n*********************** solver = "<<solver[i]<<" ***********************"<<endl;
         ConstraintTree tree = ConstraintTree(g, solver[i]);
         int solution_cost = tree.run_cbs();
         output_file[solver[i]]=solution_cost;

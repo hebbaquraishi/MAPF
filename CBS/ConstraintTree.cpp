@@ -100,7 +100,7 @@ pair<bool, Conflict> ConstraintTree::validate(Node *n){
     for(int row = 0; row < row_size ; row++){
         validation_table[row][0] = it->first;
         for(int col = 1; col < column_size ; col++){
-            if(col < it->second.size()){
+            if(col < int(it->second.size())){
                 validation_table[row][col] = it->second[col].name; //save vertex names
             }
             else{
@@ -193,6 +193,7 @@ int ConstraintTree::run_cbs() {
                         cout<<g.name<<" ";
                     }
                 }
+                solution_cost +=agent.get_path_cost();
                 cout<<"\t\tPath cost: "<<agent.get_path_cost()<<"\t\tPath: ";
                 for(auto& v : agent.get_path()){
                     cout<<v.name<<" ";
@@ -200,16 +201,13 @@ int ConstraintTree::run_cbs() {
                 cout<<endl;
             }
             cout<<"Total solution cost = "<<solution_cost<<endl;
-            cout<<endl;
-            cout<<endl;
-            cout<<endl;
             return solution_cost;
         }
         else{ //we have encountered a non-goal node
             open_list.pop();
             Conflict c = validation_result.second;
             conflict_counter+=1;
-            if(conflict_counter > 100){
+            if(conflict_counter > 20){
                 return -1;
             }
             cout<<"\nConflict found! Conflict c = ("<<c.agent1<<", "<<c.agent2<<", "<<c.v.name<<", "<<c.t<<")\t conflict #"<<conflict_counter<<endl;

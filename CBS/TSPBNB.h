@@ -46,13 +46,13 @@ public:
         }
 
         initial_distance_matrix.resize(this->all_nodes.size());
-        for (int i = 0; i < this->all_nodes.size(); ++i)
+        for (int i = 0; i < int(this->all_nodes.size()); ++i)
             initial_distance_matrix[i].resize(this->all_nodes.size());
 
         //std::cout<<"Initial distance matrix = "<<std::endl;
-        for(int i = 0; i < this->all_nodes.size(); i++){
+        for(int i = 0; i < int(this->all_nodes.size()); i++){
             this->indices[i] = all_nodes[i];
-            for(int j = 0; j < this->all_nodes.size(); j++){
+            for(int j = 0; j < int(this->all_nodes.size()); j++){
                 if(i != j){
                     initial_distance_matrix[i][j] = h_values[std::make_pair(this->all_nodes[i], this->all_nodes[j])];
                 }

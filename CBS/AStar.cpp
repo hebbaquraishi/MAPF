@@ -119,7 +119,7 @@ vector<int> AStar::run(const Vertex& start, const Vertex& goal, int shift){
     map<int, int> g_value = initialise_map_with_infinity();// key:= vertex id, value := g-value
     map<int, int> f_value = initialise_map_with_infinity();// key:= vertex id, value := f-value
     g_value[start.id] = 0;
-    f_value[start.id] = h_values[pair(start.id, goal.id)];
+    f_value[start.id] = h_values[make_pair(start.id, goal.id)];
     frontier.push(make_pair(start.id, f_value[start.id]));
     visited_at_time[start.id] = shift;
     //cout<<"Initial location: "<<this->graph.get_vertex_from_id(start.id).name<<endl;
@@ -143,7 +143,7 @@ vector<int> AStar::run(const Vertex& start, const Vertex& goal, int shift){
                     came_from[nhbr.id] = current.first;
                     //cout<<"\t\tNeighbour added to came_from: "<<nhbr.name<<"\tTimestamp: "<<visited_at_time[nhbr.id]<<endl;
                     g_value[nhbr.id] = temp;
-                    f_value[nhbr.id] = g_value[nhbr.id] + h_values[pair(nhbr.id, goal.id)];
+                    f_value[nhbr.id] = g_value[nhbr.id] + h_values[make_pair(nhbr.id, goal.id)];
                     if(!in_frontier(nhbr.id, frontier)){
                         frontier.push(make_pair(nhbr.id, f_value[nhbr.id]));
                     }

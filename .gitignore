@@ -14,3 +14,23 @@ json
 *.log
 Automation Scripts/test.py
 *.pdf
+*.cmake
+*.make
+*.d
+*.txt
+*.c
+*.internal
+*.marks
+cmake-build-default/Makefile
+cmake-build-default/MAPF
+*.cbp
+CBS/CMakeFiles/3.20.1/CompilerIdCXX/CMakeCXXCompilerId.cpp
+cmake-build-default/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp
+cmake-build-default/CMakeFiles/cmake.check_cache
+cmake-build-default/CMakeFiles/Makefile2
+CBS/CMakeLists.txt
+CBS/CMakeFiles/cmake.check_cache
+CBS/CMakeFiles/Makefile2
+CBS/CMakeFiles/MAPF.dir/compiler_depend.ts
+Automation Scripts/test.py
+Automation Scripts/results/test.json

@@ -90,7 +90,7 @@ TSPNode* TSPBranchAndBound::create_node(int row, int col, int level, std::vector
     node->node_id = col;
     if(level != 0){
         node->goal_traversal_order.emplace_back(make_pair(row, col));
-        for(int i = 0; i < node->cost_adjacency_matrix[0].size(); i++){
+        for(int i = 0; i < int(node->cost_adjacency_matrix[0].size()); i++){
             node->cost_adjacency_matrix[row][i] = INF;
             node->cost_adjacency_matrix[i][col] = INF;
         }
@@ -103,7 +103,7 @@ TSPNode* TSPBranchAndBound::create_node(int row, int col, int level, std::vector
 std::vector<int> TSPBranchAndBound::get_goal_traversal_order(const std::vector<std::pair<int, int>>& goal_traversal_order){
     std::vector<int> my_goal_traversal_order;
     //my_goal_traversal_order.emplace_back(indices[goal_traversal_order[0].first]);
-    for(int i = 0; i < goal_traversal_order.size(); i++){
+    for(int i = 0; i < int(goal_traversal_order.size()); i++){
         my_goal_traversal_order.emplace_back(this->indices[goal_traversal_order[i].first]);
     }
     return my_goal_traversal_order;
@@ -122,7 +122,7 @@ std::vector<int> TSPBranchAndBound::run(){
         open_list.pop();
         int from = current->node_id;
         //cout<<"Node popped: "<<current->node_id<<"\t Level: "<<current->level<<"\t Cost: "<<current->cost<<endl;
-        if(current->level == current->cost_adjacency_matrix[0].size()-1){
+        if(current->level == int(current->cost_adjacency_matrix[0].size())-1){
             priority_queue_tsp_bnb temp_pq;
             TSPNode* temp;
             if(current->cost < upper_bound){    //at leaf-node
@@ -145,7 +145,7 @@ std::vector<int> TSPBranchAndBound::run(){
             }
         }
 
-        for(int j = 1; j < current->cost_adjacency_matrix[0].size(); j++){
+        for(int j = 1; j < int(current->cost_adjacency_matrix[0].size()); j++){
             if(current->cost_adjacency_matrix[from][j] != INF){
                 TSPNode* n = create_node(from, j, current->level+1, current->cost_adjacency_matrix, current->goal_traversal_order);
                 //cout<<"current->cost: "<<current->cost<<"\tcurrent->cost_adjacency_matrix[i][j]: "<<current->cost_adjacency_matrix[i][j]<<"\tget_node_cost(n->cost_adjacency_matrix): "<<x<<endl;

@@ -49,7 +49,7 @@ int TSP::nearest_neighbour(int start, const vector<int>& goals){
 
 int TSP::get_cost(int start, std::vector<int>goals){
     int cost = h_values[make_pair(start, goals[0])];
-    for(int i = 0; i < goals.size()-1; i ++) {
+    for(int i = 0; i < int(goals.size())-1; i ++) {
         cost = cost + h_values[make_pair(goals[i], goals[i+1])];
     }
     return cost;
@@ -121,7 +121,7 @@ void TSP::run(const std::string& agent_name, const Vertex& start, const vertices
     cout<<endl;
 
 
-    for(int i=0; i < goal_traversal_order.size()-1; i++){
+    for(int i=0; i < int(goal_traversal_order.size())-1; i++){
         AStar a;
         vertices_vector path = a.TSP(agent_name, goal_traversal_order[i], goal_traversal_order[i+1], shift, constraints, this->graph, this->h_values);
         if(i==0){
