@@ -8,6 +8,8 @@
 #define MAPF_TSP_H
 #include "Graph.h"
 #include "AStar.h"
+#include "TSPBNB.h"
+//#include "TSPBranchAndBound.h"
 
 
 class TSP {

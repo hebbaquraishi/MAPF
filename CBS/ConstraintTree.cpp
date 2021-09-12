@@ -30,6 +30,7 @@ ConstraintTree::ConstraintTree(Graph graph, const string& solver) {
         if (solver == "tsp-exact" || solver == "tsp-branch-and-bound" || solver =="tsp-nn"){
             TSP t = TSP(agent.name, vector<constraint_type>{},this->graph, h_values, false, solver);
             this->graph = t.get_updated_graph();
+
         }
         for (auto x: this->graph.get_agents()){
             if(x.name == agent.name){
@@ -38,8 +39,7 @@ ConstraintTree::ConstraintTree(Graph graph, const string& solver) {
             }
         }
     }
-
-    cout<<"Initial solution: "<<endl;
+    cout<<"\nInitial solution: "<<endl;
     if (solver=="simple"){
         for(auto& agent : this->graph.get_agents()){
             cout<<"Agent: "<<agent.name<<"\tInit: "<<agent.get_init_loc().name<<"\t\tGoal: "<<agent.get_goals()[0].name<<"\t\tPath cost: "<<agent.get_path_cost()<<"\t\tPath: ";
@@ -99,12 +99,12 @@ pair<bool, Conflict> ConstraintTree::validate(Node *n){
 
     for(int row = 0; row < row_size ; row++){
         validation_table[row][0] = it->first;
-        for(int col = 0; col <= column_size ; col++){
+        for(int col = 1; col < column_size ; col++){
             if(col < it->second.size()){
-                validation_table[row][col+1] = it->second[col].name; //save vertex names
+                validation_table[row][col] = it->second[col].name; //save vertex names
             }
             else{
-                validation_table[row][col+1] = "NA";
+                validation_table[row][col] = "NA";
             }
             //cout<<"validation_table["<<row<<"]["<<col<<"] = "<<validation_table[row][col]<<endl;
         }
@@ -169,14 +169,16 @@ void ConstraintTree::update_to_final_graph(Node* goal_node) {
 }
 
 
-void ConstraintTree::run_cbs() {
+int ConstraintTree::run_cbs() {
     int conflict_counter=0;
     priority_queue_cbs open_list;
     open_list.push(root);
+    int solution_cost=0;
 
     while (!open_list.empty()){
         Node* current = open_list.top();
         pair<bool, Conflict> validation_result = validate(current);
+
         if(validation_result.first){
             //we have found a goal node
             update_to_final_graph(current);
@@ -197,12 +199,19 @@ void ConstraintTree::run_cbs() {
                 }
                 cout<<endl;
             }
-            return;
+            cout<<"Total solution cost = "<<solution_cost<<endl;
+            cout<<endl;
+            cout<<endl;
+            cout<<endl;
+            return solution_cost;
         }
         else{ //we have encountered a non-goal node
             open_list.pop();
             Conflict c = validation_result.second;
             conflict_counter+=1;
+            if(conflict_counter > 100){
+                return -1;
+            }
             cout<<"\nConflict found! Conflict c = ("<<c.agent1<<", "<<c.agent2<<", "<<c.v.name<<", "<<c.t<<")\t conflict #"<<conflict_counter<<endl;
             current->left = new Node();
             current->left->parent = current;
@@ -234,4 +243,5 @@ void ConstraintTree::run_cbs() {
         }
 
     }
+    return -1;
 }

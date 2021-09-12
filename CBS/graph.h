@@ -28,7 +28,7 @@ public:
     Graph() = default;
     void initialise_vertices(json input_map_json);     //used to initialise the vertices of the edges
     void initialise_agents(json input_agents_json); //used to initialise the agents
-    //void initialise_graph_edges();    //used to initialise the edges in the graph
+    int get_agent_count();
     [[nodiscard]] std::vector<Vertex> get_neighbors(const Vertex& n) const; //get neighbours of a node
     std::vector<Vertex> get_vertices();
     std::vector<Agent> get_agents();

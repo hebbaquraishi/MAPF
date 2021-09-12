@@ -1,0 +1,6 @@
+{"agent_count":3,"goals_per_agent":3,"simple":46,"tsp-branch-and-bound":162,"tsp-exact":123,"tsp-nn":123}
+{"agent_count":3,"goals_per_agent":3,"simple":46,"tsp-branch-and-bound":162,"tsp-exact":123,"tsp-nn":123}
+{"agent_count":3,"goals_per_agent":5,"simple":55,"tsp-branch-and-bound":279,"tsp-exact":234,"tsp-nn":234}
+{"agent_count":3,"goals_per_agent":7,"simple":69,"tsp-branch-and-bound":303,"tsp-exact":272,"tsp-nn":295}
+{"agent_count":5,"goals_per_agent":7,"tsp-branch-and-bound":528,"tsp-exact":-1}
+{"agent_count":5,"goals_per_agent":10,"simple":95,"tsp-branch-and-bound":-1,"tsp-exact":533,"tsp-nn":565}

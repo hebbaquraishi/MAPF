@@ -90,7 +90,15 @@ vector<int> TSP::get_goal_traversal_order(int start, vector<int> goals, vector<i
         goal_traversal_order.insert(goal_traversal_order.end(), v.begin(), v.end());
         return goal_traversal_order;
     }
-    return vector<int>{};
+
+    if(approach == "tsp-branch-and-bound"){
+        TSPBranchAndBound tbnb = TSPBranchAndBound(start, goals, h_values);
+        return tbnb.run();
+    }
+
+    else{
+        return vector<int>{};
+    }
 }
 
 
@@ -104,6 +112,14 @@ void TSP::run(const std::string& agent_name, const Vertex& start, const vertices
     vector<int> goal_traversal_order;
     goal_traversal_order.emplace_back(start.id);
     goal_traversal_order = get_goal_traversal_order(start.id, goal_ids,goal_traversal_order);
+
+    cout<<"Goal traversal order for "<<agent_name<<" is: ";
+    for(auto& i: goal_traversal_order){
+        cout<<graph.get_vertex_from_id(i).name<<" ";
+        //cout<<i<<" ";
+    }
+    cout<<endl;
+
 
     for(int i=0; i < goal_traversal_order.size()-1; i++){
         AStar a;
