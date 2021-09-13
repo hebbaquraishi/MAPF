@@ -22,7 +22,7 @@ int main() {
     output_file["goals_per_agent"] = g.get_agents()[0].get_goals().size();
     string solver[4] = {"simple", "tsp-nn", "tsp-exact", "tsp-branch-and-bound"};
     for(int i = 0; i< 4; i++){
-        if(g.get_agent_count() > 10 && solver[i] =="tsp-exact"){
+        if(g.get_agents()[0].get_goals().size() >= 10 && solver[i] =="tsp-exact"){
             output_file[solver[i]]=-99;
             continue;
         }

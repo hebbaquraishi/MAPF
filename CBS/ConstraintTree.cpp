@@ -126,7 +126,7 @@ pair<bool, Conflict> ConstraintTree::validate(Node *n){
                 c.agent1 = agent_names[index];
                 c.agent2 = validation_table[row][0];
                 c.v = this->graph.get_vertex_from_name(x);
-                c.t = col-1;
+                c.t = col;
                 return make_pair(false, c);
             }
             else{
