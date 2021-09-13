@@ -26,6 +26,10 @@ int main() {
             output_file[solver[i]]=-99;
             continue;
         }
+        if(g.get_agents()[0].get_goals().size() > 15 && solver[i] =="tsp-branch-and-bound"){
+            output_file[solver[i]]=-99;
+            continue;
+        }
         cout<<"\n\n*********************** solver = "<<solver[i]<<" ***********************"<<endl;
         ConstraintTree tree = ConstraintTree(g, solver[i]);
         int solution_cost = tree.run_cbs();
