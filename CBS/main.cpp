@@ -26,16 +26,16 @@ int main() {
             output_file[solver[i]]=-99;
             continue;
         }
-        if(g.get_agents()[0].get_goals().size() > 15 && solver[i] == "tsp-branch-and-bound"){
+        /*if(g.get_agents()[0].get_goals().size() > 15 && solver[i] == "tsp-branch-and-bound"){
             output_file[solver[i]]=-99;
             continue;
-        }
+        }*/
         cout<<"\n\n*********************** solver = "<<solver[i]<<" ***********************"<<endl;
         ConstraintTree tree = ConstraintTree(g, solver[i]);
         int solution_cost = tree.run_cbs();
         output_file[solver[i]]=solution_cost;
     }
-    ofstream outstream("/Users/hebbaquraishi/Desktop/MAPF/Automation Scripts/results/my_output.json", std::ios_base::app);
+    ofstream outstream("/Users/hebbaquraishi/Desktop/MAPF/Automation Scripts/results/results.json", std::ios_base::app);
     outstream<<output_file<<endl;
     return 0;
 }

@@ -23,11 +23,18 @@ class MapGenerator:
         self.number_of_agents = number_of_agents
         self.number_of_goals = number_of_goals
 
-    def convert_map_to_json(self) -> None:
+    def get_agent_goals(self, init):
+        x = random.sample(self.my_map["vertices"], self.number_of_goals)
+        if (init not in x):
+            return x
+        else:
+            return self.get_agent_goals(init)
+
+    def convert_map_to_json(self, config) -> None:
         """
         Take a .map file and return a JSON representation of it.
-        Output file name: my_map.json
-        Output file location: ${WORKING_DIRECTORY}$/results/my_map.json
+        Output file name: my_agents.json
+        Output file location: ${WORKING_DIRECTORY}$/results/my_agents.json
         """
         input_map = open(self.path, "r")
         map_row = 0
@@ -40,9 +47,9 @@ class MapGenerator:
             else:
                 for map_column in range(0, len(line)):
                     if line[map_column] == "@" or line[map_column] == "O" or line[map_column] == "T":
-                        self.my_map["obstacles"].append([map_column, map_row])
+                        self.my_map["obstacles"].append([map_row, map_column])
                     elif line[map_column] == "." or line[map_column] == "G":
-                        self.my_map["vertices"].append([map_column, map_row])
+                        self.my_map["vertices"].append([map_row, map_column])
                     elif line[map_column] == "W":
                         self.my_map["water"].append([map_column, map_row])
                 map_row += 1
@@ -50,39 +57,56 @@ class MapGenerator:
         with open('results/my_map.json', 'w') as outfile:
             json.dump(self.my_map, outfile)
 
+        with open('configs/my_map_agent_'+str(self.number_of_agents)+'_goals_'+str(self.number_of_goals)+'_config_'+str(config)+'.json', 'w') as configfile:
+            json.dump(self.my_map, configfile)
 
-    def create_agents_json(self):
+    def create_agents_json(self, config):
+        """
+        Initialises agents on a map
+        Output file name: my_map.json
+        Output file location: ${WORKING_DIRECTORY}$/results/my_map.json
+        """
         agent_source_locations = random.sample(self.my_map["vertices"], self.number_of_agents)
         agent_names = list()
         agents = {"names": [], "initial": [], "goal": []}
         for i in range(0, self.number_of_agents):
-            agent_names.append("agent"+str(i))
+            agent_names.append("agent" + str(i))
 
         agents["names"] = agent_names
         agents["initial"] = agent_source_locations
 
-        for name in agent_names:
-            agents["goal"].append(random.sample(self.my_map["vertices"], self.number_of_goals))
+        for i in range(0, len(agent_names)):
+            init = agent_source_locations[i]
+            x = self.get_agent_goals(init[0])
+            agents["goal"].append(x)
 
         with open('results/my_agents.json', 'w') as outfile:
             json.dump(agents, outfile)
+
+        with open('configs/my_agents_agent_'+str(self.number_of_agents)+'_goals_'+str(self.number_of_goals)+'_config_'+str(config)+'.json', 'w') as configfile:
+            json.dump(agents, configfile)
 
 
 if __name__ == "__main__":
     max_goals = 20
     max_agents = 20
-    # Set working directory
-    os.chdir("/Users/hebbaquraishi/Desktop/MAPF/Automation Scripts")
-    # path to C++ executable file
+    # TODO: Set working directory
+    working_directory = "/Users/hebbaquraishi/Desktop/MAPF/Automation Scripts/"
+    os.chdir(working_directory)
+    if not os.path.exists('results'):
+        os.mkdir(working_directory + "results")
+    if not os.path.exists('configs'):
+        os.mkdir(working_directory + "configs")
+    # TODO: Set path to C++ executable file
     executable_path = "/Users/hebbaquraishi/Desktop/MAPF/CBS/MAPF"
-    # path to .map file
+    # TODO: Set path to .map file
     map_path = "/Users/hebbaquraishi/Desktop/MAPF/Automation Scripts/maps/random-32-32-20.map"
 
     for a in range(2, max_agents):
         for g in range(2, max_goals):
             for n in range(1, 10):
                 obj = MapGenerator(path=map_path, number_of_agents=a, number_of_goals=g)
-                obj.convert_map_to_json()
-                obj.create_agents_json()
+                obj.convert_map_to_json(n)
+                obj.create_agents_json(n)
                 runcpp = subprocess.Popen([executable_path])
                 runcpp.wait()

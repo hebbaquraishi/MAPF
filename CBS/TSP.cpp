@@ -71,6 +71,7 @@ vector<int> TSP::get_best_goal_traversal_order(const map<vector<int>, int>& cost
 vector<int> TSP::get_goal_traversal_order(int start, vector<int> goals, vector<int> goal_traversal_order){
     if(approach == "tsp-nn"){
         if(goals.empty()){
+            goal_traversal_order.emplace_back(goal_traversal_order[0]);
             return goal_traversal_order;
         }
         int next_goal = nearest_neighbour(start, goals);
@@ -83,7 +84,9 @@ vector<int> TSP::get_goal_traversal_order(int start, vector<int> goals, vector<i
         map<vector<int>, int> cost_goal_traversal_order;    //key := goal_traversal_order   value:= total cost of goal_traversal_order
         sort(goals.begin(), goals.end());
         do{
-            cost_goal_traversal_order[goals] = get_cost(start, goals);
+            vector<int> temp = goals;
+            temp.emplace_back(start);
+            cost_goal_traversal_order[temp] = get_cost(start, temp);
         }
         while(next_permutation(goals.begin(), goals.end()));
         vector<int> v = get_best_goal_traversal_order(cost_goal_traversal_order);

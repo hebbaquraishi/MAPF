@@ -207,7 +207,7 @@ int ConstraintTree::run_cbs() {
             open_list.pop();
             Conflict c = validation_result.second;
             conflict_counter+=1;
-            if(conflict_counter > 20){
+            if(conflict_counter > 200){
                 return -1;
             }
             cout<<"\nConflict found! Conflict c = ("<<c.agent1<<", "<<c.agent2<<", "<<c.v.name<<", "<<c.t<<")\t conflict #"<<conflict_counter<<endl;

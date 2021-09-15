@@ -273,29 +273,29 @@ TSP.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/TSP.cpp.s
 .PHONY : TSP.cpp.s
 
-TSPBNB.o: TSPBNB.cpp.o
-.PHONY : TSPBNB.o
+TSPBranchAndBound.o: TSPBranchAndBound.cpp.o
+.PHONY : TSPBranchAndBound.o
 
 # target to build an object file
-TSPBNB.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/TSPBNB.cpp.o
-.PHONY : TSPBNB.cpp.o
+TSPBranchAndBound.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/TSPBranchAndBound.cpp.o
+.PHONY : TSPBranchAndBound.cpp.o
 
-TSPBNB.i: TSPBNB.cpp.i
-.PHONY : TSPBNB.i
+TSPBranchAndBound.i: TSPBranchAndBound.cpp.i
+.PHONY : TSPBranchAndBound.i
 
 # target to preprocess a source file
-TSPBNB.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/TSPBNB.cpp.i
-.PHONY : TSPBNB.cpp.i
+TSPBranchAndBound.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/TSPBranchAndBound.cpp.i
+.PHONY : TSPBranchAndBound.cpp.i
 
-TSPBNB.s: TSPBNB.cpp.s
-.PHONY : TSPBNB.s
+TSPBranchAndBound.s: TSPBranchAndBound.cpp.s
+.PHONY : TSPBranchAndBound.s
 
 # target to generate assembly for a file
-TSPBNB.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/TSPBNB.cpp.s
-.PHONY : TSPBNB.cpp.s
+TSPBranchAndBound.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAPF.dir/build.make CMakeFiles/MAPF.dir/TSPBranchAndBound.cpp.s
+.PHONY : TSPBranchAndBound.cpp.s
 
 Vertex.o: Vertex.cpp.o
 .PHONY : Vertex.o
@@ -372,9 +372,9 @@ help:
 	@echo "... TSP.o"
 	@echo "... TSP.i"
 	@echo "... TSP.s"
-	@echo "... TSPBNB.o"
-	@echo "... TSPBNB.i"
-	@echo "... TSPBNB.s"
+	@echo "... TSPBranchAndBound.o"
+	@echo "... TSPBranchAndBound.i"
+	@echo "... TSPBranchAndBound.s"
 	@echo "... Vertex.o"
 	@echo "... Vertex.i"
 	@echo "... Vertex.s"
