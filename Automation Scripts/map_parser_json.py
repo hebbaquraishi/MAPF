@@ -88,7 +88,7 @@ class MapGenerator:
 
 
 if __name__ == "__main__":
-    max_goals = 20
+    max_goals = 15
     max_agents = 20
     # TODO: Set working directory
     working_directory = "/Users/hebbaquraishi/Desktop/MAPF/Automation Scripts/"
