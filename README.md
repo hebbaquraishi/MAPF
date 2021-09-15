@@ -48,3 +48,8 @@ To run this code:
 5. Run command ```make -f Makefile``` 
 6. You will now have a ```Makefile``` and ```MAPF executable``` file in the ```CBS``` directory. Set the value of ```executable_path``` in ```map_parser_json.py``` to the path of the ```MAPF executable``` file.
 7. Since the ```MAPF executable``` file is now available, you can run ```map_parser_json.py```
+
+<br/>
+
+## Flow Diagram
+![alt text](https://github.com/hebbaquraishi/MAPF/blob/38141bc54117e68a3bfbdd9a323c490fe2606ee2/Flow%20Diagram.jpg)
