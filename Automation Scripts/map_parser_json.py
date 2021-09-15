@@ -102,9 +102,9 @@ if __name__ == "__main__":
     # TODO: Set path to .map file
     map_path = "/Users/hebbaquraishi/Desktop/MAPF/Automation Scripts/maps/random-32-32-20.map"
 
-    for a in range(2, max_agents):
-        for g in range(2, max_goals):
-            for n in range(1, 10):
+    for a in range(2, max_agents+1):
+        for g in range(2, max_goals+1):
+            for n in range(1, 11):
                 obj = MapGenerator(path=map_path, number_of_agents=a, number_of_goals=g)
                 obj.convert_map_to_json(n)
                 obj.create_agents_json(n)

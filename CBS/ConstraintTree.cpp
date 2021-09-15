@@ -42,6 +42,7 @@ ConstraintTree::ConstraintTree(Graph graph, const string& solver) {
     cout<<"\nInitial solution: "<<endl;
     if (solver=="simple"){
         for(auto& agent : this->graph.get_agents()){
+            initial_solution_cost += agent.get_path_cost();
             cout<<"Agent: "<<agent.name<<"\tInit: "<<agent.get_init_loc().name<<"\t\tGoal: "<<agent.get_goals()[0].name<<"\t\tPath cost: "<<agent.get_path_cost()<<"\t\tPath: ";
             for(auto& v : agent.get_path()){
                 cout<<v.name<<" ";
@@ -51,6 +52,7 @@ ConstraintTree::ConstraintTree(Graph graph, const string& solver) {
     }
     if(solver == "tsp-exact" || solver == "tsp-branch-and-bound" || solver =="tsp-nn"){
         for(auto& agent : this->graph.get_agents()){
+            initial_solution_cost += agent.get_path_cost();
             cout<<"Agent: "<<agent.name<<"\tInit: "<<agent.get_init_loc().name<<"\t\tGoal: ";
             for(auto& g :agent.get_goals()){
                 cout<<g.name<<" ";
@@ -169,11 +171,11 @@ void ConstraintTree::update_to_final_graph(Node* goal_node) {
 }
 
 
-int ConstraintTree::run_cbs() {
+pair<int,int> ConstraintTree::run_cbs() {
     int conflict_counter=0;
     priority_queue_cbs open_list;
     open_list.push(root);
-    int solution_cost=0;
+    int cbs_solution_cost=0;
 
     while (!open_list.empty()){
         Node* current = open_list.top();
@@ -193,22 +195,22 @@ int ConstraintTree::run_cbs() {
                         cout<<g.name<<" ";
                     }
                 }
-                solution_cost +=agent.get_path_cost();
+                cbs_solution_cost +=agent.get_path_cost();
                 cout<<"\t\tPath cost: "<<agent.get_path_cost()<<"\t\tPath: ";
                 for(auto& v : agent.get_path()){
                     cout<<v.name<<" ";
                 }
                 cout<<endl;
             }
-            cout<<"Total solution cost = "<<solution_cost<<endl;
-            return solution_cost;
+            cout<<"Total solution cost = "<<cbs_solution_cost<<endl;
+            return make_pair(initial_solution_cost, cbs_solution_cost);
         }
         else{ //we have encountered a non-goal node
             open_list.pop();
             Conflict c = validation_result.second;
             conflict_counter+=1;
             if(conflict_counter > 200){
-                return -1;
+                return make_pair(-1,-1);
             }
             cout<<"\nConflict found! Conflict c = ("<<c.agent1<<", "<<c.agent2<<", "<<c.v.name<<", "<<c.t<<")\t conflict #"<<conflict_counter<<endl;
             current->left = new Node();
@@ -241,5 +243,5 @@ int ConstraintTree::run_cbs() {
         }
 
     }
-    return -1;
+    return make_pair(-1,-1);
 }

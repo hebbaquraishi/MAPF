@@ -55,12 +55,13 @@ class ConstraintTree {
     Graph graph;
     std::map<std::pair<int, int>,int> h_values; //stores the h-values
     std::string solver;
+    int initial_solution_cost=0;
 
 public:
     ConstraintTree(Graph graph, const std::string& solver);
     vertices_vector low_level(const std::string& agent_name, const std::vector<constraint_type>& c, bool reset);     //if reset = TRUE then agent path is reset. Else, vertices are added to existing path
     std::pair<bool, Conflict> validate(Node *n); //TRUE:= goal node       FALSE:= non-goal node
-    int run_cbs();
+    std::pair<int,int> run_cbs(); //{initial_solution_cost, cbs_solution_cost}
     void update_to_final_graph(Node* goal_node);
     constraint_map get_cumulative_constraints(Node* n, constraint_map cumulative_constraints);
     int get_solution_cost(Node* n);
