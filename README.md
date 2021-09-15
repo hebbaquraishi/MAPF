@@ -1,6 +1,6 @@
 # Multi Agent Path Finding (MAPF)
 
-## Automation Scripts
+# Automation Scripts
 This folder contais Python scripts for automating certain tasks. <br/> 
 The directory structure is as shown below : \
 \
@@ -22,14 +22,25 @@ The directory structure is as shown below : \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ ```map_parser_json.py```
 
 
-#### map_parser_json.py
+## map_parser_json.py
 This script takes a .map file as an input and 
-1. returns a JSON represention of the map
-2. initialises a random number of agents on the map. Each agent is assigned a random start location and a random number of goals
+1. Returns a JSON represention of the map
+2. Initialises agents  on the map. Each agent is assigned a random start location and a number of goals such that ```(2 <= number of agents <= 20) and (2 <= number of goals per agent <= 20)```. <br/> Each configuration that is generated is stored in ```configs```
+3. Runs an MAPF instance on each configuration produced in 2.
 
+<br/>Before running ```map_parser_json.py```, the values of ```working_directory```, ```executable_path```, and ```map_path``` must be set.\
+Hint: search for ```TODO``` in ```map_parser_json.py``` to find the aforementioned variables.
 
-## CBS 
-This folder contains C++ code to implement Conflict Based Search for agents with multiple goals
+<br/>
+<br/>
 
-## Question to ask
-<img width="782" alt="Screenshot 2021-08-02 at 00 13 33" src="https://user-images.githubusercontent.com/17808885/127842078-437c85ac-6821-4c35-8984-ff809322f22a.png">
+# CBS 
+This folder contains C++ code to implement Conflict Based Search for agents with multiple goals.\
+To run this code:
+1. Download and install nlohmann::json. [Instructions here](https://github.com/nlohmann/json). <br/> If you have a MacBook, you can directly use [Homebrew](https://brew.sh/) command ```brew install nlohmann-json```.
+2. Provide the path of the ```include``` folder of ```nlohmann-json``` in ```CMakeLists.txt``` on line 10. <br/> Example: ```target_include_directories(MAPF SYSTEM PRIVATE /opt/homebrew/Cellar/nlohmann-json/3.9.1_1/include)```.
+3. Open Terminal (MacBook) or Command Line Prompt (Windows) and navigate to the ```CBS``` directory of this repository <br/> Example: ```cd Desktop/MAPF/CBS```
+4. Run command ```cmake ..```
+5. Run command ```make -f Makefile``` 
+6. You will now have a ```Makefile``` and ```MAPF executable``` file in the ```CBS``` directory. Set the value of ```executable_path``` in ```map_parser_json.py``` to the path of the ```MAPF executable``` file.
+7. Since the ```MAPF executable``` file is now available, you can run ```map_parser_json.py```
