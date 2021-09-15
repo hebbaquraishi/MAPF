@@ -29,7 +29,7 @@ The directory structure is as shown below : \
 ## map_parser_json.py
 This script takes a .map file as an input and 
 1. Returns a JSON represention of the map
-2. Initialises agents  on the map. Each agent is assigned a random start location and a number of goals such that ```(2 <= number of agents <= 20) and (2 <= number of goals per agent <= 20)```. <br/> Each configuration that is generated is stored in ```configs```
+2. Initialises agents  on the map. Each agent is assigned a random start location and a number of goals such that ```2 <= number of agents <= 20 and 2 <= number of goals per agent <= 20```. <br/> Each configuration that is generated is stored in ```configs```
 3. Runs an MAPF instance on each configuration produced in 2.
 
 <br/>Before running ```map_parser_json.py```, the values of ```working_directory```, ```executable_path```, and ```map_path``` must be set.\
