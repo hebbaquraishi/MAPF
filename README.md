@@ -1,4 +1,4 @@
-# Multi Agent Path Finding (MAPF)
+# Multi Agent Path Finding (MAPF) with multiple targets per agent
 The purpose of this project is to extend a MAPF problem such that each agent has multiple goals. Conflict Based Search (CBS) is used to detect conflicts between agents. In the low level search of CBS, three versions of Travelling Salesman Problem (TSP) is used to determine the order in which each agent should visit its goals i.e.
 1. TSP Exact : generates all ```n!``` permutations of goal traversal orders and returns the most optimal one
 2. TSP Branch and Bound : returns the optimal goal traversal order in a branch and bound manner
