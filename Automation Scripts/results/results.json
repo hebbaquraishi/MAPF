@@ -18,3 +18,12 @@
 {"agent_count":2,"goals_per_agent":2,"tsp-branch-and-bound-cbs":126,"tsp-branch-and-bound-initial":126,"tsp-exact-cbs":126,"tsp-exact-initial":126,"tsp-nn-cbs":126,"tsp-nn-initial":126}
 {"agent_count":2,"goals_per_agent":2,"tsp-branch-and-bound-cbs":126,"tsp-branch-and-bound-initial":126,"tsp-exact-cbs":126,"tsp-exact-initial":126,"tsp-nn-cbs":126,"tsp-nn-initial":126}
 {"agent_count":2,"goals_per_agent":2,"tsp-branch-and-bound-cbs":126,"tsp-branch-and-bound-initial":126,"tsp-exact-cbs":126,"tsp-exact-initial":126,"tsp-nn-cbs":126,"tsp-nn-initial":126}
+{"agent_count":2,"goals_per_agent":2,"tsp-branch-and-bound-cbs":126,"tsp-branch-and-bound-initial":126,"tsp-exact-cbs":126,"tsp-exact-initial":126,"tsp-nn-cbs":126,"tsp-nn-initial":126}
+{"agent_count":2,"goals_per_agent":2,"tsp-branch-and-bound-cbs":192,"tsp-branch-and-bound-initial":192,"tsp-exact-cbs":192,"tsp-exact-initial":192,"tsp-nn-cbs":192,"tsp-nn-initial":192}
+{"agent_count":2,"goals_per_agent":2,"tsp-branch-and-bound-cbs":40,"tsp-branch-and-bound-initial":40,"tsp-exact-cbs":148,"tsp-exact-initial":148,"tsp-nn-cbs":148,"tsp-nn-initial":148}
+{"agent_count":2,"goals_per_agent":3,"tsp-branch-and-bound-cbs":170,"tsp-branch-and-bound-initial":170,"tsp-exact-cbs":170,"tsp-exact-initial":170,"tsp-nn-cbs":170,"tsp-nn-initial":170}
+{"agent_count":2,"goals_per_agent":3,"tsp-branch-and-bound-cbs":154,"tsp-branch-and-bound-initial":154,"tsp-exact-cbs":154,"tsp-exact-initial":154,"tsp-nn-cbs":154,"tsp-nn-initial":154}
+{"agent_count":2,"goals_per_agent":3,"tsp-branch-and-bound-cbs":154,"tsp-branch-and-bound-initial":154,"tsp-exact-cbs":154,"tsp-exact-initial":154,"tsp-nn-cbs":154,"tsp-nn-initial":154}
+{"agent_count":2,"goals_per_agent":2,"tsp-branch-and-bound-cbs":150,"tsp-branch-and-bound-initial":150,"tsp-exact-cbs":150,"tsp-exact-initial":150,"tsp-nn-cbs":150,"tsp-nn-initial":150}
+{"agent_count":2,"goals_per_agent":2,"tsp-branch-and-bound-cbs":100,"tsp-branch-and-bound-initial":100,"tsp-exact-cbs":100,"tsp-exact-initial":100,"tsp-nn-cbs":100,"tsp-nn-initial":100}
+{"agent_count":2,"goals_per_agent":3,"tsp-branch-and-bound-cbs":138,"tsp-branch-and-bound-initial":138,"tsp-exact-cbs":138,"tsp-exact-initial":138,"tsp-nn-cbs":138,"tsp-nn-initial":138}

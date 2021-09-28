@@ -98,7 +98,7 @@ if __name__ == "__main__":
     if not os.path.exists('configs'):
         os.mkdir(working_directory + "configs")
     # TODO: Set path to C++ executable file
-    executable_path = "/Users/hebbaquraishi/Desktop/MAPF/CBS/MAPF"
+    executable_path = "/Users/hebbaquraishi/Desktop/MAPF/MAPF"
     # TODO: Set path to .map file
     map_path = "/Users/hebbaquraishi/Desktop/MAPF/Automation Scripts/maps/random-32-32-20.map"
 
