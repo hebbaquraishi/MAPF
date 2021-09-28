@@ -13,3 +13,8 @@
 {"agent_count":2,"goals_per_agent":8,"tsp-branch-and-bound-cbs":260,"tsp-branch-and-bound-initial":260,"tsp-exact-cbs":260,"tsp-exact-initial":260,"tsp-nn-cbs":296,"tsp-nn-initial":296}
 {"agent_count":2,"goals_per_agent":8,"tsp-branch-and-bound-cbs":224,"tsp-branch-and-bound-initial":224,"tsp-exact-cbs":226,"tsp-exact-initial":224,"tsp-nn-cbs":266,"tsp-nn-initial":266}
 {"agent_count":2,"goals_per_agent":2,"tsp-branch-and-bound-cbs":140,"tsp-branch-and-bound-initial":140,"tsp-exact-cbs":140,"tsp-exact-initial":140,"tsp-nn-cbs":140,"tsp-nn-initial":140}
+{"agent_count":2,"goals_per_agent":2,"tsp-branch-and-bound-cbs":126,"tsp-branch-and-bound-initial":126,"tsp-exact-cbs":126,"tsp-exact-initial":126,"tsp-nn-cbs":126,"tsp-nn-initial":126}
+{"agent_count":2,"goals_per_agent":2,"tsp-branch-and-bound-cbs":126,"tsp-branch-and-bound-initial":126,"tsp-exact-cbs":126,"tsp-exact-initial":126,"tsp-nn-cbs":126,"tsp-nn-initial":126}
+{"agent_count":2,"goals_per_agent":2,"tsp-branch-and-bound-cbs":126,"tsp-branch-and-bound-initial":126,"tsp-exact-cbs":126,"tsp-exact-initial":126,"tsp-nn-cbs":126,"tsp-nn-initial":126}
+{"agent_count":2,"goals_per_agent":2,"tsp-branch-and-bound-cbs":126,"tsp-branch-and-bound-initial":126,"tsp-exact-cbs":126,"tsp-exact-initial":126,"tsp-nn-cbs":126,"tsp-nn-initial":126}
+{"agent_count":2,"goals_per_agent":2,"tsp-branch-and-bound-cbs":126,"tsp-branch-and-bound-initial":126,"tsp-exact-cbs":126,"tsp-exact-initial":126,"tsp-nn-cbs":126,"tsp-nn-initial":126}

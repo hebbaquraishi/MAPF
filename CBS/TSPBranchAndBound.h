@@ -30,7 +30,7 @@ public:
 
 struct test_sort {
     bool operator()(const TSPNode* x, const TSPNode* y){
-            return x->bound > y->bound;
+        return x->bound > y->bound;
     }
 };
 
