@@ -9,7 +9,25 @@ This folder contais Python scripts for automating certain tasks. <br/>
 The directory structure is as shown below : \
 \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ ```configs``` (all map and agent configs used in testing and evaluation)\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ ```configs``` (all map and agent configs generated currently )\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ my_agents_agent_2_goals_2_config_1.json\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ my_agents_agent_2_goals_2_config_2.json\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ .....\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ my_agents_agent_20_goals_20_config_10.json\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ ```configs161x63``` (all map and agent configs used in testing and evaluation for warehouse-10-20-10-2-1.map)\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ my_agents_agent_2_goals_2_config_1.json\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ my_agents_agent_2_goals_2_config_2.json\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ .....\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ my_agents_agent_20_goals_20_config_10.json\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ ```configs32x32``` (all map and agent configs used in testing and evaluation for random-32-32-20.map)\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ my_agents_agent_2_goals_2_config_1.json\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ my_agents_agent_2_goals_2_config_2.json\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ .....\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ my_agents_agent_20_goals_20_config_10.json\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ ```configs64x64``` (all map and agent configs used in testing and evaluation for room-64-64-16.map)\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ my_agents_agent_2_goals_2_config_1.json\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ my_agents_agent_2_goals_2_config_2.json\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ .....\
@@ -22,9 +40,18 @@ The directory structure is as shown below : \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ ```results``` (JSON file containing the final results of the project)\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ results.json\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ results161x63.json\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ results32x32.json\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ results64x64.json\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ ```grapher.py```\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|___ ```map_parser_json.py```
 
+
+## grapher.py
+This script takes the results stored in ```Automation Scripts/results```, preprocesses them and plots graphs.
+<br/>
 
 ## map_parser_json.py
 This script takes a .map file as an input and 
