@@ -7,9 +7,6 @@ import json
 import random
 import os
 import subprocess
-import time
-#import pandas as pd
-#import matplotlib
 
 
 class MapGenerator:
@@ -107,27 +104,11 @@ if __name__ == "__main__":
 
     for a in range(2, max_agents+1):
         for g in range(2, max_goals+1):
-            for n in range(1, 11):
+            for n in range(1, 3):
                 obj = MapGenerator(path=map_path, number_of_agents=a, number_of_goals=g)
                 obj.convert_map_to_json(n)
                 obj.create_agents_json(n)
                 try:
-                    runcpp = subprocess.run(executable_path, timeout=30)
+                    runcpp = subprocess.run(executable_path, timeout=1800)
                 except subprocess.TimeoutExpired:
                     continue
-
-
-
-
-    """result_location = working_directory + "results/results.json"
-    result_file = open(result_location, 'r')
-    result_lines = result_file.readlines()
-
-    df = pd.DataFrame()
-
-    for line in result_lines:
-        entry = json.loads(line)
-        df.append(entry)
-
-    print(df)"""
-

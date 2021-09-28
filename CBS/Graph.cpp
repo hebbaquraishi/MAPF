@@ -88,7 +88,7 @@ std::vector<Vertex> Graph::get_neighbors(const Vertex& v) const{
     temp.emplace_back(west_neighbour);
 
     for(auto& nhbr : temp){
-        if((std::find(vertices.begin(), vertices.end(), nhbr) != vertices.end()) && nhbr.get_coordinates().first >= 0 && nhbr.get_coordinates().first < width && nhbr.get_coordinates().second >= 0 && nhbr.get_coordinates().second < height){
+        if((std::find(vertices.begin(), vertices.end(), nhbr) != vertices.end()) && nhbr.get_coordinates().first >= 0 && nhbr.get_coordinates().first < height && nhbr.get_coordinates().second >= 0 && nhbr.get_coordinates().second < width){
             nhbr.id = assign_id_to_vertex(nhbr);
             neighbors.emplace_back(nhbr);
         }
