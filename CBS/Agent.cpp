@@ -25,6 +25,13 @@ std::vector<Vertex> Agent::get_goals(){
     return goals;
 }
 
+std::vector<int> Agent::get_goal_ids(){
+    std::vector<int> goal_ids;
+    for(auto& goal: this->goals){
+        goal_ids.emplace_back(goal.id);
+    }
+    return goal_ids;
+}
 
 void Agent::set_path(std::vector<Vertex> path){
     this->path = std::move(path);

@@ -11,10 +11,8 @@
 #include <vector>
 #include <nlohmann/json.hpp>
 #include "Vertex.h"
+#include "Definitions.h"
 using json = nlohmann::json;
-
-typedef std::pair<Vertex, int> constraint_type;
-typedef std::vector<Vertex> vertices_vector;
 
 
 class Agent {
@@ -28,6 +26,7 @@ public:
     Agent(std::string name, Vertex init, std::vector<Vertex> goals);
     Vertex get_init_loc();
     vertices_vector get_goals();
+    std::vector<int> get_goal_ids();
     void set_path(std::vector<Vertex> path);
     void add_to_path(const std::vector<Vertex>& path);
     vertices_vector get_path();

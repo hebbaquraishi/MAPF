@@ -9,15 +9,9 @@
 #include "Agent.h"
 #include "Vertex.h"
 #include "Graph.h"
+#include "Definitions.h"
 #include <queue>
 
-struct sort_by_f_value {
-    bool operator()(std::pair<int, int> x, std::pair<int, int> y){
-        return x.second > y.second;
-    }
-};
-
-typedef std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, sort_by_f_value> priority_queue_sorted; //priority queue ordered by f-values. key := vertex id, value := f-value
 
 class AStar {
     Graph graph;

@@ -12,42 +12,7 @@
 #include "AStar.h"
 #include "BreadthFirstSearch.h"
 #include "TSP.h"
-typedef std::map<std::string, std::vector<constraint_type>> constraint_map;
-typedef std::map<std::string, std::vector<Vertex>> node_solution; //key:= agent name, value:= agent path from source to goal
-
-struct Conflict{
-    std::string agent1;
-    std::string agent2;
-    Vertex v;
-    int t{};
-    Conflict() = default;
-};
-
-
-struct Node{
-    constraint_map constraints;  //key:= agent name, value:= vector of agent's constraints
-    node_solution solution;      //key:= agent name, value:= agent path from source to goal
-    int cost;                    //total cost of the current solution
-    Node* left;
-    Node* right;
-    Node* parent{};
-
-    Node(){
-        constraint_map c;
-        this->constraints = c;
-        this->cost = 0;
-        left = nullptr;
-        right = nullptr;
-    }
-};
-
-struct sort_by_cost {
-    bool operator()(const Node* x, const Node* y){
-        return x->cost > y->cost;
-    }
-};
-typedef std::priority_queue<Node*, std::vector<Node*>, sort_by_cost> priority_queue_cbs; //priority queue ordered by node costs. key := node id, value := f-value
-
+#include "Definitions.h"
 
 
 class ConstraintTree {
