@@ -11,52 +11,45 @@
 using json = nlohmann::json;
 using namespace std;
 
-Agent::Agent(std::string name, Vertex init, vertices_vector goals){
+Agent::Agent(std::string name, Vertex start, vertices_vector goals){
     this->name = std::move(name);
-    init_location = std::move(init);
+    this->start = std::move(start);
     this->goals=std::move(goals);
 }
 
 Vertex Agent::get_init_loc(){
-    return init_location;
+    return this->start;
 }
 
 std::vector<Vertex> Agent::get_goals(){
-    return goals;
+    return this->goals;
 }
 
-std::vector<int> Agent::get_goal_ids(){
-    std::vector<int> goal_ids;
-    for(auto& goal: this->goals){
-        goal_ids.emplace_back(goal.id);
+
+void Agent::set_path(std::vector<int> path, bool reset){
+    if(reset){
+        this->path = {};
     }
-    return goal_ids;
-}
-
-void Agent::set_path(std::vector<Vertex> path){
-    this->path = std::move(path);
-}
-
-void Agent::add_to_path(const std::vector<Vertex>& path){
-    for(auto &p : path){
-        this->path.emplace_back(p);
+    else{
+        for(auto &p : path){
+            this->path.emplace_back(p);
+        }
     }
 }
 
 
-std::vector<Vertex> Agent::get_path(){
-    return path;
+std::vector<int> Agent::get_path(){
+    return this->path;
 }
 
 int Agent::get_path_cost(){
-    return path.size() - 1;
+    return this->path.size() - 1;
 }
 
-void Agent::add_constraints(const constraint_type& c){
+void Agent::add_constraints(constraint c){
     this->constraints.emplace_back(c);
 }
 
-std::vector<constraint_type> Agent::get_constraints(){
+std::vector<constraint> Agent::get_constraints(){
     return constraints;
 }
-

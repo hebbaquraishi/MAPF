@@ -12,46 +12,45 @@ using namespace std;
 
 BreadthFirstSearch::BreadthFirstSearch(Graph graph) {
     this->graph = graph;
-    std::vector<Agent> all_agents = graph.get_agents();
-    for (auto &a : all_agents) {
-        std::vector<Vertex> a_goals = a.get_goals();
-        for (auto &goal : a_goals) {
-            if (find(all_goals.begin(), all_goals.end(), goal.id) == all_goals.end()) {
-                all_goals.emplace_back(goal.id);
+    std::vector<Agent> agents = graph.get_agents();
+    for (auto &agent : agents) {
+        std::vector<Vertex> goals = agent.get_goals();
+        for (auto &goal : goals) {
+            if (find(all_goals.begin(), all_goals.end(), this->graph.inverse_vertex_ids[goal.name]) == all_goals.end()) {
+                all_goals.emplace_back(this->graph.inverse_vertex_ids[goal.name]);
 
                 std::map<int, bool> discovered;
-                std::queue<std::pair<Vertex, int>> q;
+                std::queue<std::pair<int, int>> q; //key:= vertex_id; value:= distance from root
 
-                std::pair<Vertex, int> root;
-                root.first = goal;
+                std::pair<int, int> root; //key:= vertex_id; value:= distance from root
+                root.first = this->graph.inverse_vertex_ids[goal.name];
                 root.second = 0;
 
                 q.push(root);
-                discovered[goal.id] = true;
+                discovered[this->graph.inverse_vertex_ids[goal.name]] = true;
                 run_bfs(root, q, discovered);
             }
         }
     }
 }
 
-void BreadthFirstSearch::run_bfs(const std::pair<Vertex, int>& root, std::queue<std::pair<Vertex, int>> q, std::map<int, bool> discovered){
+void BreadthFirstSearch::run_bfs(const std::pair<int, int>& root, std::queue<std::pair<int, int>> q, std::map<int, bool> discovered){
     if(q.empty()){
         return;
     }
-    std::pair<Vertex, int> n = q.front();
+    std::pair<int, int> n = q.front(); //key:= vertex_id; value:= distance from root
     q.pop();
-    for(auto& node : graph.get_neighbors(n.first)){
-        if(!discovered[node.id]){
-            discovered[node.id] = true;
+    for(auto& node : graph.neighbours[n.first]){
+        if(discovered.find(node) == discovered.end()){
+            discovered[node] = true;
 
-            std::pair<Vertex, int> child;
+            std::pair<int, int> child;
             child.first = node;
-            //child.parent = n.current;
             child.second = n.second+1;
 
             q.push(child);
-            distance_matrix[{root.first.id, child.first.id}] = child.second;
-            distance_matrix[{child.first.id, root.first.id}] = child.second;
+            distance_matrix[{root.first, child.first}] = child.second;
+            distance_matrix[{child.first, root.first}] = child.second;
         }
     }
     run_bfs(root,q, discovered);
@@ -59,14 +58,4 @@ void BreadthFirstSearch::run_bfs(const std::pair<Vertex, int>& root, std::queue<
 
 std::map<std::pair<int, int>,int> BreadthFirstSearch::get_distance_matrix() {
     return distance_matrix;
-}
-
-void BreadthFirstSearch::print_distance_matrix() {
-    cout<<endl;
-    cout<<"(Src, Dest)\t\tDistance"<<endl;
-    for(auto& key : distance_matrix){
-        string src = graph.get_vertex_from_id(key.first.first).name;
-        string dest = graph.get_vertex_from_id(key.first.second).name;
-        cout<<src<<", "<<dest<<"\t\t"<<key.second<<endl;
-    }
 }

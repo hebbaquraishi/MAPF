@@ -1,29 +1,39 @@
 /*
  * Author: Hebba Quraishi
  * Email: quraishi@tf.uni-freiburg.de
- * The objective of this file is to build a constraint forest
+ * The objective of this file is to implement a Constraint Forest
 */
 
 #ifndef MAPF_CONSTRAINTFOREST_H
 #define MAPF_CONSTRAINTFOREST_H
 #include "Definitions.h"
-#include "Graph.h"
-#include "AStar.h"
-#include "BreadthFirstSearch.h"
-#include "TSP.h"
 #include "GoalTraversalOrders.h"
+#include "Graph.h"
+#include "LowLevelSearch.h"
+#include <map>
+
+struct Node{
+    std::map<std::string, std::vector<constraint>> agent_constraints;
+    bool is_root;
+    std::map<std::string, std::vector<int>> assignment; //key:= agent name, value:= goal traversal order
+    std::map<std::string, std::vector<int>> solution; //key:= agent name, value:= path from low level search
+    int cost = 0;
+    Node* parent;
+    std::vector<Node*> children;
+};
+
 
 
 class ConstraintForest {
-    ForestNode *root;
+    Node *root;
     Graph graph;
-    std::map<std::pair<int, int>,int> h_values; //stores the h-values
-    std::string solver;
-    int final_solution_cost = 0;
+    GoalTraversalOrders gto;
+    std::map<std::string, std::vector<int>> assignments; //contains current assignments for all agents
 public:
     ConstraintForest(Graph graph);
-    void get_solution(std::string agent_name,std::vector<int> goal_traversal_order, std::vector<constraint_type> constraints);
-
+    int first_assignment(std::string& agent_name);
+    int next_assignment(std::string agent_name, int current_assignment);
+    Conflict validate_paths(Node *node);
 };
 
 

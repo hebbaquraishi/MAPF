@@ -1,29 +1,28 @@
 /*
  * Author: Hebba Quraishi
  * Email: quraishi@tf.uni-freiburg.de
- * The objective of this file is to calculate all possible goal traversal orders for agents
+ * The objective of this file is to find all possible goal traversal orders for all agents on a graph
 */
 
-
-#include "Graph.h"
-#include "AStar.h"
+#ifndef MAPF_GOALTRAVERSALORDERS_H
+#define MAPF_GOALTRAVERSALORDERS_H
 #include "Definitions.h"
+#include "Graph.h"
+#include <map>
 
-struct sort_by_solution_cost {
-    bool operator()(const std::pair<std::vector<int>, int> x, const std::pair<std::vector<int>, int> y){
-        return x.second < y.second;
-    }
-};
 
 class GoalTraversalOrders {
     Graph graph;
-    std::map<std::pair<int, int>,int> h_values; //stores the h-values between pair of vertices (vertex ids)
-public:
-    std::map<std::string, std::vector<std::pair<std::vector<int>, int>>> agent_assignments;  //key:= agent name, value:= vector of pairs of goal traversal orders, cost
+    void sort_goal_traversal_orders();
+public: //use unordered map
+    std::map<std::string, std::vector<int>> goal_traversal_order_ids; //key:= agent name, value:= all goal traversal order ids
+    std::map<int, std::pair<std::vector<int>, int>> goal_traversal_order; //key:= goal traversal order id, value:= <goal traversal order, cost>
+    GoalTraversalOrders()= default;
     GoalTraversalOrders(Graph graph);
-    std::vector<std::pair<std::vector<int>, int>> all_goal_traversal_orders(int start, std::vector<int> goals);
-    int get_cost(int start, std::vector<int> goals);
-    std::pair<std::vector<int>, int> get_next_best_goal_traversal_order(const std::string& agent);
+    int get_cost(std::vector<int> goal_traversal_order);
+    int brute_force_approach(Agent agent, std::vector<int> goal_ids, int start_id);
+
 };
 
 
+#endif //MAPF_GOALTRAVERSALORDERS_H

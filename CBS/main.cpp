@@ -2,7 +2,9 @@
 #include <fstream>
 
 #include "Graph.h"
-#include "ConstraintTree.h"
+#include "BreadthFirstSearch.h"
+#include "ConstraintForest.h"
+
 
 using namespace std;
 using json = nlohmann::json;
@@ -13,31 +15,11 @@ int main() {
     string agent_location = "/Users/hebbaquraishi/Desktop/MAPF/Automation Scripts/results/my_agents.json";
 
     //Initialise the graph with agents
-    Graph g = Graph(map_location, agent_location);
-    //g.print_graph();
+    Graph graph = Graph(map_location, agent_location);
+    BreadthFirstSearch b = BreadthFirstSearch(graph);
+    graph.h_values = b.get_distance_matrix();
+    ConstraintForest constraintForest = ConstraintForest(graph);
 
-    //Run CBS
-    json output_file;
-    output_file["agent_count"] = g.get_agent_count();
-    output_file["goals_per_agent"] = g.get_agents()[0].get_goals().size();
-    string solver[4] = {"simple", "tsp-nn", "tsp-exact", "tsp-branch-and-bound"};
-    for(int i = 1; i< 4; i++){
-        if(g.get_agents()[0].get_goals().size() >= 10 && solver[i] == "tsp-exact"){
-            string initial = solver[i]+"-initial";
-            output_file[initial]=-99;
-            string cbs = solver[i]+"-cbs";
-            output_file[cbs]=-99;
-            continue;
-        }
-        cout<<"\n\n*********************** solver = "<<solver[i]<<" ***********************"<<endl;
-        ConstraintTree tree = ConstraintTree(g, solver[i]);
-        pair<int,int> solution_costs = tree.run_cbs();
-        string initial = solver[i]+"-initial";
-        output_file[initial]=solution_costs.first;
-        string cbs = solver[i]+"-cbs";
-        output_file[cbs]=solution_costs.second;
-    }
-    ofstream outstream("/Users/hebbaquraishi/Desktop/MAPF/Automation Scripts/results/results.json", std::ios_base::app);
-    outstream<<output_file<<endl;
+
     return 0;
 }
