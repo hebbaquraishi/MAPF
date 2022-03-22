@@ -13,7 +13,7 @@
 
 class GoalTraversalOrders {
     Graph graph;
-    void sort_goal_traversal_orders();
+    void sort_goal_traversal_orders(std::string);
 public:
     std::map<std::string, std::vector<int>> goal_traversal_order_ids; //key:= agent name, value:= all goal traversal order ids
     std::map<int, std::pair<std::vector<int>, int>> goal_traversal_order; //key:= goal traversal order id, value:= <goal traversal order, cost>

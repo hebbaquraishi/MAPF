@@ -46,22 +46,20 @@ int GoalTraversalOrders::brute_force_approach(Agent agent, std::vector<int> goal
         cout<<endl;
         this->goal_traversal_order[start_id] = make_pair(temp, get_cost(temp));
     } while(next_permutation(goal_ids.begin(), goal_ids.end()));
-    this->sort_goal_traversal_orders();
+    this->sort_goal_traversal_orders(agent.name);
     return start_id;
 }
 
 
 
-void GoalTraversalOrders::sort_goal_traversal_orders(){
+void GoalTraversalOrders::sort_goal_traversal_orders(string agent_name){
     vector<pair<int, int>> temp_goal_traversal_orders; //key:= goal_id, value:= cost
-    for(auto& agent: this->goal_traversal_order_ids){
-        for(auto& goal_id: agent.second){
-            temp_goal_traversal_orders.emplace_back(make_pair(goal_id, this->goal_traversal_order[goal_id].second));
-        }
-        sort(temp_goal_traversal_orders.begin(), temp_goal_traversal_orders.end(), sort_by_path_cost());
-        this->goal_traversal_order_ids[agent.first] = {};
-        for(auto& goal: temp_goal_traversal_orders){
-            this->goal_traversal_order_ids[agent.first].push_back(goal.first);
-        }
+    for(auto& goal_id: this->goal_traversal_order_ids[agent_name]){
+        temp_goal_traversal_orders.emplace_back(make_pair(goal_id, this->goal_traversal_order[goal_id].second));
+    }
+    sort(temp_goal_traversal_orders.begin(), temp_goal_traversal_orders.end(), sort_by_path_cost());
+    this->goal_traversal_order_ids[agent_name] = {};
+    for(auto& goal: temp_goal_traversal_orders){
+        this->goal_traversal_order_ids[agent_name].push_back(goal.first);
     }
 }
