@@ -7,24 +7,30 @@
 #include "ConstraintForest.h"
 #include <iostream>
 
-ConstraintForest::ConstraintForest(Graph graph) {
+ConstraintForest::ConstraintForest(const Graph& graph) {
     this->graph = graph;
     this->gto = GoalTraversalOrders(graph);
+    this->root = new Node();
+    initialise_root_node();
+    run();
+}
 
 
+void ConstraintForest::initialise_root_node(){
+    this->root->agent_constraints = {};
     vector<Agent> agents = this->graph.get_agents();
     for(auto& agent: agents){
-        this->assignments[agent.name] = this->gto.goal_traversal_order[first_assignment(agent.name)].first;
+        this->current_assignments[agent.name].first = first_assignment(agent.name);
+        this->current_assignments[agent.name].second = this->gto.goal_traversal_order[this->current_assignments[agent.name].first].first;
+        this->root->assignment[agent.name].first = first_assignment(agent.name);
+        this->root->assignment[agent.name].second = this->gto.goal_traversal_order[this->current_assignments[agent.name].first].first;
     }
-
-    this->root = new Node();
     this->root->is_root = true;
-    LowLevelSearch lowLevelSearch = LowLevelSearch(this->graph, this->assignments);
-
+    LowLevelSearch lowLevelSearch = LowLevelSearch(this->graph, this->current_assignments);
     this->root->solution = lowLevelSearch.get_agent_wise_solutions();
     this->root->cost = lowLevelSearch.get_total_solution_cost();
-    cout<<"Yayyyy!!"<<endl;
-    Conflict c = validate_paths(root);
+    this->root->parent = nullptr;
+    this->root->largest_solution_cost = lowLevelSearch.get_largest_solution_cost();
 }
 
 int ConstraintForest::first_assignment(std::string& agent_name){
@@ -44,21 +50,42 @@ int ConstraintForest::next_assignment(std::string agent_name, int current_assign
 
 
 Conflict ConstraintForest::validate_paths(Node *node){
-    std::unordered_map<std::string, std::vector<int>>::iterator it_path1, it_path2;
-    for(it_path1 = node->solution.begin(); it_path1 != node->solution.end(); it_path1++){ //potential for errors
-        it_path2 = next(it_path1);
-        vector<int> path1 = it_path1->second;
-        vector<int> path2 = it_path2->second;
-        for(int i = 0; i < (int)min(path1.size(), path2.size()); i++){
-            if (path1[i] == path2[i]){
-                Conflict c;
-                c.agent1 = it_path1->first;
-                c.agent2 = it_path2->first;
-                c.timestamp = i;
-                c.vertex = path1[i];
-                return c;
+    vector<pair<string, vector<int>>> node_solution = {}; //key:= agent name, value:= path from low level search
+
+    //padding individual agent solutions so that the solutions are all of the same length
+    for(auto& agent: node->solution){
+        int padding = (int)(node->largest_solution_cost - agent.second.size());
+        vector<int> path = agent.second;
+        for(int i = 0; i <= padding; i++){
+            path.push_back(-1);
+        }
+        node_solution.emplace_back(make_pair(agent.first, path));
+    }
+
+    //performing validation of solutions
+    for(int i = 0; i < (int)node_solution.size()-1; i++){
+        for(int j = i + 1; j < (int)node_solution.size(); j++){
+            for(int k = 0; k < (int)node_solution[i].second.size(); k++){
+                if((node_solution[i].second)[k] == (node_solution[j].second)[k]){
+                    Conflict c;
+                    c.agent1 = node_solution[i].first;
+                    c.agent2 = node_solution[j].first;
+                    c.timestamp = k;
+                    c.vertex = (node_solution[i].second)[k];
+                    return c;
+                }
             }
         }
     }
     return Conflict{};
 }
+
+
+void ConstraintForest::run(){
+    Conflict c = validate_paths(root);
+    cout<<"Conflict<"<<c.agent1<<", "<<c.agent2<<", "<<this->graph.vertex_ids[c.vertex].name<<", "<<c.timestamp<<">";
+
+}
+
+
+

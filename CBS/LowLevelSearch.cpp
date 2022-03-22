@@ -8,9 +8,9 @@
 
 #include <utility>
 
-LowLevelSearch::LowLevelSearch(Graph graph, std::unordered_map<std::string, std::vector<int>> assignment){
+LowLevelSearch::LowLevelSearch(Graph graph, std::unordered_map<std::string, std::pair<int, std::vector<int>>> current_assignment){
     this->graph = std::move(graph);
-    this->assignment = std::move(assignment);
+    this->assignment = std::move(current_assignment);
     run();
 }
 
@@ -18,8 +18,8 @@ LowLevelSearch::LowLevelSearch(Graph graph, std::unordered_map<std::string, std:
 void LowLevelSearch::run() {
     for(auto& value: this->assignment){
         int shift = 0;
-        for(int i = 0; i < (int)value.second.size()-1; i++){
-            AStarSearch a_star = AStarSearch(graph, value.first, value.second[i], value.second[i+1], shift);
+        for(int i = 0; i < (int)value.second.second.size()-1; i++){
+            AStarSearch a_star = AStarSearch(graph, value.first, value.second.second[i], value.second.second[i+1], shift);
             this->graph = a_star.get_updated_graph();
             vector<int> path = a_star.get_path();
             if(i == 0){

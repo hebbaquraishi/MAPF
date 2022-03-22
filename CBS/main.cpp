@@ -19,6 +19,6 @@ int main() {
     BreadthFirstSearch b = BreadthFirstSearch(graph);
     graph.h_values = b.get_distance_matrix();
     ConstraintForest constraintForest = ConstraintForest(graph);
-
+    //
     return 0;
 }

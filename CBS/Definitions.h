@@ -8,6 +8,7 @@
 #define MAPF_DEFINITIONS_H
 #include "Vertex.h"
 #include <queue>
+#include <unordered_map>
 using namespace std;
 
 
@@ -28,12 +29,30 @@ struct sort_by_path_cost{
 };
 
 struct Conflict{
-    std::string agent1;
-    std::string agent2;
-    int vertex{};
-    int timestamp{};
+    std::string agent1 = "";
+    std::string agent2= "";
+    int vertex = -1;
+    int timestamp = -1;
     Conflict() = default;
 };
+
+struct Node{
+    std::unordered_map<std::string, std::vector<constraint>> agent_constraints;
+    bool is_root;
+    std::unordered_map<std::string, std::pair<int, std::vector<int>>> assignment; //key:= agent name, value:= <goal_traversal_id, goal traversal order>
+    std::unordered_map<std::string, std::vector<int>> solution; //key:= agent name, value:= path from low level search
+    int cost = 0;
+    int largest_solution_cost = 0;
+    Node* parent;
+    std::vector<Node*> children;
+};
+
+struct sort_node_by_cost {
+    bool operator()(const Node* x, const Node* y){
+        return x->cost > y->cost;
+    }
+};
+typedef std::priority_queue<Node*, std::vector<Node*>, sort_node_by_cost> priority_queue; //priority queue ordered by node costs. key := node id, value := f-value
 
 
 

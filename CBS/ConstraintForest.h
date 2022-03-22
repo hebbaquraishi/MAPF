@@ -13,28 +13,18 @@
 #include <map>
 
 
-struct Node{
-    std::unordered_map<std::string, std::vector<constraint>> agent_constraints;
-    bool is_root;
-    std::unordered_map<std::string, std::vector<int>> assignment; //key:= agent name, value:= goal traversal order
-    std::unordered_map<std::string, std::vector<int>> solution; //key:= agent name, value:= path from low level search
-    int cost = 0;
-    Node* parent;
-    std::vector<Node*> children;
-};
-
-
-
 class ConstraintForest {
     Node *root;
     Graph graph;
     GoalTraversalOrders gto;
-    std::unordered_map<std::string, std::vector<int>> assignments; //contains current assignments for all agents
+    std::unordered_map<std::string, std::pair<int, std::vector<int>>> current_assignments; //contains current current_assignments for all agents
 public:
-    ConstraintForest(Graph graph);
+    ConstraintForest(const Graph& graph);
+    void initialise_root_node();
     int first_assignment(std::string& agent_name);
     int next_assignment(std::string agent_name, int current_assignment);
     Conflict validate_paths(Node *node);
+    void run();
 };
 
 
