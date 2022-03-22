@@ -8,7 +8,7 @@
 #define MAPF_GRAPH_H
 #include "Agent.h"
 #include "Definitions.h"
-#include <map>
+#include <unordered_map>
 #include <nlohmann/json.hpp>
 #include <set>
 #include <string>
@@ -26,9 +26,9 @@ class Graph {
     std::map<std::string, Agent> agent_object;
 
 public:
-    std::map<int, Vertex> vertex_ids; //key:= vertex_id, value:= Vertex
-    std::map<std::string, int> inverse_vertex_ids; //key:= Vertex name, value:= vertex_id
-    std::map<int, std::vector<int>> neighbours; //key:= vertex_id, value:= ids of all neighbours
+    std::unordered_map<int, Vertex> vertex_ids; //key:= vertex_id, value:= Vertex
+    std::unordered_map<std::string, int> inverse_vertex_ids; //key:= Vertex name, value:= vertex_id
+    std::unordered_map<int, std::vector<int>> neighbours; //key:= vertex_id, value:= ids of all neighbours
     std::map<std::pair<int, int>,int> h_values; //key:= <source_vertex_id, destination_vertex_id>, value:= distance
     Graph(const std::string& map_location, const std::string& agent_location);
     Graph() = default;

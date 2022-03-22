@@ -15,11 +15,12 @@ GoalTraversalOrders::GoalTraversalOrders(Graph graph){
     for(auto& agent: graph.get_agents()){
         goal_ids.clear();
         cout<<agent.name<<": ";
-        for(auto goal: agent.get_goals()){
+        for(const auto& goal: agent.get_goals()){
             goal_ids.push_back(this->graph.inverse_vertex_ids[goal.name]);
             cout<<this->graph.inverse_vertex_ids[goal.name]<<" ";
         }
         cout<<endl;
+        std::sort(goal_ids.begin(), goal_ids.end());
         start_id = brute_force_approach(agent, goal_ids, start_id);
     }
 }

@@ -5,20 +5,26 @@
 */
 
 #include "ConstraintForest.h"
+#include <iostream>
 
 ConstraintForest::ConstraintForest(Graph graph) {
     this->graph = graph;
     this->gto = GoalTraversalOrders(graph);
+
+
     vector<Agent> agents = this->graph.get_agents();
-    for(auto agent: agents){
+    for(auto& agent: agents){
         this->assignments[agent.name] = this->gto.goal_traversal_order[first_assignment(agent.name)].first;
     }
+
     this->root = new Node();
     this->root->is_root = true;
     LowLevelSearch lowLevelSearch = LowLevelSearch(this->graph, this->assignments);
+
     this->root->solution = lowLevelSearch.get_agent_wise_solutions();
     this->root->cost = lowLevelSearch.get_total_solution_cost();
-    validate_paths(root);
+    cout<<"Yayyyy!!"<<endl;
+    Conflict c = validate_paths(root);
 }
 
 int ConstraintForest::first_assignment(std::string& agent_name){
@@ -38,7 +44,7 @@ int ConstraintForest::next_assignment(std::string agent_name, int current_assign
 
 
 Conflict ConstraintForest::validate_paths(Node *node){
-    std::map<std::string, std::vector<int>>::iterator it_path1, it_path2;
+    std::unordered_map<std::string, std::vector<int>>::iterator it_path1, it_path2;
     for(it_path1 = node->solution.begin(); it_path1 != node->solution.end(); it_path1++){ //potential for errors
         it_path2 = next(it_path1);
         vector<int> path1 = it_path1->second;

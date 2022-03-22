@@ -5,7 +5,6 @@
 */
 
 #include "Graph.h"
-#include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <nlohmann/json.hpp>
@@ -59,7 +58,7 @@ void Graph::initialise_agents(json input_agents_json){
 void Graph::initialise_neighbours(){
     std::vector<std::pair<int, int>> directions = {{0,1}, {0, -1}, {-1, 0}, {1,0}};
 
-    for(auto v: this->vertices){
+    for(const auto& v: this->vertices){
         for(auto d: directions){
             int x = v.get_coordinates().first + d.first;
             int y = v.get_coordinates().second + d.second;
