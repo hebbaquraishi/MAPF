@@ -1,7 +1,7 @@
 /*
  * Author: Hebba Quraishi
  * Email: quraishi@tf.uni-freiburg.de
- * The objective of this file is to find all possible goal traversal orders for all agents on a graph
+ * The objective of this file is to find all possible goal traversal orders for all vector_of_agent_objects on a graph
 */
 
 #include "GoalTraversalOrders.h"

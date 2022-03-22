@@ -44,7 +44,7 @@ struct Node{
     int cost = 0;
     int largest_solution_cost = 0;
     Node* parent;
-    std::vector<Node*> children;
+    //std::vector<Node*> children;
 };
 
 struct sort_node_by_cost {
@@ -52,8 +52,6 @@ struct sort_node_by_cost {
         return x->cost > y->cost;
     }
 };
-typedef std::priority_queue<Node*, std::vector<Node*>, sort_node_by_cost> priority_queue; //priority queue ordered by node costs. key := node id, value := f-value
-
-
+typedef std::priority_queue<Node*, std::vector<Node*>, sort_node_by_cost> priority_queue_sorted_by_node_cost; //priority queue ordered by node costs. key := node id, value := f-value
 
 #endif //MAPF_DEFINITIONS_H

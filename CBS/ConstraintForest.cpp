@@ -6,10 +6,14 @@
 
 #include "ConstraintForest.h"
 #include <iostream>
+#include <math.h>
 
 ConstraintForest::ConstraintForest(const Graph& graph) {
     this->graph = graph;
-    this->gto = GoalTraversalOrders(graph);
+    auto* gto = new GoalTraversalOrders(graph);
+    this->goal_traversal_order_ids = gto->goal_traversal_order_ids;
+    this->goal_traversal_order = gto->goal_traversal_order;
+    delete gto;
     this->root = new Node();
     initialise_root_node();
     run();
@@ -18,14 +22,8 @@ ConstraintForest::ConstraintForest(const Graph& graph) {
 
 void ConstraintForest::initialise_root_node(){
     this->root->agent_constraints = {};
-    vector<Agent> agents = this->graph.get_agents();
-    for(auto& agent: agents){
-        this->current_assignments[agent.name].first = first_assignment(agent.name);
-        this->current_assignments[agent.name].second = this->gto.goal_traversal_order[this->current_assignments[agent.name].first].first;
-        this->root->assignment[agent.name].first = first_assignment(agent.name);
-        this->root->assignment[agent.name].second = this->gto.goal_traversal_order[this->current_assignments[agent.name].first].first;
-    }
     this->root->is_root = true;
+    first_assignment();
     LowLevelSearch lowLevelSearch = LowLevelSearch(this->graph, this->current_assignments);
     this->root->solution = lowLevelSearch.get_agent_wise_solutions();
     this->root->cost = lowLevelSearch.get_total_solution_cost();
@@ -33,20 +31,35 @@ void ConstraintForest::initialise_root_node(){
     this->root->largest_solution_cost = lowLevelSearch.get_largest_solution_cost();
 }
 
-int ConstraintForest::first_assignment(std::string& agent_name){
-    std::vector<int> goal_traversal_order_ids = this->gto.goal_traversal_order_ids[agent_name];
-    return goal_traversal_order_ids.front();
+void ConstraintForest::first_assignment(){
+    for(auto& agent: this->graph.get_agents()){
+        ptr[agent.name] = 0;
+        int goal_id = goal_traversal_order_ids[agent.name][ptr[agent.name]];
+        current_assignments[agent.name] = make_pair(goal_id, goal_traversal_order[goal_id].first);
+    }
 }
 
-int ConstraintForest::next_assignment(std::string agent_name, int current_assignment){
-    std::vector<int> goal_traversal_order_ids = this->gto.goal_traversal_order_ids[agent_name];
-    for(int i = 0; i < (int)goal_traversal_order_ids.size()-1; i++){
-        if(current_assignment == goal_traversal_order_ids[i]){
-            return goal_traversal_order_ids[i+1];
+void ConstraintForest::next_assignment(){
+    int min = INT_MAX;
+    int my_ptr = -1;
+    int min_goal_id = -1;
+    string agent_name;
+    for(auto& agent: this->ptr){
+        if(agent.second < (int)goal_traversal_order_ids[agent.first].size()-1){
+            int next_ptr = agent.second + 1;
+            int next_goal_id = goal_traversal_order_ids[agent.first][next_ptr];
+            if(goal_traversal_order[next_goal_id].second < min){
+                min = goal_traversal_order[next_goal_id].second;
+                min_goal_id = next_goal_id;
+                agent_name = agent.first;
+                my_ptr = next_ptr;
+            }
         }
     }
-    return -1;
+    ptr[agent_name] = my_ptr;
+    current_assignments[agent_name] = make_pair(min_goal_id, goal_traversal_order[min_goal_id].first);
 }
+
 
 
 Conflict ConstraintForest::validate_paths(Node *node){
@@ -72,6 +85,8 @@ Conflict ConstraintForest::validate_paths(Node *node){
                     c.agent2 = node_solution[j].first;
                     c.timestamp = k;
                     c.vertex = (node_solution[i].second)[k];
+                    this->graph.set_agent_constraint(c.agent1, constraint(c.vertex, c.timestamp));
+                    this->graph.set_agent_constraint(c.agent2, constraint(c.vertex, c.timestamp));
                     return c;
                 }
             }
@@ -82,9 +97,20 @@ Conflict ConstraintForest::validate_paths(Node *node){
 
 
 void ConstraintForest::run(){
-    Conflict c = validate_paths(root);
-    cout<<"Conflict<"<<c.agent1<<", "<<c.agent2<<", "<<this->graph.vertex_ids[c.vertex].name<<", "<<c.timestamp<<">";
+    priority_queue_sorted_by_node_cost open_list;
+    open_list.push(this->root);
 
+    while(!open_list.empty()){
+        Node* current_node = open_list.top();
+        Conflict conflict = validate_paths(current_node);
+        if(conflict.timestamp == -1){
+            //we have found a solution
+            for(auto& agent : this->graph.get_agents()){
+                this->graph.set_agent_path(agent.name, current_node->solution[agent.name], false);
+            }
+            this->graph.print_agent_information();
+        }
+    }
 }
 
 

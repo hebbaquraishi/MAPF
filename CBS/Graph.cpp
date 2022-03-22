@@ -48,8 +48,8 @@ void Graph::initialise_agents(json input_agents_json){
         }
         Vertex start = Vertex(input_agents_json["initial"][i][0], input_agents_json["initial"][i][1]);
         Agent a = Agent(input_agents_json["names"][i], start, goals);
-        agents.emplace_back(a);
-        agent_object[a.name] = a;
+        vector_of_agent_objects.emplace_back(a);
+        agent_map[a.name] = a;
         goals = {};
     }
 }
@@ -75,7 +75,7 @@ void Graph::initialise_neighbours(){
 
 
 int Graph::get_agent_count(){
-    return agents.size();
+    return vector_of_agent_objects.size();
 }
 
 std::vector<Vertex> Graph::get_vertices(){
@@ -83,18 +83,55 @@ std::vector<Vertex> Graph::get_vertices(){
 }
 
 std::vector<Agent> Graph::get_agents(){
-    return agents;
+    return vector_of_agent_objects;
 }
 
 Agent Graph::get_agent_object(std::string agent_name){
-    return agent_object[agent_name];
+    return agent_map[agent_name];
 }
 
 void Graph::set_agent_path(std::string agent_name, std::vector<int> path, bool reset){
-    for(auto& agent: this->agents){
+    for(auto& agent: this->vector_of_agent_objects){
         if(agent.name == agent_name){
             agent.set_path(path, reset);
-            agent_object[agent_name] = agent;
+            agent_map[agent_name] = agent;
         }
+    }
+}
+
+
+void Graph::set_agent_constraint(std::string agent_name, constraint c){
+    for(auto& agent: this->vector_of_agent_objects){
+        if(agent.name == agent_name){
+            agent.add_constraints(c);
+            agent_map[agent_name] = agent;
+        }
+    }
+}
+
+
+void Graph::print_agent_information() {
+    for(auto& agent: this->vector_of_agent_objects){
+        cout<<"Agent: "<<agent.name;
+        cout<<"\n\tInitial location: "<<agent.get_init_loc().name<<" [id = "<<inverse_vertex_ids[agent.get_init_loc().name]<<"] ";
+        cout<<"\n\tGoals:";
+        for(auto& goal: agent.get_goals()){
+            cout<<goal.name<<" [id = "<<inverse_vertex_ids[goal.name]<<"]\t";
+        }
+        if(!agent.get_constraints().empty()){
+            cout<<"\n\tConstraints:";
+            for(auto& constraint : agent.get_constraints()){
+                cout<<"\n\t\t"<<"<Vertex: "<<vertex_ids[constraint.first].name<<"(id = "<<constraint.first<<") Timestamp: "<<constraint.second<<"> ";
+            }
+        }
+
+        if(!agent.get_path().empty()){
+            cout<<"\n\tPath: ";
+            for(auto& loc: agent.get_path()){
+                cout<<vertex_ids[loc].name<<" ";
+            }
+            cout<<"\n\tPath Cost: "<<agent.get_path_cost();
+        }
+        cout<<endl;
     }
 }
